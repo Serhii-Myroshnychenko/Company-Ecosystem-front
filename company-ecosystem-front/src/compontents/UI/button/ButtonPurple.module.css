@@ -1,0 +1,17 @@
+.purpleButton {
+    text-align: center;
+    background: #4D47C3;
+    box-shadow: 0px 4px 61px rgba(77, 71, 195, 0.4);
+    border-radius: 9px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    width: 100%;
+    height: 59px;
+    transition: background-color 0.3s ease;
+}
+
+.purpleButton:hover {
+    background-color: #3f38c2;
+}
