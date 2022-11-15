@@ -1,6 +1,7 @@
 import React from 'react';
 import s from "./styles/Home.module.css"
-import Saly from "../img/homePage/Saly.png"
+import Saly from "../img/homePage/Saly.svg"
+import InputPurple from "../compontents/UI/input/InputPurple";
 
 const Home = ({userName = "user"}) => {
     return (
@@ -20,7 +21,6 @@ const Home = ({userName = "user"}) => {
                 <div className={s.imageContainer}>
                     <img src={Saly} alt="image"/>
                 </div>
-
             </div>
         </div>
     );

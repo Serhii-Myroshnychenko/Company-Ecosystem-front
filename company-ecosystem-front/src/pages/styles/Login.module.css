@@ -1,0 +1,101 @@
+.loginContainer {
+    padding: 0 175px 0 158px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftColumn {
+    display: flex;
+}
+
+.textBlock {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 70%;
+    margin: 83px -90px 0 0;
+    padding-right: 90px;
+}
+
+.textBlock >*:last-child {
+    display: block;
+    margin-top: 46px;
+}
+
+.signIn {
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 75px;
+    color: #000000;
+    margin-bottom: 5px;
+}
+
+.companyEcosystem {
+    font-weight: 500;
+    font-size: 35px;
+    line-height: 52px;
+    color: #000000;
+}
+
+.description {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+}
+
+.manage {
+    font-weight: 500;
+    color: #4D47C3;
+}
+
+
+/*
+.imageContainer {
+    padding: 281px 0 100% 0;
+    position: relative;
+    width: 100%;
+}
+.imageContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+*/
+
+
+
+
+.imageContainer {
+    padding: 120px 0 0 0;
+}
+.imageContainer img {
+    max-width: 100%;
+}
+
+
+
+/*.imageContainer {
+
+    flex: 0 0 33.333%;
+    position: relative;
+    min-height: 556px;
+    min-width: 316px;
+}
+
+.imageContainer img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}*/
+
+.rightColumn {
+    margin-top: 63px;
+}
