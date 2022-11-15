@@ -8,6 +8,7 @@
     width: 100%;
     height: 62px;
     font-family: inherit;
+    padding-left: 25px;
 }
 
 .purpleInput::placeholder {
