@@ -12,34 +12,37 @@ import {
 } from "../utils/consts";
 
 const Navbar = () => {
+
+    const activeNavbarClass = (navData) => (navData.isActive ? s.activeLink : s.menu__link);
+
     return (
         <header className={s.header}>
             <div className={s.headerContainer}>
                 <Link to={HOME_ROUTE}>
                     <div className={s.logoBlock}>
-                        <img src={logo} alt="Logo"/>
+                        <img src={logo} alt="Logo" className={s.logo__img}/>
                         <div className={s.logo__text}>Ecosystem</div>
                     </div>
                 </Link>
                 <nav className={s.menu}>
                     <ul className={s.menu__ul}>
                         <li className={s.menu__li}>
-                            <NavLink to={EMPLOYERS_ROUTE} className={s.menu__link}>Employees</NavLink>
+                            <NavLink to={EMPLOYERS_ROUTE} className={activeNavbarClass}>Employees</NavLink>
                         </li>
                         <li className={s.menu__li}>
-                            <NavLink to={LOCATIONS_ROUTE} className={s.menu__link}>Locations</NavLink>
+                            <NavLink to={LOCATIONS_ROUTE} className={activeNavbarClass} >Locations</NavLink>
                         </li>
                         <li className={s.menu__li}>
-                            <NavLink to={POSTS_ROUTE} className={s.menu__link}>Posts</NavLink>
+                            <NavLink to={POSTS_ROUTE} className={activeNavbarClass}>Posts</NavLink>
                         </li>
                         <li className={s.menu__li}>
-                            <NavLink to={THINGS_ROUTE} className={s.menu__link}>Things</NavLink>
+                            <NavLink to={THINGS_ROUTE} className={activeNavbarClass}>Things</NavLink>
                         </li>
                         <li className={s.menu__li}>
-                            <NavLink to={PHOTO_THINGS_ROUTE} className={s.menu__link}>PhotoThings</NavLink>
+                            <NavLink to={PHOTO_THINGS_ROUTE} className={activeNavbarClass}>PhotoThings</NavLink>
                         </li>
                         <li className={s.menu__li}>
-                            <NavLink to={QUESTIONNAIRES_ROUTE} className={s.menu__link}>Questionnaires</NavLink>
+                            <NavLink to={QUESTIONNAIRES_ROUTE} className={activeNavbarClass}>Questionnaires</NavLink>
                         </li>
                     </ul>
                 </nav>
