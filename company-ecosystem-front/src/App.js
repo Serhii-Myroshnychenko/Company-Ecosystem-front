@@ -3,6 +3,7 @@ import Navbar from "./compontents/Navbar";
 import Home from "./pages/Home";
 import InputPurple from "./compontents/UI/input/InputPurple";
 import LoginForm from "./compontents/LoginForm";
+import Login from "./pages/Login";
 
 
 function App() {
@@ -10,7 +11,8 @@ function App() {
     <div className="App">
         <Navbar/>
         {/*<Home/>*/}
-        <LoginForm/>
+        {/*<LoginForm/>*/}
+        <Login/>
     </div>
   );
 }
