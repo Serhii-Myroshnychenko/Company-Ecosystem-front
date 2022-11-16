@@ -2,12 +2,16 @@ import React, {useState} from 'react';
 import InputPurple from "./UI/input/InputPurple";
 import ButtonPurple from "./UI/button/ButtonPurple";
 import s from "./styles/LoginForm.module.css"
+import {useNavigate} from "react-router-dom";
+import {HOME_ROUTE} from "../utils/consts";
 
 const LoginForm = () => {
 
     const [Password, setPassword] = useState("");
     const [Email, setEmail] = useState("");
     const [Token, setToken] = useState("");
+
+    const navigate = useNavigate();
 
     async function login(e) {
         e.preventDefault();
@@ -28,6 +32,7 @@ const LoginForm = () => {
         }
     }
 
+
     return (
         <div className={s.signInContainer}>
             <h3 className={s.titleText}>Sign in</h3>
@@ -37,5 +42,4 @@ const LoginForm = () => {
         </div>
     );
 };
-
 export default LoginForm;
