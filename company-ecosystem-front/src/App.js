@@ -6,11 +6,14 @@ import LoginForm from "./compontents/LoginForm";
 import Login from "./pages/Login";
 import AppRouter from "./compontents/AppRouter";
 import {useEffect, useState} from "react";
+import {useLocation, useNavigate} from "react-router-dom";
+
 
 
 function App() {
-    const [isUserAuth, setIsUserAuth] = useState("0");
-
+    const [isUserAuth, setIsUserAuth] = useState("1");
+    const navigate = useNavigate()
+    const location = useLocation()
     // Протестить, запишет ли в юз эффект из локал стореджа после логина, или нет
     // Если нет, то как-то колбеками наверное передать надо будет
     useEffect(() => {
@@ -24,12 +27,12 @@ function App() {
             {isUserAuth === "0"
                 ?
                 <div>
-                    <Navbar/>
+                    <Navbar isAuth={isUserAuth}/>
                     <Login/>
                 </div>
                 :
                 <div>
-                    <Navbar/>
+                    <Navbar isAuth={isUserAuth}/>
                     <AppRouter isAuth={isUserAuth}/>
                 </div>
             }

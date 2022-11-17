@@ -15,3 +15,18 @@ export const authRoutes = [
         Component: <Home/>
     },
 ]
+
+/*
+export const navbarShadow = [
+    {
+        path: EMPLOYERS_ROUTE
+    },
+    {
+        path: HOME_ROUTE
+    },
+    {
+        path: LOGIN_ROUTE
+    },
+]*/
+
+export const navbarShadow = [LOGIN_ROUTE, HOME_ROUTE]
