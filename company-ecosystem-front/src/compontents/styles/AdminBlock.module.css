@@ -4,15 +4,10 @@
 }*/
 
 
-
-.headersContainer {
-    padding: 18px 0;
-}
-/*.headersContainer span{
-    padding-right: 30px;
-}*/
-
-.headerBlock {
-    background: #F6F8FB;
-
+.mainBlock {
+    display: flex;
+    flex-direction: column;
+    overflow-x: scroll;
+    min-width: 100%;
+    height: 100%;
 }

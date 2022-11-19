@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import s from "../styles/AdminBlock.module.css";
+import s from "./AdminHeader.module.css";
 import AdminHeaderText from "./AdminHeaderText";
 
 const AdminHeader = ({headers, arrayOfItems, flexValues}) => {

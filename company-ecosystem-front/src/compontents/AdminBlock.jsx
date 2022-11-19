@@ -17,8 +17,8 @@ const AdminBlock = (props) => {
     const empoyItemsTest = [
         {
             id: 2,
-            email: 'ivan',
-            password: 'ivanpas',
+            email: 'ivanivfdf.gmail.com',
+            password: 'ivanpassdfssdfsdfsdf',
             role: 'role1',
             position: 'position1',
             item: 'item1',
@@ -28,7 +28,7 @@ const AdminBlock = (props) => {
         {
             id: 3,
             email: 'krol',
-            password: 'krolpas',
+            password: 'krolpasivanpassdfssdfsdfsdf',
             role: 'role2',
             position: 'position2',
             item: 'item2',
@@ -47,13 +47,13 @@ const AdminBlock = (props) => {
         },
     ]
 
-    const headers = ['id', 'email','password','role','position','item','locationId','place']
+    const headers = ['id', 'email','password','role','position','item','locationId', 'place','actions']
 
     // Этот массив будет в страничке самой передаваться
     const flexValues = {
-        id: '0 1 30px',
-        email: '0 1 60px',
-        general: '0 1 150px'
+        id: '0 1 60px',
+        email: '0 1 250px',
+        general: '0 1 240px'
     }
 
     const getElementsOfArray = empoyItemsTest.map(el => el)
