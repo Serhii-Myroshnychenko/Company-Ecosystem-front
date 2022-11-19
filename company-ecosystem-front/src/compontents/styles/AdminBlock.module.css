@@ -1,0 +1,13 @@
+/*
+.adminBlockContainer {
+    background-color: #F6F8FB;
+}*/
+
+
+.mainBlock {
+    display: flex;
+    flex-direction: column;
+    overflow-x: scroll;
+    min-width: 100%;
+    height: 100%;
+}

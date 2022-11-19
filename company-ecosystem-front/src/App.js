@@ -6,14 +6,15 @@ import LoginForm from "./compontents/LoginForm";
 import Login from "./pages/Login";
 import AppRouter from "./compontents/AppRouter";
 import {useEffect, useState} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import EmployeesItem from "./compontents/AdminItems/EmployeesItem";
+import AdminBlock from "./compontents/AdminBlock";
+
 
 
 
 function App() {
     const [isUserAuth, setIsUserAuth] = useState("1");
-    const navigate = useNavigate()
-    const location = useLocation()
+
     // Протестить, запишет ли в юз эффект из локал стореджа после логина, или нет
     // Если нет, то как-то колбеками наверное передать надо будет
     useEffect(() => {
@@ -24,7 +25,7 @@ function App() {
 
     return (
         <div className="App">
-            {isUserAuth === "0"
+            {/*{isUserAuth === "0"
                 ?
                 <div>
                     <Navbar isAuth={isUserAuth}/>
@@ -35,7 +36,12 @@ function App() {
                     <Navbar isAuth={isUserAuth}/>
                     <AppRouter isAuth={isUserAuth}/>
                 </div>
-            }
+            }*/}
+           <AdminBlock/>
+            {/*{empoyItemsTest.map(item => <EmployeesItem arrayOfItems={item}/>)}*/}
+
+
+
         </div>
     );
 }

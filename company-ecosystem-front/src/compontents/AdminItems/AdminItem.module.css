@@ -1,0 +1,23 @@
+.adminItemContainer {
+    border-bottom: 2px solid #e7e5e5;
+    padding-left: 50px;
+}
+
+.content {
+    padding: 45px 20px 45px 0;
+}
+
+.ul {
+    display: flex;
+    align-items: center;
+    word-wrap: anywhere;
+}
+
+.item:not(:last-child) {
+    padding-right: 30px;
+}
+
+
+
+
+
