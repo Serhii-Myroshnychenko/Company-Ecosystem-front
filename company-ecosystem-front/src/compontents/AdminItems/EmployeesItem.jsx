@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './AdminItem.module.css'
 import {findAllByDisplayValue} from "@testing-library/react";
+import logo from "../../img/logo/Logo.png"
 
 const EmployeesItem = ({arrayOfItems, flexValues}) => {
 
@@ -22,6 +23,7 @@ const EmployeesItem = ({arrayOfItems, flexValues}) => {
                     <li className={s.item} style={flexValues.locationId != null ? {flex: flexValues.locationId} : {flex: flexValues.general}}>{arrayOfItems.locationId}</li>
                     <li className={s.item} style={flexValues.place != null ? {flex: flexValues.place} : {flex: flexValues.general}}>{arrayOfItems.place}</li>
                 </ul>
+
             </div>
         </div>
     );
