@@ -4,6 +4,7 @@ import LoginForm from "../compontents/LoginForm";
 import Saly from "../img/login/Saly.svg"
 
 const Login = () => {
+
     return (
         <div className={s.loginContainer}>
             <div className={s.content}>
