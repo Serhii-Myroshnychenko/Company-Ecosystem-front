@@ -18,7 +18,7 @@ const AdminBlock = (props) => {
         {
             id: 2,
             email: 'ivanivfdf.gmail.com',
-            password: 'ivanpassdfssdfsdfsdf',
+            password: 'ivanpassdfssdfsdfsdfsdfsdfsdfsdf',
             role: 'role1',
             position: 'position1',
             item: 'item1',
@@ -43,7 +43,7 @@ const AdminBlock = (props) => {
             position: 'position1',
             item: 'item1',
             locationId: 'locationId1',
-            place: 'place1'
+            place: 'place1asdasdasdasdasdasdasdasdadassdfsdfsdfsdfsdf'
         },
     ]
 
@@ -51,20 +51,20 @@ const AdminBlock = (props) => {
 
     // Этот массив будет в страничке самой передаваться
     const flexValues = {
-        id: '0 1 60px',
-        email: '0 1 250px',
-        general: '0 1 240px'
+        id: '0 0 60px',
+        email: '0 0 250px',
+        general: '0 0 200px'
     }
 
     const getElementsOfArray = empoyItemsTest.map(el => el)
-
-
     return (
         <div className={s.adminBlockContainer}>
             <div className={s.adminBlockContent}>
                 <input type="text" placeholder='search' className={s.search}/>
                 <div className={s.mainBlock}>
-                    <AdminHeader arrayOfItems={getElementsOfArray} headers={headers} flexValues={flexValues}/>
+                    <div>
+                        <AdminHeader arrayOfItems={getElementsOfArray} headers={headers} flexValues={flexValues} />
+                    </div>
                     <div className={s.informationContainer}>
                         {empoyItemsTest.map(item => <EmployeesItem arrayOfItems={item} flexValues={flexValues}/>)}
                     </div>

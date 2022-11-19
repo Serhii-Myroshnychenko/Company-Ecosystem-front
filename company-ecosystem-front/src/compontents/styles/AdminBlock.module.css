@@ -5,9 +5,8 @@
 
 
 .mainBlock {
-    display: flex;
-    flex-direction: column;
-    overflow-x: scroll;
-    min-width: 100%;
-    height: 100%;
+    width: 100%;
+    overflow-x: auto;
+
 }
+
