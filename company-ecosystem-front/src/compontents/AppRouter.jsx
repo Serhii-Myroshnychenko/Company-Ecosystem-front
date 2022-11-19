@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Route, Routes} from "react-router-dom";
 import {authRoutes, publicRoutes} from "../utils/routes";
 import NotFound from "../pages/NotFound";
