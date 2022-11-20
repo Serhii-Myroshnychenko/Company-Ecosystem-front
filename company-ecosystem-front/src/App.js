@@ -8,6 +8,7 @@ import AppRouter from "./compontents/AppRouter";
 import {useEffect, useState} from "react";
 import EmployeesItem from "./compontents/AdminItems/EmployeesItem";
 import AdminBlock from "./compontents/AdminBlock";
+import EmployeesPage from "./pages/AdminPages/EmployeesPage";
 
 
 
@@ -25,7 +26,7 @@ function App() {
 
     return (
         <div className="App">
-            {/*{isUserAuth === "0"
+            {isUserAuth === "0"
                 ?
                 <div>
                     <Navbar isAuth={isUserAuth}/>
@@ -36,12 +37,7 @@ function App() {
                     <Navbar isAuth={isUserAuth}/>
                     <AppRouter isAuth={isUserAuth}/>
                 </div>
-            }*/}
-           <AdminBlock/>
-            {/*{empoyItemsTest.map(item => <EmployeesItem arrayOfItems={item}/>)}*/}
-
-
-
+            }
         </div>
     );
 }

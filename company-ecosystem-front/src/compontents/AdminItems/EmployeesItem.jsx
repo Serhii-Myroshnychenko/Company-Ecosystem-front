@@ -1,7 +1,9 @@
 import React from 'react';
 import s from './AdminItem.module.css'
 import {findAllByDisplayValue} from "@testing-library/react";
-import logo from "../../img/logo/Logo.png"
+import Delete from "../../img/icons/Delete.svg"
+import Edit from "../../img/icons/Edit.svg"
+import {Link} from "react-router-dom";
 
 const EmployeesItem = ({arrayOfItems, flexValues}) => {
 
@@ -22,6 +24,9 @@ const EmployeesItem = ({arrayOfItems, flexValues}) => {
                     <li className={s.item} style={flexValues.item != null ? {flex: flexValues.item} : {flex: flexValues.general}}>{arrayOfItems.item}</li>
                     <li className={s.item} style={flexValues.locationId != null ? {flex: flexValues.locationId} : {flex: flexValues.general}}>{arrayOfItems.locationId}</li>
                     <li className={s.item} style={flexValues.place != null ? {flex: flexValues.place} : {flex: flexValues.general}}>{arrayOfItems.place}</li>
+                    <Link to='/dfdsf'><li className={`${s.item} ${s.editButton}`}><img src={Edit} alt="Edit"/></li></Link>
+                    <li className={s.item}><img src={Delete} alt="Delete"/></li>
+
                 </ul>
 
             </div>

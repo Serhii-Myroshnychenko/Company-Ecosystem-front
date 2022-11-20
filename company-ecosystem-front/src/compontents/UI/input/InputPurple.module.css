@@ -9,6 +9,7 @@
     height: 62px;
     font-family: inherit;
     padding-left: 25px;
+    outline: none;
 }
 
 .purpleInput::placeholder {
@@ -17,4 +18,7 @@
     line-height: 22px;
     color: #A7A3FF;
     font-family: 'Poppins', sans-serif;
+}
+.purpleInput:focus {
+    outline: 1px solid #4D47C3;
 }
