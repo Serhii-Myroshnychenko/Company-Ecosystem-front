@@ -1,0 +1,27 @@
+.blueSearch {
+    background: #FFFFFF url('../../../img/icons/search.svg') 5px 12px no-repeat;
+    border: 1px solid #CCCEDD;
+    font-family: inherit;
+    border-radius: 6px;
+    padding: 15px 0 15px 35px;
+    width: 100%;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #000000;
+    outline: 1px solid #bdbdbd;
+    /*изменить в js по onClick outline*/
+}
+
+.blueSearch::placeholder {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #000000;
+    opacity: 0.5;
+    font-family: 'Roboto', sans-serif;
+}
+
+.blueSearch:focus {
+    outline: 1px solid #4D47C3;
+}

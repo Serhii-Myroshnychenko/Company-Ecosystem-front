@@ -14,4 +14,5 @@
 
 .purpleButton:hover {
     background-color: #3f38c2;
+    cursor: pointer;
 }
