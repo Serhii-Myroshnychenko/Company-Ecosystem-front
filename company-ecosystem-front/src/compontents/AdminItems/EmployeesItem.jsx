@@ -5,15 +5,11 @@ import Delete from "../../img/icons/Delete.svg"
 import Edit from "../../img/icons/Edit.svg"
 import {Link} from "react-router-dom";
 
-const EmployeesItem = ({arrayOfItems, flexValues}) => {
-
-    const headers = ['id', 'email','password','role','position','item','locationId','place']
+const EmployeesItem = ({arrayOfItems, flexValues, headerBlock}) => {
 
     return (
-/*сдедаьб сюда хедер. Убрать ul li, и сделать руками в column каждый по отжельности*/
-/*ещё если запариться то можно было бы с помощью 2 или 3 параметра map сравнивать с элементами header, и если они равны, то есть 0 и 0 например(индекс), то тогда объединяем их в колонну  */
-/*типо если название headers-а например email, и название свойста в массиве объектов тоже равно headers, то тогда все эти свойста headers объеденяем в коллону*/
-        <div className={s.adminItemContainer}>
+
+        <div className={s.adminItemContainer} style={{width: `${headerBlock}px`}}>
             <div className={s.content}>
                 <ul className={s.ul}>
                     <li className={s.item} style={flexValues.id != null ? {flex: flexValues.id} : {flex: flexValues.general}}>{arrayOfItems.id}</li>
