@@ -18,7 +18,7 @@ const AdminHeaderText = ({headers, arrayOfItems, flexValues}) => {
             {
                 headers.map(header => {
                     for (let i = 0; i < headers.length; i++) {
-                        if (headers[i] === Object.keys(...arrayOfItems)[i] && flexValuesArray.includes(header)) {
+                        if (flexValuesArray.includes(header)) {
                             return <div style={{flex: flexValues[`${header}`]}}>{header}</div>
                         } else {
                             return <div style={{flex: flexValues.general}}>{header}</div>

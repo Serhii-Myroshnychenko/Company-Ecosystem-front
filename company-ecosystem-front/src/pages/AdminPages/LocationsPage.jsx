@@ -2,17 +2,17 @@ import React , {useState ,useEffect} from 'react';
 import s from './styles/AdminPages.module.css'
 import AdminBlock from "../../compontents/AdminBlock";
 
-const EmployeesPage = () => {
+const LocationsPage = () => {
 
-    const [employees, setEmployees] = useState([{}]);
-    const itemName = "employee"
+    const [locations, setlocations] = useState([{}]);
+    const itemName = "location"
 
     useEffect(() => {
-        getEmployees()
+        getLocations()
     },[]);
 
-    async function getEmployees(){
-        let result = await fetch("https://localhost:7032/Account", {
+    async function getLocations(){
+        let result = await fetch("https://localhost:7032/Location", {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -20,7 +20,8 @@ const EmployeesPage = () => {
             },
         });
         if(result.status === 200){
-            setEmployees(await result.json())
+            setlocations(await result.json())
+            console.log(locations[0])
         }
         else { 
             alert("Произошла ошибка")
@@ -28,7 +29,7 @@ const EmployeesPage = () => {
     }
     
     
-    const headers = ['id', 'email','role','position','actions']
+    const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','actions']
 
     const flexValues = {
         id: '0 0 60px',
@@ -39,10 +40,10 @@ const EmployeesPage = () => {
     return (
         <div className={s.employeesContainer}>
             <div className={s.block}>
-                <AdminBlock flexValues={flexValues} arrayOfItems={employees} headersArray={headers} itemName={itemName}/>
+                <AdminBlock flexValues={flexValues} arrayOfItems={locations} headersArray={headers} itemName={itemName}/>
             </div>
         </div>
     );
 };
 
-export default EmployeesPage;
+export default LocationsPage;

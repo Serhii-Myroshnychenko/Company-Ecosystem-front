@@ -23,8 +23,7 @@
     background-clip: border-box;
     width: 100%;
     display: inline-block;
-    overflow-x: scroll;
-    background-attachment: scroll;
+    overflow-x: auto;
 }
 
 
