@@ -11,7 +11,7 @@ const LocationsItem = ({arrayOfItems, flexValues, headerBlock }) => {
         <div className={s.adminItemContainer} style={{width: `${headerBlock}px`}}>
             <div className={s.content}>
                 <ul className={s.ul}>
-                    <li className={s.item} style={flexValues.title != null ? {flex: flexValues.title} : {flex: flexValues.general}}>{arrayOfItems.title}</li>
+                    <li className={s.item} style={flexValues.id != null ? {flex: flexValues.id} : {flex: flexValues.general}}>{arrayOfItems.id}</li>
                     <li className={s.item} style={flexValues.title != null ? {flex: flexValues.title} : {flex: flexValues.general}}>{arrayOfItems.title}</li>
                     <li className={s.item} style={flexValues.chiefEmail != null ? {flex: flexValues.chiefEmail} : {flex: flexValues.general}}>{arrayOfItems.chiefEmail}</li>
                     <li className={s.item} style={flexValues.workingStart != null ? {flex: flexValues.workingStart} : {flex: flexValues.general}}>{arrayOfItems.workingStart}</li>

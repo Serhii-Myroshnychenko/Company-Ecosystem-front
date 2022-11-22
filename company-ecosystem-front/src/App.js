@@ -8,7 +8,7 @@ import AppRouter from "./compontents/AppRouter";
 import {useEffect, useState} from "react";
 import EmployeesItem from "./compontents/AdminItems/EmployeesItem";
 import AdminBlock from "./compontents/AdminBlock";
-import EmployeesPage from "./pages/AdminPages/EmployeesPage";
+import EmployeesPage from "./pages/AdminPages/MainPages/EmployeesPage";
 
 
 

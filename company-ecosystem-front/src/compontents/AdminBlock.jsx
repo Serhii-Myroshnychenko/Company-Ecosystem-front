@@ -14,10 +14,8 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName}) => {
     const [widthBlockForCorrectScrollDrawing, setWidthBlockForCorrectScrollDrawing] = useState(0);
     const elementRef = useRef(null);
     const getElementsOfArray = arrayOfItems.map(el => el)
-    
 
-//<EmployeesItem arrayOfItems={item} flexValues={flexValues} headerBlock={widthBlockForCorrectScrollDrawing}/>
-    
+
     
     return (
         <div className={s.adminBlockContainer}>

@@ -1,10 +1,11 @@
 import Home from "../pages/Home";
-import {EMPLOYERS_ROUTE, HOME_ROUTE, LOGIN_ROUTE,LOCATIONS_ROUTE} from "./consts";
+import {EMPLOYERS_ROUTE, HOME_ROUTE, LOGIN_ROUTE, LOCATIONS_ROUTE, EMPLOYERS_EDIT_ROUTE} from "./consts";
 import Login from "../pages/Login";
-import EmployeesPage from "../pages/AdminPages/EmployeesPage";
-import LocationsPage from "../pages/AdminPages/LocationsPage";
+import EmployeesPage from "../pages/AdminPages/MainPages/EmployeesPage";
+import LocationsPage from "../pages/AdminPages/MainPages/LocationsPage";
 import LocationsItem from "../compontents/AdminItems/LocationsItem"
 import EmployeesItem from "../compontents/AdminItems/EmployeesItem"
+import EmployeesEditPage from "../pages/AdminPages/EditPages/EmployeesEditPage";
 
 export const publicRoutes = [
     {
@@ -21,6 +22,10 @@ export const authRoutes = [
     {
         path: EMPLOYERS_ROUTE,
         Component: <EmployeesPage/>
+    },
+    {
+        path: EMPLOYERS_EDIT_ROUTE,
+        Component: <EmployeesEditPage/>
     },
     {
         path: LOCATIONS_ROUTE,

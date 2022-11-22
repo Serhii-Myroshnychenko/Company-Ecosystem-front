@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import s from './InputPurple.module.css'
+import s from './Inputs.module.css'
 
 const InputPurple = (props) => {
     return (

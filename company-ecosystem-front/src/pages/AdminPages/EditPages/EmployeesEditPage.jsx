@@ -1,17 +1,25 @@
-import React , {useState ,useEffect} from 'react';
-import s from './styles/AdminPages.module.css'
-import AdminBlock from "../../compontents/AdminBlock";
+import React, {useEffect, useState} from 'react';
+import s from "../MainPages/styles/MainPages.module.css";
+import AdminBlock from "../../../compontents/AdminBlock";
+import {useLocation} from "react-router-dom";
 
-const EmployeesPage = () => {
 
-    const [employees, setEmployees] = useState([{}]);
+const EmployeesEditPage = (props) => {
+    const location = useLocation()
+    const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
+    const [employees, setEmployees] = useState([{...arrayOfSelectedItem}]);
     const itemName = "employee"
 
-    useEffect(() => {
-        getEmployees()
+    /*useEffect(() => {
+        setEmployyesArray()
     },[]);
 
-    async function getEmployees(){
+    const setEmployyesArray = () => setEmployees(arrayOfSelectedItem)*/
+
+    //console.log(arrayOfSelectedItem)
+        //console.log(employees)
+
+   /* async function getEmployees(){
         let result = await fetch("https://localhost:7032/Account", {
             method: 'GET',
             headers: {
@@ -22,19 +30,18 @@ const EmployeesPage = () => {
         if(result.status === 200){
             setEmployees(await result.json())
         }
-        else { 
+        else {
             alert("Произошла ошибка")
         }
-    }
-    
-    
+    }*/
+
     const headers = ['id', 'email','role','position','actions']
 
-    const flexValues = {
+    /*const flexValues = {
         id: '0 0 60px',
         email: '0 0 250px',
         general: '0 0 200px'
-    }
+    }*/
 
     return (
         <div className={s.employeesContainer}>
@@ -45,4 +52,4 @@ const EmployeesPage = () => {
     );
 };
 
-export default EmployeesPage;
+export default EmployeesEditPage;

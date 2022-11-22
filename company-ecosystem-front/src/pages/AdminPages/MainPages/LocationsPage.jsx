@@ -1,10 +1,10 @@
 import React , {useState ,useEffect} from 'react';
-import s from './styles/AdminPages.module.css'
-import AdminBlock from "../../compontents/AdminBlock";
+import s from './styles/MainPages.module.css'
+import AdminBlock from "../../../compontents/AdminBlock";
 
 const LocationsPage = () => {
 
-    const [locations, setlocations] = useState([{}]);
+    const [locations, setLocations] = useState([{}]);
     const itemName = "location"
 
     useEffect(() => {
@@ -20,8 +20,7 @@ const LocationsPage = () => {
             },
         });
         if(result.status === 200){
-            setlocations(await result.json())
-            console.log(locations[0])
+            setLocations(await result.json())
         }
         else { 
             alert("Произошла ошибка")
