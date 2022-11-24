@@ -4,45 +4,30 @@ import AdminBlock from "../../../compontents/AdminBlock";
 import {useLocation} from "react-router-dom";
 
 
-const EmployeesEditPage = (props) => {
+const LocationsEditPage = (props) => {
     const location = useLocation()
     const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
     const [Locations, setLocations] = useState([{...arrayOfSelectedItem}]);
-    const itemName = "employee"
+    const itemName = "location"
+    const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','actions']
 
-    /*useEffect(() => {
-        setEmployyesArray()
-    },[]);
 
-    const setEmployyesArray = () => setEmployees(arrayOfSelectedItem)*/
-
-    //console.log(arrayOfSelectedItem)
-        //console.log(employees)
-
-   /* async function getEmployees(){
-        let result = await fetch("https://localhost:7032/Account", {
-            method: 'GET',
+    async function updateLocations(){
+        let result = await fetch("https://localhost:7032/Locations", {
+            method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
+            body: JSON.stringify({id:LocationId,title: Title, chief: Chief, workingStart:WorkingStart,workingEnd:WorkingEnd}),
         });
-        if(result.status === 200){
-            setEmployees(await result.json())
+        if(result.status == 200){
+            alert("Успешно")
         }
-        else {
-            alert("Произошла ошибка")
+        else{
+            alert("Неверные данные")
         }
-    }*/
-
-    const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','actions']
-
-    /*const flexValues = {
-        id: '0 0 60px',
-        email: '0 0 250px',
-        general: '0 0 200px'
-    }*/
-
+    }
     return (
         <div className={s.employeesContainer}>
             <div className={s.block}>
@@ -52,4 +37,4 @@ const EmployeesEditPage = (props) => {
     );
 };
 
-export default EmployeesEditPage;
+export default LocationsEditPage;
