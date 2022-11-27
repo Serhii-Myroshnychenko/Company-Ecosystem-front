@@ -5,6 +5,7 @@ import AdminBlock from "../../../compontents/AdminBlock";
 const LocationsPage = () => {
 
     const [locations, setLocations] = useState([{}]);
+/*    const [renderLocations, setRenderLocations] = useState(locations);*/
     const itemName = "location"
 
     useEffect(() => {
@@ -26,15 +27,30 @@ const LocationsPage = () => {
             alert("Произошла ошибка")
         }
     }
-    
+
+   /* const getFilledLocations = () => {
+        while(true) {
+            if(locations.length !== 1) {
+
+                return locations
+                break
+            }
+        }
+    }*/
     
     const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','actions']
 
     const flexValues = {
-        id: '0 0 60px',
+        id: '0 0 100px',
         email: '0 0 250px',
         general: '0 0 200px'
     }
+
+
+
+
+
+
 
     return (
         <div className={s.employeesContainer}>

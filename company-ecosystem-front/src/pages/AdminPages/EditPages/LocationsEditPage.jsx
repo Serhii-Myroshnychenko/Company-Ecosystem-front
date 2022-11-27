@@ -12,7 +12,7 @@ const LocationsEditPage = (props) => {
     const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','actions']
 
 
-    async function updateLocations(){
+   /* async function updateLocations(){
         let result = await fetch("https://localhost:7032/Locations", {
             method: 'PUT',
             headers: {
@@ -23,11 +23,10 @@ const LocationsEditPage = (props) => {
         });
         if(result.status == 200){
             alert("Успешно")
-        }
-        else{
+        } else{
             alert("Неверные данные")
         }
-    }
+    }*/
     return (
         <div className={s.employeesContainer}>
             <div className={s.block}>
