@@ -27,16 +27,6 @@ const LocationsPage = () => {
             alert("Произошла ошибка")
         }
     }
-
-   /* const getFilledLocations = () => {
-        while(true) {
-            if(locations.length !== 1) {
-
-                return locations
-                break
-            }
-        }
-    }*/
     
     const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','actions']
 
@@ -45,12 +35,6 @@ const LocationsPage = () => {
         email: '0 0 250px',
         general: '0 0 200px'
     }
-
-
-
-
-
-
 
     return (
         <div className={s.employeesContainer}>

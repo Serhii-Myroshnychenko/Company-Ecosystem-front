@@ -5,7 +5,7 @@ import AdminSearch from "./UI/search/AdminSearch";
 import { itemSelector } from '../utils/selectors';
 
 
-const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName}) => {
+const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props}) => {
 
     useEffect(() => {
         setWidthBlockForCorrectScrollDrawing(elementRef.current.scrollWidth);
@@ -30,7 +30,7 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName}) => {
                         <AdminHeader arrayOfItems={getElementsOfArray} headers={headersArray} flexValues={flexValues}  headerBlock={widthBlockForCorrectScrollDrawing}/>
                     </div>
                     <div className={s.informationContainer}>
-                        {arrayOfItems.map(item => itemSelector(item,flexValues,widthBlockForCorrectScrollDrawing).map(el => {
+                        {arrayOfItems.map(item => itemSelector(item,flexValues,widthBlockForCorrectScrollDrawing, props.updateTable).map(el => {
                             if(el.name === itemName){
                                 return el.Component
                             }

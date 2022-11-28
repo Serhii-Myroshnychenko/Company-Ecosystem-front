@@ -1,4 +1,4 @@
-import { LOCATIONS_EDIT_ROUTE, LOCATIONS_ADD_ROUTE } from '../../utils/consts';
+import {LOCATIONS_EDIT_ROUTE, LOCATIONS_ADD_ROUTE, LOCATIONS_ROUTE} from '../../utils/consts';
 import React, {useEffect, useState} from 'react';
 import s from './AdminItem.module.css'
 import Delete from "../../img/icons/Delete.svg"
@@ -6,9 +6,8 @@ import Edit from "../../img/icons/Edit.svg"
 import {Link, useLocation} from "react-router-dom";
 import InputAdmin from "../UI/input/InputAdmin";
 
-const LocationsItem = ({arrayOfItems , flexValues, headerBlock }) => {
+const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
 
-    /*{arrayOfItems = [{employees: [{0: {email: 'basic'}}]}]*/
     const location = useLocation()
     const [isEditItem, setIsEditItem] = useState(false)
     const [isAddItem, setIsAddItem] = useState(false)
@@ -19,7 +18,7 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock }) => {
     const validArrayOfItems = {
         get filledArrayOfItems() {
             if(Object.keys(arrayOfItems).length === 0) {
-                return arrayOfItems = {employees: [{email: 'basic'}]}
+                return arrayOfItems = {employees: [{email: 'empty'}]}
             } else {
                 return arrayOfItems
             }
@@ -117,7 +116,7 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock }) => {
                                     style={flexValues.chiefEmail != null ? {flex: flexValues.chiefEmail} : {flex: flexValues.general}}
                                     onDoubleClick={() => changeArrayItems('chiefEmail')}>
                                     { !getIsToggleFromToggleArray('chiefEmail') ? employeeId
-                                    : <InputAdmin value={newArrayOfItems.chief} onChange={e => setNewArrayOfItems({...newArrayOfItems, chief: e.target.value})}/>
+                                    : <InputAdmin value={newArrayOfItems.chief} onChange={e => setNewArrayOfItems({...newArrayOfItems, chief: Number(e.target.value)})}/>
                                     }
                                 </li>
                                 <li className={s.item}
@@ -134,12 +133,12 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock }) => {
                                     : <InputAdmin value={newArrayOfItems.workingEnd} onChange={e => setNewArrayOfItems({...newArrayOfItems, workingEnd: e.target.value})}/>
                                     }
                                 </li>
-                                <Link to={LOCATIONS_EDIT_ROUTE}
+                                <Link to={LOCATIONS_ROUTE}
                                       state={{
                                           arrayOfSelectedItem: arrayOfItems,
                                           flexValues: flexValues,
                                           headerBlock: headerBlock
-                                      }}>
+                                      }} onClick={() => updateTable(newArrayOfItems)}>
                                     <li className={`${s.item} ${s.editButton}`}><img src={Edit} alt="Edit"/></li>
                                 </Link>
                                 <li className={s.item}><img src={Delete} alt="Delete"/></li>

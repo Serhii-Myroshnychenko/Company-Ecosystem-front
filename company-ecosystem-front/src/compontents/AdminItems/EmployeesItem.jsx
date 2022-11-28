@@ -3,35 +3,45 @@ import s from './AdminItem.module.css'
 import Delete from "../../img/icons/Delete.svg"
 import Edit from "../../img/icons/Edit.svg"
 import {Link, useLocation} from "react-router-dom";
-import {EMPLOYERS_ADD_ROUTE, EMPLOYERS_EDIT_ROUTE} from "../../utils/consts";
+import {EMPLOYERS_ADD_ROUTE, EMPLOYERS_EDIT_ROUTE, LOCATIONS_ADD_ROUTE, LOCATIONS_EDIT_ROUTE} from "../../utils/consts";
 import InputAdmin from "../UI/input/InputAdmin";
 
-const EmployeesItem = ({arrayOfItems, flexValues, headerBlock}) => {
+const EmployeesItem = ({arrayOfItems, flexValues, headerBlock, updateTable}) => {
+
 
     const location = useLocation()
     const [isEditItem, setIsEditItem] = useState(false)
     const [isAddItem, setIsAddItem] = useState(false)
     const [toggleArray, setToggleArray] = useState([])
-    const [newItems, setNewItems] = useState(arrayOfItems);
+    const [newArrayOfItems, setNewArrayOfItems] = useState({id: arrayOfItems.id, title2: arrayOfItems.title2, chief2: 2, workingStart: arrayOfItems.workingStart, workingEnd:arrayOfItems.workingEnd});
+
+    const validArrayOfItems = {
+        get filledArrayOfItems() {
+            if(Object.keys(arrayOfItems).length === 0) {
+                return arrayOfItems = {employees: [{email: 'empty'}]}
+            } else {
+                return arrayOfItems
+            }
+        }
+    }
+
+
+    useEffect(() => {
+        setToggleValues()
+    }, [])
+
+    useEffect(() => {
+        checkIsChangeItem()
+    }, [location.pathname])
+
 
     const setToggleValues = () => {
-
         let array = [{}]
         for (let item in arrayOfItems) {
             array.push({itemName: item, isToggle: true})
         }
         setToggleArray(array)
-        
     }
-
-    useEffect(() => {
-
-        setToggleValues()
-    }, [])
-
-    useEffect(() => {
-        checkIsChangeItem(EMPLOYERS_EDIT_ROUTE,EMPLOYERS_ADD_ROUTE)
-    }, [location.pathname])
 
     const checkIsChangeItem = () => {
         if (location.pathname === EMPLOYERS_EDIT_ROUTE) {
@@ -65,8 +75,11 @@ const EmployeesItem = ({arrayOfItems, flexValues, headerBlock}) => {
         return false;
     }
 
-    return (
 
+
+
+
+    return (
         <div className={s.adminItemContainer} style={{width: `${headerBlock}px`}}>
             <div className={s.content}>
                 {(() => {
@@ -77,14 +90,14 @@ const EmployeesItem = ({arrayOfItems, flexValues, headerBlock}) => {
                                     style={flexValues.id != null ? {flex: flexValues.id} : {flex: flexValues.general}}
                                     onDoubleClick={() => changeArrayItems('id')}>
                                     { !getIsToggleFromToggleArray('id') ? arrayOfItems.id
-                                    : <InputAdmin/>
+                                    : <InputAdmin value={newArrayOfItems.id} onChange={e => setNewArrayOfItems({...newArrayOfItems, id: e.target.value})}/>
                                     }
                                 </li>
                                 <li className={s.item}
                                     style={flexValues.email != null ? {flex: flexValues.email} : {flex: flexValues.general}}
                                     onDoubleClick={() => changeArrayItems('email')}>
                                     { !getIsToggleFromToggleArray('email') ? arrayOfItems.email
-                                    : <InputAdmin/>
+                                    : <InputAdmin value={newArrayOfItems.title} onChange={e => setNewArrayOfItems({...newArrayOfItems, title: e.target.value})}/>
                                     }
                                 </li>
                                 <li className={s.item}
@@ -106,7 +119,7 @@ const EmployeesItem = ({arrayOfItems, flexValues, headerBlock}) => {
                                           arrayOfSelectedItem: arrayOfItems,
                                           flexValues: flexValues,
                                           headerBlock: headerBlock
-                                      }}>
+                                      }} onClick={() => updateTable(newArrayOfItems)}>
                                     <li className={`${s.item} ${s.editButton}`}><img src={Edit} alt="Edit"/></li>
                                 </Link>
                                 <li className={s.item}><img src={Delete} alt="Delete"/></li>

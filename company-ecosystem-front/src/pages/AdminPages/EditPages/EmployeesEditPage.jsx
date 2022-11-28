@@ -7,46 +7,32 @@ import {useLocation} from "react-router-dom";
 const EmployeesEditPage = (props) => {
     const location = useLocation()
     const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
-    const [Locations, setLocations] = useState([{...arrayOfSelectedItem}]);
+    //const [employees, setEmployees] = useState([{...arrayOfSelectedItem}]);
     const itemName = "employee"
+    const headers = ['id', 'email','role','position','actions']
 
-    /*useEffect(() => {
-        setEmployyesArray()
-    },[]);
 
-    const setEmployyesArray = () => setEmployees(arrayOfSelectedItem)*/
-
-    //console.log(arrayOfSelectedItem)
-        //console.log(employees)
-
-   /* async function getEmployees(){
-        let result = await fetch("https://localhost:7032/Account", {
-            method: 'GET',
+    async function updateEmployees(inputItems){
+        let result = await fetch("https://localhost:7032/Employees", {
+            method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
+            body: JSON.stringify({id: inputItems.id, title2: inputItems.title2, chief2: inputItems.chief2, workingStart: inputItems.workingStart, workingEnd:inputItems.workingEnd}),
         });
-        if(result.status === 200){
-            setEmployees(await result.json())
+        if(result.status == 200){
+            alert("Успешно")
+        } else{
+            alert("Неверные данные")
         }
-        else {
-            alert("Произошла ошибка")
-        }
-    }*/
+    }
 
-    const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','actions']
-
-    /*const flexValues = {
-        id: '0 0 60px',
-        email: '0 0 250px',
-        general: '0 0 200px'
-    }*/
 
     return (
         <div className={s.employeesContainer}>
             <div className={s.block}>
-                <AdminBlock flexValues={flexValues} arrayOfItems={Locations} headersArray={headers} itemName={itemName}/>
+                <AdminBlock flexValues={flexValues} arrayOfItems={[{...arrayOfSelectedItem}]} headersArray={headers} itemName={itemName} updateTable={updateEmployees}/>
             </div>
         </div>
     );
