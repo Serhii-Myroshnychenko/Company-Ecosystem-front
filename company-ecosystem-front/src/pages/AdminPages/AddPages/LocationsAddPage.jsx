@@ -1,14 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
+import {useLocation} from "react-router-dom";
 import s from "../MainPages/styles/MainPages.module.css";
 import AdminBlock from "../../../compontents/AdminBlock";
-import {useLocation} from "react-router-dom";
 
-
-const LocationsEditPage = (props) => {
+const LocationsAddPage = () => {
     const location = useLocation()
-    const { arrayOfSelectedItem, flexValues, headerBlock } = location.state  // Для отрисовки Item-а из LocationsItem
-    //const [locations, setLocations] = useState([{...arrayOfSelectedItem}]);
+    //const [locations, setLocations] = useState([{}]);
     const itemName = "location"
+    const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
     const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','photo','actions']
 
 
@@ -39,4 +38,4 @@ const LocationsEditPage = (props) => {
     );
 };
 
-export default LocationsEditPage;
+export default LocationsAddPage;

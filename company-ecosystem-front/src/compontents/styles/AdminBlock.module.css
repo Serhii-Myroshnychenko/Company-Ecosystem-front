@@ -12,8 +12,12 @@
 
 .topContainer {
     display: flex;
+    align-items: center;
     padding: 26px 30px 26px 80px;
+}
 
+.topContainer >*:last-child{
+    margin-left: 150px;
 }
 
 .mainBlock {
@@ -21,6 +25,10 @@
     width: 100%;
     display: inline-block;
     overflow-x: auto;
+}
+
+.addButtonContainer {
+    flex: 0 1 150px;
 }
 
 

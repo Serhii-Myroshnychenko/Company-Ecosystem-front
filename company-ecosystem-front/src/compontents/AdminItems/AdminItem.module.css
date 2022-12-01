@@ -17,10 +17,19 @@
     padding-right: 30px;
 }
 
-.editButton {
-    margin-right: 15px;
+.spaceBetweenLinkButtons {
+    margin-right: 20px;
 }
 
+.editButton {
+}
+.saveButton img{
+    width: 19px;
+}
+
+.deleteButton img {
+    width: 20px;
+}
 
 
 

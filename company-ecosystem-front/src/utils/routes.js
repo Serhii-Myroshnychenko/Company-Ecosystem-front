@@ -7,6 +7,7 @@ import LocationsItem from "../compontents/AdminItems/LocationsItem"
 import EmployeesItem from "../compontents/AdminItems/EmployeesItem"
 import EmployeesEditPage from "../pages/AdminPages/EditPages/EmployeesEditPage";
 import LocationsEditPage from "../pages/AdminPages/EditPages/LocationsEditPage";
+import LocationsAddPage from "../pages/AdminPages/AddPages/LocationsAddPage";
 
 export const publicRoutes = [
     {
@@ -35,6 +36,10 @@ export const authRoutes = [
     {
         path: LOCATIONS_EDIT_ROUTE,
         Component: <LocationsEditPage/>
+    },
+    {
+        path: LOCATIONS_ADD_ROUTE,
+        Component: <LocationsAddPage/>
     }
 ]
 

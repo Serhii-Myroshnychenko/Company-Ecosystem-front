@@ -122,6 +122,7 @@ const EmployeesItem = ({arrayOfItems, flexValues, headerBlock, updateTable}) => 
                                       }} onClick={() => updateTable(newArrayOfItems)}>
                                     <li className={`${s.item} ${s.editButton}`}><img src={Edit} alt="Edit"/></li>
                                 </Link>
+                                <li className={`${s.spaceBetweenLinkButtons}`}></li>
                                 <li className={s.item}><img src={Delete} alt="Delete"/></li>
                             </ul>)
 
@@ -143,6 +144,7 @@ const EmployeesItem = ({arrayOfItems, flexValues, headerBlock, updateTable}) => 
                                 }}>
                                     <li className={`${s.item} ${s.editButton}`}><img src={Edit} alt="Edit"/></li>
                                 </Link>
+                                <li className={`${s.spaceBetweenLinkButtons}`}></li>
                                 <li className={s.item}><img src={Delete} alt="Delete"/></li>
                             </ul>
                         )
@@ -165,6 +167,7 @@ const EmployeesItem = ({arrayOfItems, flexValues, headerBlock, updateTable}) => 
                                 }}>
                                     <li className={`${s.item} ${s.editButton}`}><img src={Edit} alt="Edit"/></li>
                                 </Link>
+                                <li className={`${s.spaceBetweenLinkButtons}`}></li>
                                 <li className={s.item}><img src={Delete} alt="Delete"/></li>
                             </ul>
                         )

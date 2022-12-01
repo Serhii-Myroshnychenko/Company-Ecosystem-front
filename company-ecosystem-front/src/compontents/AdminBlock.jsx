@@ -3,6 +3,9 @@ import s from './styles/AdminBlock.module.css'
 import AdminHeader from "./AdminHeaders/AdminHeader";
 import AdminSearch from "./UI/search/AdminSearch";
 import { itemSelector } from '../utils/selectors';
+import ButtonPurple from "./UI/button/ButtonPurple";
+import {HOME_ROUTE, LOCATIONS_ADD_ROUTE, LOCATIONS_ROUTE} from "../utils/consts";
+import {Link, useNavigate} from "react-router-dom";
 
 
 const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props}) => {
@@ -14,8 +17,13 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
     const [widthBlockForCorrectScrollDrawing, setWidthBlockForCorrectScrollDrawing] = useState(0);
     const elementRef = useRef(null);
     const getElementsOfArray = arrayOfItems.map(el => el)
+    const [isAdd, setIsAdd] = useState(false )
 
+    useEffect(() => {
+        props.isAddPage ? setIsAdd(true) : setIsAdd(false)
+    }, [props.isAddPage])
 
+    /*const checkItemNameToAddPage = () => */
     
     return (
         <div className={s.adminBlockContainer}>
@@ -24,6 +32,17 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
                     <div className={s.searchContainer}>
                         <AdminSearch placeholder='Search...'/>
                     </div>
+                    {!isAdd ?
+                        <div className={s.addButtonContainer}>
+                            <Link to={LOCATIONS_ADD_ROUTE} state={{
+                                arrayOfItems: arrayOfItems,
+                                flexValues: flexValues
+                            }} onClick={() => setIsAdd(true)}>
+                                <ButtonPurple style={{height: '42px'}} >Додати</ButtonPurple>
+                            </Link>
+                        </div>
+                        : <div></div>
+                    }
                 </div>
                 <div className={s.mainBlock}  ref={elementRef} >
                     <div>
