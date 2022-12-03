@@ -1,9 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from './styles/Login.module.css'
 import LoginForm from "../compontents/LoginForm";
 import Saly from "../img/login/Saly.svg"
+import {HOME_ROUTE} from "../utils/consts";
+import {useNavigate} from "react-router-dom";
 
-const Login = () => {
+const Login = ({setIsUserAuth}) => {
+
+    const navigate = useNavigate();
+
+    async function login(email, password) {
+        console.log(email)
+        console.log(password)
+        let result = await fetch("https://localhost:7032/Account/authenticate", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify({email: email, password: password}),
+        });
+        if(result.status === 200){
+            setIsUserAuth(true)
+            result = await result.json();
+            localStorage.setItem("userEmail", JSON.stringify(result.email));
+            navigate(HOME_ROUTE)
+        } else {
+            alert("Вы ввели неправильные данные");
+        }
+    }
+
+
     return (
         <div className={s.loginContainer}>
             <div className={s.content}>
@@ -18,7 +45,7 @@ const Login = () => {
                     </div>
                 </div>
                 <div className={s.rightColumn}>
-                    <LoginForm/>
+                    <LoginForm login={login}/>
                 </div>
             </div>
         </div>

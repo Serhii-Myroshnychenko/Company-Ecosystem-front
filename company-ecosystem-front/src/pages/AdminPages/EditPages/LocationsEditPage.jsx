@@ -20,19 +20,16 @@ const LocationsEditPage = (props) => {
         formData.append('workingEnd', inputItems.workingEnd);
         formData.append('photo', inputItems.photo);
         formData.append('id', inputItems.id);
-
+        console.log(formData.getAll('photo'))
         let result = await fetch("https://localhost:7032/Location", {
             method: 'PUT',
             body: formData,
         });
-
         if(result.status == 200){
             alert("Успешно")
         } else{
             alert("Неверные данные")
-            console.log(result)
         }
-        console.log(inputItems)
     }
 
 

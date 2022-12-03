@@ -95,6 +95,11 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
         }
     }
 
+  /*  const setPhotoTitleForAddPage = (e) => {
+        console.log(e.target.value)
+        setNewArrayOfItems({...newArrayOfItems, photo: e.target.value})
+    }*/
+
     return (
         <div className={s.adminItemContainer} style={{width: `${headerBlock}px`}}>
             <div className={s.content}>
@@ -143,7 +148,7 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
                                     onDoubleClick={() => changeArrayItems('photo')}>
                                     { !getIsToggleFromToggleArray('photo') ?
                                         <div className={s.photoContainer}>
-                                            <img src={arrayOfItems.photo !== null ? 'data:image/png;base64,' + arrayOfItems.photo : noPhotoImage} alt="photo"/>
+                                            <img src={arrayOfItems.photo !== undefined ? 'data:image/png;base64,' + arrayOfItems.photo : noPhotoImage} alt="photo"/>
                                         </div>
                                         : <input type="file" onChange={e => setNewArrayOfItems({...newArrayOfItems, photo: e.target.files[0]})}/>
                                     }
@@ -178,8 +183,16 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
                                 <li className={s.item}
                                     style={flexValues.photo != null ? {flex: flexValues.photo} : {flex: flexValues.general}}
                                     onDoubleClick={() => changeArrayItems('photo')}>
-                                        <input type="file" onChange={e => setNewArrayOfItems({...newArrayOfItems, photo: e.target.value})}/>
+                                    {
+                                        arrayOfItems.photo === undefined ?
+                                            <input type="file" onChange={e => setNewArrayOfItems({...newArrayOfItems, photo: e.target.files[0]})}/>
+                                            :
+                                            <div className={s.photoContainer}>
+                                                <img src={arrayOfItems.photo !== undefined ? 'data:image/png;base64,' + arrayOfItems.photo : noPhotoImage} alt="photo"/>
+                                            </div>
+                                    }
                                 </li>
+
                                 <Link to={LOCATIONS_ROUTE}  state={{
                                     arrayOfSelectedItem: arrayOfItems,
                                     flexValues: flexValues,
@@ -191,7 +204,6 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
                                 <li className={`${s.item} ${s.deleteButton}`}><img src={Delete} alt="Delete"/></li>
                             </ul>
                         )
-
                     } else {
                         return (
                             <ul className={s.ul}>
@@ -208,7 +220,7 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
                                 <li className={s.item}
                                     style={flexValues.photo != null ? {flex: flexValues.photo} : {flex: flexValues.general}}>
                                     <div className={s.photoContainer}>
-                                        <img src={arrayOfItems.photo !== null ? 'data:image/png;base64,' + arrayOfItems.photo : noPhotoImage} alt="photo"/>
+                                        <img src={arrayOfItems.photo !== undefined ? 'data:image/png;base64,' + arrayOfItems.photo : noPhotoImage} alt="photo"/>
                                     </div>
                                 </li>
                                 <Link to={LOCATIONS_EDIT_ROUTE} state={{

@@ -14,23 +14,26 @@ import EmployeesPage from "./pages/AdminPages/MainPages/EmployeesPage";
 
 
 function App() {
-    const [isUserAuth, setIsUserAuth] = useState("1");
 
+    const [isUserAuth, setIsUserAuthValue]  = useState(false)
     // Протестить, запишет ли в юз эффект из локал стореджа после логина, или нет
     // Если нет, то как-то колбеками наверное передать надо будет
-    useEffect(() => {
+  /*  useEffect(() => {
         if(localStorage.getItem("IsAuth") === '1') {
             setIsUserAuth('1')
         }
-    }, [])
+    }, [])*/
+
+    const getIsUserAuth = (isUserAuth) => setIsUserAuthValue(isUserAuth)
+
 
     return (
         <div className="App">
-            {isUserAuth === "0"
+            {!isUserAuth
                 ?
                 <div>
                     <Navbar isAuth={isUserAuth}/>
-                    <Login/>
+                    <Login setIsUserAuth={getIsUserAuth}/>
                 </div>
                 :
                 <div>

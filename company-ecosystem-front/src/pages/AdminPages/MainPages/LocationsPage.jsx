@@ -37,6 +37,8 @@ const LocationsPage = () => {
         photo: '0 0 350px',
     }
 
+    console.log(locations)
+
 
 
     return (
