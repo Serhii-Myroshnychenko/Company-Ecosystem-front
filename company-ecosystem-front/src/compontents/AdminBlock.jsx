@@ -23,7 +23,8 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
         props.isAddPage ? setIsAdd(true) : setIsAdd(false)
     }, [props.isAddPage])
 
-    /*const checkItemNameToAddPage = () => */
+    const checkedItemNameToAddPageLink = itemSelector().filter(el => el.name === itemName)[0].addPagePath
+
     
     return (
         <div className={s.adminBlockContainer}>
@@ -34,7 +35,7 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
                     </div>
                     {!isAdd ?
                         <div className={s.addButtonContainer}>
-                            <Link to={LOCATIONS_ADD_ROUTE} state={{
+                            <Link to={checkedItemNameToAddPageLink} state={{
                                 arrayOfItems: arrayOfItems,
                                 flexValues: flexValues
                             }} onClick={() => setIsAdd(true)}>

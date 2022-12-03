@@ -34,10 +34,10 @@ const LocationsPage = () => {
         id: '0 0 100px',
         email: '0 0 250px',
         general: '0 0 200px',
-        photo: '0 0 300px',
+        photo: '0 0 350px',
     }
 
-    console.log(locations)
+
 
     return (
         <div className={s.employeesContainer}>

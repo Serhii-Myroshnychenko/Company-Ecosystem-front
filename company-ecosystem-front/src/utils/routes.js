@@ -1,5 +1,14 @@
 import Home from "../pages/Home";
-import {EMPLOYERS_ROUTE, HOME_ROUTE, LOGIN_ROUTE, LOCATIONS_ROUTE, EMPLOYERS_EDIT_ROUTE,LOCATIONS_EDIT_ROUTE,LOCATIONS_ADD_ROUTE} from "./consts";
+import {
+    EMPLOYERS_ROUTE,
+    HOME_ROUTE,
+    LOGIN_ROUTE,
+    LOCATIONS_ROUTE,
+    EMPLOYERS_EDIT_ROUTE,
+    LOCATIONS_EDIT_ROUTE,
+    LOCATIONS_ADD_ROUTE,
+    EMPLOYERS_ADD_ROUTE
+} from "./consts";
 import Login from "../pages/Login";
 import EmployeesPage from "../pages/AdminPages/MainPages/EmployeesPage";
 import LocationsPage from "../pages/AdminPages/MainPages/LocationsPage";
@@ -30,6 +39,10 @@ export const authRoutes = [
         Component: <EmployeesEditPage/>
     },
     {
+        path: EMPLOYERS_ADD_ROUTE,
+        Component: <EmployeesEditPage/>
+    },
+    {
         path: LOCATIONS_ROUTE,
         Component: <LocationsPage/>
     },
@@ -43,4 +56,3 @@ export const authRoutes = [
     }
 ]
 
-export const navbarShadow = [LOGIN_ROUTE, HOME_ROUTE]

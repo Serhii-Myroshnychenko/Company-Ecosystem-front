@@ -141,7 +141,7 @@ const EmployeesItem = ({arrayOfItems, flexValues, headerBlock, updateTable}) => 
                                     arrayOfSelectedItem: arrayOfItems,
                                     flexValues: flexValues,
                                     headerBlock: headerBlock
-                                }}>
+                                }} onClick={() => updateTable(newArrayOfItems)}>
                                     <li className={`${s.item} ${s.editButton}`}><img src={Edit} alt="Edit"/></li>
                                 </Link>
                                 <li className={`${s.spaceBetweenLinkButtons}`}></li>

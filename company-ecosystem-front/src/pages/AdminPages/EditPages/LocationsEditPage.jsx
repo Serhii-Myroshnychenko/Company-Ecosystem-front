@@ -13,20 +13,21 @@ const LocationsEditPage = (props) => {
 
 
     async function updateLocations(inputItems){
-       /* let result = await fetch("https://localhost:7032/Locations", {
+        let result = await fetch("https://localhost:7032/Location", {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify({id: inputItems.id, title: inputItems.title, chief: inputItems.chief, workingStart: inputItems.workingStart, workingEnd:inputItems.workingEnd}),
+            body: JSON.stringify({ title: inputItems.title, chief: inputItems.chief,
+                workingStart: inputItems.workingStart, workingEnd:inputItems.workingEnd, photo: inputItems.photo, id: inputItems.id}),
         });
         if(result.status == 200){
             alert("Успешно")
         } else{
             alert("Неверные данные")
-        }*/
-
+            console.log(result)
+        }
         console.log(inputItems)
     }
 

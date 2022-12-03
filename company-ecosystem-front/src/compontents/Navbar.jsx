@@ -10,7 +10,7 @@ import {
     POSTS_ROUTE, QUESTIONNAIRES_ROUTE,
     THINGS_ROUTE
 } from "../utils/consts";
-import {navbarShadow} from "../utils/routes";
+import {navbarActiveClassName, navbarShadow} from "../utils/navbarRoutes";
 
 const Navbar = ({isAuth}) => {
 
@@ -20,6 +20,7 @@ const Navbar = ({isAuth}) => {
 
     useEffect(() => {
         changeNavbarShadow();
+       /* checkIsActiveNavbarClass()*/
     }, [location.pathname])
 
     const changeNavbarShadow = () => {
@@ -32,6 +33,13 @@ const Navbar = ({isAuth}) => {
             setNavbarShadowState('drop-shadow(0px 4px 5px #EFEFEF)')
         }
     }
+
+   /* const checkIsActiveNavbarClass = (displayedItemName) => {
+        const resultPathArray = navbarActiveClassName
+            .map(item => item)
+            .filter(el => el.name === displayedItemName)[0].pathArray
+        console.log(resultPathArray)
+    }*/
 
     return (
         <header className={s.header} style={{filter: `${navbarShadowState}`}} >
