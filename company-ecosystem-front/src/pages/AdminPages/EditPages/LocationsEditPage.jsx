@@ -4,24 +4,28 @@ import AdminBlock from "../../../compontents/AdminBlock";
 import {useLocation} from "react-router-dom";
 
 
+
 const LocationsEditPage = (props) => {
     const location = useLocation()
-    const { arrayOfSelectedItem, flexValues, headerBlock } = location.state  // Для отрисовки Item-а из LocationsItem
-    //const [locations, setLocations] = useState([{...arrayOfSelectedItem}]);
+    const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
     const itemName = "location"
     const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','photo','actions']
 
 
     async function updateLocations(inputItems){
+        let formData = new FormData();
+        formData.append('title', inputItems.title);
+        formData.append('chief', inputItems.chief);
+        formData.append('workingStart', inputItems.workingStart);
+        formData.append('workingEnd', inputItems.workingEnd);
+        formData.append('photo', inputItems.photo);
+        formData.append('id', inputItems.id);
+
         let result = await fetch("https://localhost:7032/Location", {
             method: 'PUT',
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({ title: inputItems.title, chief: inputItems.chief,
-                workingStart: inputItems.workingStart, workingEnd:inputItems.workingEnd, photo: inputItems.photo, id: inputItems.id}),
+            body: formData,
         });
+
         if(result.status == 200){
             alert("Успешно")
         } else{
@@ -30,6 +34,7 @@ const LocationsEditPage = (props) => {
         }
         console.log(inputItems)
     }
+
 
     return (
         <div className={s.employeesContainer}>
