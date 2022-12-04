@@ -13,14 +13,26 @@ const LocationsEditPage = (props) => {
 
 
     async function updateLocations(inputItems){
+        let formData = new FormData();
+        formData.append('title',inputItems.title);
+        formData.append('chief',inputItems.chief);
+        formData.append('workingStart',inputItems.workingStart);
+        formData.append('workingEnd',inputItems.workingEnd);
+        if(inputItems.photo.name === undefined){
+            formData.append('photo',null);
+            formData.append('path',inputItems.photo)
+        }
+        else{
+            formData.append('photo',inputItems.photo);
+            formData.append('path',inputItems.path)
+        }
+        formData.append('id',inputItems.id);
+
+
+        console.log(inputItems)
         let result = await fetch("https://localhost:7032/Location", {
             method: 'PUT',
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({ title: inputItems.title, chief: inputItems.chief,
-                workingStart: inputItems.workingStart, workingEnd:inputItems.workingEnd, photo: inputItems.photo, id: inputItems.id}),
+            body: formData
         });
         if(result.status == 200){
             alert("Успешно")
@@ -28,7 +40,6 @@ const LocationsEditPage = (props) => {
             alert("Неверные данные")
             console.log(result)
         }
-        console.log(inputItems)
     }
 
     return (

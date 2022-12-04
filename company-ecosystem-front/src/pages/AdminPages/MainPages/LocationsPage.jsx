@@ -19,7 +19,7 @@ const LocationsPage = () => {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-        });
+        }); 
         if(result.status === 200){
             setLocations(await result.json())
         }
@@ -36,9 +36,7 @@ const LocationsPage = () => {
         general: '0 0 200px',
         photo: '0 0 350px',
     }
-
-
-
+    console.log(locations)
     return (
         <div className={s.employeesContainer}>
             <div className={s.block}>
