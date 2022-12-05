@@ -21,6 +21,13 @@
     margin-right: 20px;
 }
 
+.editButton {
+    cursor: pointer;
+}
+
+.deleteButton {
+    cursor: pointer;
+}
 
 .saveButton img{
     width: 19px;

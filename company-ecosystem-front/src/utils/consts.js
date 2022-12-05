@@ -10,5 +10,6 @@ export const POSTS_ROUTE = "/Posts";
 export const THINGS_ROUTE = "/Things";
 export const PHOTO_THINGS_ROUTE = "/PhotoThings";
 export const QUESTIONNAIRES_ROUTE = "/Questionnaires";
-
+export const QUESTIONNAIRES_EDIT_ROUTE = "/QuestionnairesEdit";
+export const QUESTIONNAIRES_ADD_ROUTE = "/QuestionnairesAdd";
 
