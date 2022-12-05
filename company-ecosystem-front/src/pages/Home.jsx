@@ -1,9 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from "./styles/Home.module.css"
 import Saly from "../img/homePage/Saly.svg"
 import InputPurple from "../compontents/UI/input/InputPurple";
+import ButtonPurple from "../compontents/UI/button/ButtonPurple";
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import {LOGIN_ROUTE} from "../utils/consts";
 
-const Home = ({userName = "user"}) => {
+const Home = () => {
+
+    const navigate = useNavigate()
+    const location = useLocation()
+    const [isUserAuthLogout, setIsUserAuthLogout] = useState(false)
+
+    const logout = () => {
+        localStorage.removeItem('isAuth')
+        localStorage.removeItem('userEmail')
+        navigate(LOGIN_ROUTE)
+        window.location.reload()
+        //navigate(LOGIN_ROUTE, {state: {isUserAuthLogout: isUserAuthLogout}})
+        //navigate(LOGIN_ROUTE, {state: {isUserAuthLogout: 'false'}})
+    }
+
     return (
         <div>
             <div className={s.container}>
@@ -15,6 +32,9 @@ const Home = ({userName = "user"}) => {
                                 <span className={s.selectTable}>Select the desired table to perform <span
                                     className={s.purpleText}>operations !</span></span>
                             <span className={s.operations}>Then you can perform the following operations: Edit, Delete, Add and Review </span>
+                        </div>
+                        <div className={s.exitButtonContainer}>
+                            <ButtonPurple onClick={logout}>Вийти з акаунту</ButtonPurple>
                         </div>
                     </div>
                 </div>

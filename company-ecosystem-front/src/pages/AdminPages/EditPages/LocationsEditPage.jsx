@@ -11,7 +11,6 @@ const LocationsEditPage = (props) => {
     const itemName = "location"
     const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','photo','actions']
 
-
     async function updateLocations(inputItems){
         let formData = new FormData();
         formData.append('title', inputItems.title);
@@ -20,7 +19,6 @@ const LocationsEditPage = (props) => {
         formData.append('workingEnd', inputItems.workingEnd);
         formData.append('photo', inputItems.photo);
         formData.append('id', inputItems.id);
-        console.log(formData.getAll('photo'))
         let result = await fetch("https://localhost:7032/Location", {
             method: 'PUT',
             body: formData,

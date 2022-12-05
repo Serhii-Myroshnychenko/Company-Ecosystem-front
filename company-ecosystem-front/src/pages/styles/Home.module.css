@@ -60,4 +60,7 @@
     max-width: 100%;
 }
 
-
+.exitButtonContainer {
+    margin-top: 40px;
+    max-width: 250px;
+}
