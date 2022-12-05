@@ -6,10 +6,18 @@ const EmployeesPage = () => {
 
     const [employees, setEmployees] = useState([{}]);
     const itemName = "employee"
+    const headers = ['id', 'email','role','position','actions']
+    const flexValues = {
+        id: '0 0 60px',
+        email: '0 0 250px',
+        general: '0 0 200px'
+    }
+    const searchedFieldName = 'email'
 
     useEffect(() => {
         getEmployees()
     },[]);
+
 
     async function getEmployees(){
         let result = await fetch("https://localhost:7032/Account", {
@@ -21,25 +29,18 @@ const EmployeesPage = () => {
         });
         if(result.status === 200){
             setEmployees(await result.json())
-        }
-        else { 
+        } else {
             alert("Произошла ошибка")
         }
     }
 
 
-    const headers = ['id', 'email','role','position','actions']
-
-    const flexValues = {
-        id: '0 0 60px',
-        email: '0 0 250px',
-        general: '0 0 200px'
-    }
-
     return (
         <div className={s.employeesContainer}>
             <div className={s.block}>
-                <AdminBlock flexValues={flexValues} arrayOfItems={employees} headersArray={headers} itemName={itemName}/>
+                <AdminBlock flexValues={flexValues} arrayOfItems={employees}
+                            headersArray={headers} itemName={itemName}
+                            searchedFieldName={searchedFieldName}/>
             </div>
         </div>
     );

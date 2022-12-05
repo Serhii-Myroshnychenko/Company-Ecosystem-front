@@ -24,7 +24,7 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
 
     useEffect(() => {
         setWidthBlockForCorrectScrollDrawing(elementRef.current.scrollWidth);
-    }, []);
+    }, [elementRef.current.scrollWidth]);
 
     useEffect(() => {
         setSortedArrayOfItems(arrayOfItems)
@@ -39,7 +39,7 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
     const searchSortedQuests = () => {
         const fieldName = props.searchedFieldName
         if(searchQuery !== ''){
-            setSortedArrayOfItems(arrayOfItems.filter(item => item[fieldName].includes(searchQuery)));
+            setSortedArrayOfItems(arrayOfItems.filter(item => item[fieldName]?.includes(searchQuery)));
         } else if(searchQuery === ''){
             setSortedArrayOfItems(arrayOfItems)
         }
