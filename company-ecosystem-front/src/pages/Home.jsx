@@ -9,16 +9,12 @@ import {LOGIN_ROUTE} from "../utils/consts";
 const Home = () => {
 
     const navigate = useNavigate()
-    const location = useLocation()
-    const [isUserAuthLogout, setIsUserAuthLogout] = useState(false)
-
+    const userEmail = localStorage.getItem('userEmail')
     const logout = () => {
         localStorage.removeItem('isAuth')
         localStorage.removeItem('userEmail')
-        navigate(LOGIN_ROUTE)
         window.location.reload()
-        //navigate(LOGIN_ROUTE, {state: {isUserAuthLogout: isUserAuthLogout}})
-        //navigate(LOGIN_ROUTE, {state: {isUserAuthLogout: 'false'}})
+        navigate(LOGIN_ROUTE)
     }
 
     return (
@@ -26,7 +22,7 @@ const Home = () => {
             <div className={s.container}>
                 <div className={s.leftBlock}>
                     <div className={s.leftBlock__content}>
-                        <h2 className={s.greetings}>Hello, <span className={`${s.purpleText} ${s.email}`}>asdsdasdasd@gmail.com</span></h2>
+                        <h2 className={s.greetings}>Hello, <span className={`${s.purpleText} ${s.email}`}>{userEmail}</span></h2>
                         <h3 className={s.welcome}>Welcome to the system</h3>
                         <div className={s.explanation}>
                                 <span className={s.selectTable}>Select the desired table to perform <span
