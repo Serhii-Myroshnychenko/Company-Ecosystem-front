@@ -14,10 +14,9 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
     const [isAdd, setIsAdd] = useState(false )
     const [searchQuery, setSearchQuery] = useState('');
     const [sortedArrayOfItems, setSortedArrayOfItems] = useState([{}]);
-
     const elementRef = useRef(null);
     const getElementsOfArray = arrayOfItems.map(el => el)
-
+    const checkedItemNameToAddPageLink = itemSelector().filter(el => el.name === itemName)[0].addPagePath
 
     useEffect(() => {
         props.isAddPage ? setIsAdd(true) : setIsAdd(false)
@@ -32,15 +31,12 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
     }, [arrayOfItems])
 
     useEffect(() => {
-        //debugger
         searchSortedQuests();
     }, [searchQuery])
 
-    const checkedItemNameToAddPageLink = itemSelector().filter(el => el.name === itemName)[0].addPagePath
 
 
     const searchSortedQuests = () => {
-        //debugger
         const fieldName = props.searchedFieldName
         if(searchQuery !== ''){
             setSortedArrayOfItems(arrayOfItems.filter(item => item[fieldName].includes(searchQuery)));

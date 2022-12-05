@@ -7,7 +7,7 @@ import Save from "../../img/icons/Save.png"
 import noPhotoImage from "../../img/icons/noPhotoImage.png"
 import {Link, useLocation} from "react-router-dom";
 import InputAdmin from "../UI/input/InputAdmin";
-import axios from "axios";
+
 
 const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
 
@@ -16,7 +16,6 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
     const [isAddItem, setIsAddItem] = useState(false)
     const [toggleArray, setToggleArray] = useState([])
     const [employeeId, setEmployeeId] = useState()
-    const [selectedImageBytes, setSelectedImageBytes] = useState()
     const [newArrayOfItems, setNewArrayOfItems] = useState({id: arrayOfItems.id, title: arrayOfItems.title, chief: employeeId, workingStart: arrayOfItems.workingStart, workingEnd:arrayOfItems.workingEnd, photo: arrayOfItems.photo});
 
     const validArrayOfItems = {
@@ -95,10 +94,6 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
         }
     }
 
-  /*  const setPhotoTitleForAddPage = (e) => {
-        console.log(e.target.value)
-        setNewArrayOfItems({...newArrayOfItems, photo: e.target.value})
-    }*/
 
     return (
         <div className={s.adminItemContainer} style={{width: `${headerBlock}px`}}>

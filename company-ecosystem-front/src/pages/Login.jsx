@@ -5,21 +5,10 @@ import Saly from "../img/login/Saly.svg"
 import {HOME_ROUTE} from "../utils/consts";
 import {useLocation, useNavigate} from "react-router-dom";
 
-const Login = ({setIsUserAuth, checkIsUserLogout}) => {
+const Login = ({setIsUserAuth}) => {
 
     const navigate = useNavigate();
-   /* const location = useLocation()
-    const [isUserAuthLogout, setIsUserAuthLogout] = useState(location.state?.isUserAuthLogout === undefined)
-*/
 
-    /*useEffect(() => {
-        checkIsUserLogout(isUserAuthLogout)
-    }, [isUserAuthLogout])*/
-/*    const {test} = location.state
-    const [testP, setTest] = useState(test)*/
-    /*const []*/
-    //console.log(testP)
-    //console.log(isUserAuthLogout)
     async function login(email, password) {
         let result = await fetch("https://localhost:7032/Account/authenticate", {
             method: 'POST',

@@ -5,7 +5,6 @@ import AdminBlock from "../../../compontents/AdminBlock";
 const LocationsPage = () => {
 
     const [locations, setLocations] = useState([{}]);
-/*    const [renderLocations, setRenderLocations] = useState(locations);*/
     const itemName = "location"
     const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','photo','actions']
     const flexValues = {
@@ -36,15 +35,12 @@ const LocationsPage = () => {
     }
 
 
-    const getSortedLocations = (locations) => {}
-
-
     return (
         <div className={s.employeesContainer}>
             <div className={s.block}>
                 <AdminBlock flexValues={flexValues} arrayOfItems={locations}
                             headersArray={headers} itemName={itemName}
-                            getSortedItems={getSortedLocations} searchedFieldName={searchedFieldName}/>
+                            searchedFieldName={searchedFieldName}/>
             </div>
         </div>
     );

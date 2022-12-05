@@ -6,10 +6,8 @@ import {useNavigate} from "react-router-dom";
 import {HOME_ROUTE} from "../utils/consts";
 
 const LoginForm = ({login}) => {
-    //const navigate = useNavigate();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    //const [loginData, setLoginData] = useState({email: '', password: ''})
 
     return (
         <div className={s.signInContainer}>
