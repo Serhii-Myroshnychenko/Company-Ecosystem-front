@@ -13,22 +13,29 @@ const LocationsEditPage = (props) => {
 
     async function updateLocations(inputItems){
         let formData = new FormData();
-        formData.append('title', inputItems.title);
-        formData.append('chief', inputItems.chief);
-        formData.append('workingStart', inputItems.workingStart);
-        formData.append('workingEnd', inputItems.workingEnd);
-        formData.append('photo', inputItems.photo);
-        formData.append('id', inputItems.id);
+        formData.append('title',inputItems.title);
+        formData.append('chief',inputItems.chief);
+        formData.append('workingStart',inputItems.workingStart);
+        formData.append('workingEnd',inputItems.workingEnd);
+        if(inputItems.photo.name === undefined){
+            formData.append('photo',null);
+            formData.append('path',inputItems.photo)
+        } else {
+            formData.append('photo',inputItems.photo);
+            formData.append('path',inputItems.path)
+        }
+        formData.append('id',inputItems.id);
         let result = await fetch("https://localhost:7032/Location", {
             method: 'PUT',
-            body: formData,
+            body: formData
         });
-        if(result.status == 200){
+        if(result.status === 200){
             alert("Успешно")
-        } else{
+        } else {
             alert("Неверные данные")
         }
     }
+
 
 
     return (

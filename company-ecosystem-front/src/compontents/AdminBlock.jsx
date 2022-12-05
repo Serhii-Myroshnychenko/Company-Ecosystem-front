@@ -24,7 +24,7 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
 
     useEffect(() => {
         setWidthBlockForCorrectScrollDrawing(elementRef.current.scrollWidth);
-    }, [elementRef.current.scrollWidth]);
+    }, []);
 
     useEffect(() => {
         setSortedArrayOfItems(arrayOfItems)
@@ -44,6 +44,7 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
             setSortedArrayOfItems(arrayOfItems)
         }
     }
+
 
     return (
         <div className={s.adminBlockContainer}>
@@ -71,7 +72,7 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
                         <AdminHeader arrayOfItems={getElementsOfArray} headers={headersArray} flexValues={flexValues}  headerBlock={widthBlockForCorrectScrollDrawing}/>
                     </div>
                     <div className={s.informationContainer}>
-                        {sortedArrayOfItems.map(item => itemSelector(item,flexValues,widthBlockForCorrectScrollDrawing, props.updateTable).map(el => {
+                        {arrayOfItems.map(item => itemSelector(item,flexValues,widthBlockForCorrectScrollDrawing, props.updateTable).map(el => {
                             if(el.name === itemName){
                                 return el.Component
                             }

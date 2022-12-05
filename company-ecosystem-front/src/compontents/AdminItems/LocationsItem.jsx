@@ -16,7 +16,7 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
     const [isAddItem, setIsAddItem] = useState(false)
     const [toggleArray, setToggleArray] = useState([])
     const [employeeId, setEmployeeId] = useState()
-    const [newArrayOfItems, setNewArrayOfItems] = useState({id: arrayOfItems.id, title: arrayOfItems.title, chief: employeeId, workingStart: arrayOfItems.workingStart, workingEnd:arrayOfItems.workingEnd, photo: arrayOfItems.photo});
+    const [newArrayOfItems, setNewArrayOfItems] = useState({id: arrayOfItems.id, title: arrayOfItems.title, chief: employeeId, workingStart: arrayOfItems.workingStart, workingEnd:arrayOfItems.workingEnd, photo: arrayOfItems.photo, path: arrayOfItems.photo});
 
     const validArrayOfItems = {
         get filledArrayOfItems() {
@@ -94,7 +94,6 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
         }
     }
 
-
     return (
         <div className={s.adminItemContainer} style={{width: `${headerBlock}px`}}>
             <div className={s.content}>
@@ -143,7 +142,7 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
                                     onDoubleClick={() => changeArrayItems('photo')}>
                                     { !getIsToggleFromToggleArray('photo') ?
                                         <div className={s.photoContainer}>
-                                            <img src={arrayOfItems.photo !== undefined ? 'data:image/png;base64,' + arrayOfItems.photo : noPhotoImage} alt="photo"/>
+                                            <img src={arrayOfItems.photo !== undefined ? 'https://localhost:7032' + arrayOfItems.photo : noPhotoImage} alt="photo"/>
                                         </div>
                                         : <input type="file" onChange={e => setNewArrayOfItems({...newArrayOfItems, photo: e.target.files[0]})}/>
                                     }
@@ -183,7 +182,7 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
                                             <input type="file" onChange={e => setNewArrayOfItems({...newArrayOfItems, photo: e.target.files[0]})}/>
                                             :
                                             <div className={s.photoContainer}>
-                                                <img src={arrayOfItems.photo !== undefined ? 'data:image/png;base64,' + arrayOfItems.photo : noPhotoImage} alt="photo"/>
+                                                <img src={arrayOfItems.photo !== undefined ? 'https://localhost:7032' + arrayOfItems.photo : noPhotoImage} alt="photo"/>
                                             </div>
                                     }
                                 </li>
@@ -215,7 +214,7 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
                                 <li className={s.item}
                                     style={flexValues.photo != null ? {flex: flexValues.photo} : {flex: flexValues.general}}>
                                     <div className={s.photoContainer}>
-                                        <img src={arrayOfItems.photo !== undefined ? 'data:image/png;base64,' + arrayOfItems.photo : noPhotoImage} alt="photo"/>
+                                        <img src={arrayOfItems.photo !== undefined ? 'https://localhost:7032' + arrayOfItems.photo : noPhotoImage} alt="photo"/>
                                     </div>
                                 </li>
                                 <Link to={LOCATIONS_EDIT_ROUTE} state={{

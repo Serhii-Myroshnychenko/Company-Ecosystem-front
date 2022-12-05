@@ -5,34 +5,35 @@ import AdminBlock from "../../../compontents/AdminBlock";
 
 const LocationsAddPage = () => {
     const location = useLocation()
-    //const [locations, setLocations] = useState([{}]);
     const itemName = "location"
     const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
     const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','photo','actions']
 
 
-    async function updateLocations(inputItems){
-       /* let result = await fetch("https://localhost:7032/Locations", {
-            method: 'PUT',
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({id: inputItems.id, title: inputItems.title, chief: inputItems.chief, workingStart: inputItems.workingStart, workingEnd:inputItems.workingEnd}),
+    async function createLocation(inputItems){
+        let formData = new FormData();
+        formData.append('title',inputItems.title);
+        formData.append('chief',inputItems.chief);
+        formData.append('workingStart',inputItems.workingStart);
+        formData.append('workingEnd',inputItems.workingEnd);
+        formData.append('photo',inputItems.photo)
+        formData.append('id',0);
+        let result = await fetch("https://localhost:7032/Location", {
+            method: 'POST',
+            body: formData
         });
         if(result.status == 200){
             alert("Успешно")
-        } else{
+        } else {
             alert("Неверные данные")
-        }*/
-
-        console.log(inputItems)
+            console.log(result)
+        }
     }
 
     return (
         <div className={s.employeesContainer}>
             <div className={s.block}>
-                <AdminBlock flexValues={flexValues} arrayOfItems={[{...arrayOfSelectedItem}]} headersArray={headers} itemName={itemName} updateTable={updateLocations} isAddPage={true}/>
+                <AdminBlock flexValues={flexValues} arrayOfItems={[{...arrayOfSelectedItem}]} headersArray={headers} itemName={itemName} updateTable={createLocation} isAddPage={true}/>
             </div>
         </div>
     );
