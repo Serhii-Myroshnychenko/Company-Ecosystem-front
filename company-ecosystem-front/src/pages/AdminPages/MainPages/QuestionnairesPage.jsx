@@ -5,7 +5,7 @@ import AdminBlock from "../../../compontents/AdminBlock";
 const QuestionnairesPage = () => {
     const [questionnaires, setQuestionnaires] = useState([{}]);
     const itemName = "questionnaire"
-    const headers = ['firstName', 'middleName','lastName','phone','birthday','photo','aboutMyself','linkToLinkedIn','email','position','id', 'actions']
+    const headers = ['firstName', 'middleName','lastName','phone','birthday','photo','aboutMyself','linkToLinkedIn','EmployeeId','id', 'actions']
     const flexValues = {
         general: '0 0 200px',
         photo: '0 0 350px'

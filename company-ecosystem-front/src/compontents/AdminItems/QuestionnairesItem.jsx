@@ -20,25 +20,29 @@ const QuestionnairesItem = ({arrayOfItems , flexValues, headerBlock, updateTable
     const [isAddItem, setIsAddItem] = useState(false)
     const [toggleArray, setToggleArray] = useState([])
     const [employeeId, setEmployeeId] = useState()
-    const [newArrayOfItems, setNewArrayOfItems] = useState({firstName: arrayOfItems.firstName, middleName: arrayOfItems.middleName, lastName: arrayOfItems.lastName, phone: arrayOfItems.phone, birthday:arrayOfItems.birthday, photo: arrayOfItems.photo, aboutMyself: arrayOfItems.aboutMyself,  linkToLinkedIn: arrayOfItems.linkToLinkedIn, email: arrayOfItems.email, position: arrayOfItems.position, id: arrayOfItems.id, employeeId: employeeId});
+    const [newArrayOfItems, setNewArrayOfItems] = useState({firstName: arrayOfItems.firstName, middleName: arrayOfItems.middleName, lastName: arrayOfItems.lastName, phone: arrayOfItems.phone, birthday:arrayOfItems.birthday, photo: arrayOfItems.photo, aboutMyself: arrayOfItems.aboutMyself,  linkToLinkedIn: arrayOfItems.linkToLinkedIn,  id: arrayOfItems.id, employeeId: employeeId});
+
+    
 
     const validArrayOfItems = {
         get filledArrayOfItems() {
             if(Object.keys(arrayOfItems).length === 0) {
-                return arrayOfItems = {employees: [{email: 'empty'}]}
+                return arrayOfItems = {employee: [{email: 'empty'}]}
             } else {
                 return arrayOfItems
             }
         }
     }
+    useEffect(() => {
+        setEmployeeId(arrayOfItems?.employee?.id)
+    },[arrayOfItems?.employee?.id])
 
     useEffect(() => {
-        setNewArrayOfItems({...newArrayOfItems, chief: employeeId})
+        setNewArrayOfItems({...newArrayOfItems, employeeId: employeeId})
     }, [employeeId])
 
     useEffect(() => {
         setToggleValues()
-        setEmployeeId(getEmployeeIdWithFilledArrayOfItems())
     }, [])
 
     useEffect(() => {
@@ -88,15 +92,16 @@ const QuestionnairesItem = ({arrayOfItems , flexValues, headerBlock, updateTable
         return false;
     }
 
-    const getEmployeeIdWithFilledArrayOfItems = () => {
-        for (let emp of validArrayOfItems.filledArrayOfItems.employees) {
-            if (emp.email === arrayOfItems.chiefEmail) {
-                return emp.id
-            } else {
-                return 0
-            }
-        }
-    }
+    // const getEmployeeIdWithFilledArrayOfItems = () => {
+    //     for (let emp of validArrayOfItems.filledArrayOfItems.employee) {
+    //             if (emp.email === arrayOfItems.chiefEmail) {
+    //                 return emp.id
+    //             } else {
+    //                 return 0
+    //             }
+    //     }
+    // }
+
 
     return (
         <div className={s.adminItemContainer} style={{width: `${headerBlock}px`}}>
@@ -138,7 +143,7 @@ const QuestionnairesItem = ({arrayOfItems , flexValues, headerBlock, updateTable
                                         style={flexValues.birthday != null ? {flex: flexValues.birthday} : {flex: flexValues.general}}
                                         onDoubleClick={() => changeArrayItems('birthday')}>
                                         { !getIsToggleFromToggleArray('birthday') ? arrayOfItems.birthday
-                                            : <InputAdmin value={newArrayOfItems.birthday} onChange={e => setNewArrayOfItems({...newArrayOfItems, birthday: e.target.value})}/>
+                                            : <InputAdmin type='date' value={newArrayOfItems.birthday} onChange={e => setNewArrayOfItems({...newArrayOfItems, birthday: e.target.value})}/>
                                         }
                                     </li>
                                     <li className={s.item}
@@ -165,27 +170,7 @@ const QuestionnairesItem = ({arrayOfItems , flexValues, headerBlock, updateTable
                                             : <InputAdmin value={newArrayOfItems.linkToLinkedIn} onChange={e => setNewArrayOfItems({...newArrayOfItems, linkToLinkedIn: e.target.value})}/>
                                         }
                                     </li>
-                                    <li className={s.item}
-                                        style={flexValues.email != null ? {flex: flexValues.email} : {flex: flexValues.general}}
-                                        onDoubleClick={() => changeArrayItems('email')}>
-                                        { !getIsToggleFromToggleArray('email') ? arrayOfItems.email
-                                            : <InputAdmin value={newArrayOfItems.email} onChange={e => setNewArrayOfItems({...newArrayOfItems, email: e.target.value})}/>
-                                        }
-                                    </li>
-                                    <li className={s.item}
-                                        style={flexValues.position != null ? {flex: flexValues.position} : {flex: flexValues.general}}
-                                        onDoubleClick={() => changeArrayItems('position')}>
-                                        { !getIsToggleFromToggleArray('position') ? arrayOfItems.position
-                                            : <InputAdmin value={newArrayOfItems.position} onChange={e => setNewArrayOfItems({...newArrayOfItems, position: e.target.value})}/>
-                                        }
-                                    </li>
-                                    <li className={s.item}
-                                        style={flexValues.id != null ? {flex: flexValues.id} : {flex: flexValues.general}}
-                                        onDoubleClick={() => changeArrayItems('id')}>
-                                        { !getIsToggleFromToggleArray('id') ? arrayOfItems.id
-                                            : <InputAdmin value={newArrayOfItems.id} onChange={e => setNewArrayOfItems({...newArrayOfItems, id: e.target.value})}/>
-                                        }
-                                    </li>
+                                    
                                     <Link to={QUESTIONNAIRES_ROUTE}
                                           state={{
                                               arrayOfSelectedItem: arrayOfItems,
@@ -220,9 +205,10 @@ const QuestionnairesItem = ({arrayOfItems , flexValues, headerBlock, updateTable
                                         <InputAdmin value={newArrayOfItems.phone || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, phone: e.target.value})}/>
                                     </li>
                                     <li className={s.item}
-                                        style={flexValues.aboutMyself != null ? {flex: flexValues.aboutMyself} : {flex: flexValues.general}}>
-                                        <InputAdmin value={newArrayOfItems.aboutMyself || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, aboutMyself: e.target.value})}/>
+                                        style={flexValues.birthday != null ? {flex: flexValues.birthday} : {flex: flexValues.general}}>
+                                        <InputAdmin type='date' value={newArrayOfItems.birthday || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, birthday: e.target.value})}/>
                                     </li>
+                                    
                                     <li className={s.item}
                                         style={flexValues.photo != null ? {flex: flexValues.photo} : {flex: flexValues.general}}
                                         onDoubleClick={() => changeArrayItems('photo')}>
@@ -231,26 +217,23 @@ const QuestionnairesItem = ({arrayOfItems , flexValues, headerBlock, updateTable
                                                 <input type="file" onChange={e => setNewArrayOfItems({...newArrayOfItems, photo: e.target.files[0]})}/>
                                                 :
                                                 <div className={s.photoContainer}>
-                                                    <img src={arrayOfItems.photo !== undefined ? 'https://localhost:7032' + arrayOfItems.photo : noPhotoImage} alt="photo"/>
+                                                    <img src={arrayOfItems.photo !== undefined ? 'https://localhost:7032' + newArrayOfItems.photo : noPhotoImage} alt="photo"/>
                                                 </div>
                                         }
+                                    </li>
+                                    <li className={s.item}
+                                        style={flexValues.aboutMyself != null ? {flex: flexValues.aboutMyself} : {flex: flexValues.general}}>
+                                        <InputAdmin value={newArrayOfItems.aboutMyself || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, aboutMyself: e.target.value})}/>
                                     </li>
                                     <li className={s.item}
                                         style={flexValues.linkToLinkedIn != null ? {flex: flexValues.linkToLinkedIn} : {flex: flexValues.general}}>
                                         <InputAdmin value={newArrayOfItems.linkToLinkedIn || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, linkToLinkedIn: e.target.value})}/>
                                     </li>
                                     <li className={s.item}
-                                        style={flexValues.email != null ? {flex: flexValues.email} : {flex: flexValues.general}}>
-                                        <InputAdmin value={newArrayOfItems.email || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, email: e.target.value})}/>
+                                        style={flexValues.employeeId != null ? {flex: flexValues.employeeId} : {flex: flexValues.general}}>
+                                        <InputAdmin value={newArrayOfItems.employeeId || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, employeeId: Number(e.target.value)})}/>
                                     </li>
-                                    <li className={s.item}
-                                        style={flexValues.position != null ? {flex: flexValues.position} : {flex: flexValues.general}}>
-                                        <InputAdmin value={newArrayOfItems.position || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, position: e.target.value})}/>
-                                    </li>
-                                    <li className={s.item}
-                                        style={flexValues.id != null ? {flex: flexValues.id} : {flex: flexValues.general}}>
-                                        <InputAdmin value={newArrayOfItems.id || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, id: e.target.value})}/>
-                                    </li>
+                                        
 
                                     <Link to={QUESTIONNAIRES_ROUTE}  state={{
                                         arrayOfSelectedItem: arrayOfItems,
@@ -287,9 +270,7 @@ const QuestionnairesItem = ({arrayOfItems , flexValues, headerBlock, updateTable
                                     <li className={s.item}
                                         style={flexValues.linkToLinkedIn != null ? {flex: flexValues.linkToLinkedIn} : {flex: flexValues.general}}>{arrayOfItems.linkToLinkedIn}</li>
                                     <li className={s.item}
-                                        style={flexValues.email != null ? {flex: flexValues.email} : {flex: flexValues.general}}>{arrayOfItems.email}</li>
-                                    <li className={s.item}
-                                        style={flexValues.position != null ? {flex: flexValues.position} : {flex: flexValues.general}}>{arrayOfItems.position}</li>
+                                        style={flexValues.employeeId != null ? {flex: flexValues.employeeId} : {flex: flexValues.general}}>{employeeId}</li>
                                     <li className={s.item}
                                         style={flexValues.id != null ? {flex: flexValues.id} : {flex: flexValues.general}}>{arrayOfItems.id}</li>
                                     <Link to={QUESTIONNAIRES_EDIT_ROUTE} state={{

@@ -6,15 +6,16 @@ import AdminBlock from "../../../compontents/AdminBlock";
 const QuestionnairesEditPage = () => {
     const location = useLocation()
     const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
-    const itemName = "location"
-    const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','photo','actions']
+    const itemName = "questionnaire"
+    const headers = ['firstName', 'middleName','lastName','phone','birthday','photo','aboutMyself','linkToLinkedIn','actions']
 
-    async function updateLocations(inputItems){
+    async function updateQuestionnaires(inputItems){
         let formData = new FormData();
-        formData.append('title',inputItems.title);
-        formData.append('chief',inputItems.chief);
-        formData.append('workingStart',inputItems.workingStart);
-        formData.append('workingEnd',inputItems.workingEnd);
+        formData.append('firstName',inputItems.firstName);
+        formData.append('middleName',inputItems.middleName);
+        formData.append('lastName',inputItems.lastName);
+        formData.append('phone',inputItems.phone);
+        formData.append('birthday',inputItems.birthday)
         if(inputItems.photo.name === undefined){
             formData.append('photo',null);
             formData.append('path',inputItems.photo)
@@ -22,8 +23,11 @@ const QuestionnairesEditPage = () => {
             formData.append('photo',inputItems.photo);
             formData.append('path',inputItems.path)
         }
+        formData.append('aboutMyself',inputItems.aboutMyself)
+        formData.append('linkToLinkedIn',inputItems.linkToLinkedIn)
+        formData.append('employeeId',inputItems.employeeId)
         formData.append('id',inputItems.id);
-        let result = await fetch("https://localhost:7032/Location", {
+        let result = await fetch("https://localhost:7032/Questionnaire", {
             method: 'PUT',
             body: formData
         });
@@ -39,7 +43,7 @@ const QuestionnairesEditPage = () => {
     return (
         <div className={s.employeesContainer}>
             <div className={s.block}>
-                <AdminBlock flexValues={flexValues} arrayOfItems={[{...arrayOfSelectedItem}]} headersArray={headers} itemName={itemName} updateTable={updateLocations} isAddPage={true}/>
+                <AdminBlock flexValues={flexValues} arrayOfItems={[{...arrayOfSelectedItem}]} headersArray={headers} itemName={itemName} updateTable={updateQuestionnaires} isAddPage={true}/>
             </div>
         </div>
     );

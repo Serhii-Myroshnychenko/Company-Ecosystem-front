@@ -10,7 +10,8 @@ const QuestionnairesAddPage = () => {
     const headers = ['firstName', 'middleName','lastName','phone','birthday','photo','aboutMyself','linkToLinkedIn','employeeId','id', 'actions']
 
 
-    async function createLocation(inputItems){
+    async function createQuestionnaires(inputItems){
+        console.log(inputItems)
         let formData = new FormData();
         formData.append('firstName',inputItems.firstName);
         formData.append('middleName',inputItems.middleName);
@@ -21,8 +22,9 @@ const QuestionnairesAddPage = () => {
         formData.append('aboutMyself',inputItems.aboutMyself)
         formData.append('linkToLinkedIn',inputItems.linkToLinkedIn)
         formData.append('employeeId',inputItems.employeeId)
-        formData.append('id',inputItems.id);
-        let result = await fetch("https://localhost:7032/Location", {
+        formData.append('id',0);
+
+        let result = await fetch("https://localhost:7032/Questionnaire", {
             method: 'POST',
             body: formData
         });
@@ -39,7 +41,7 @@ const QuestionnairesAddPage = () => {
     return (
         <div className={s.employeesContainer}>
             <div className={s.block}>
-                <AdminBlock flexValues={flexValues} arrayOfItems={[{...arrayOfSelectedItem}]} headersArray={headers} itemName={itemName} updateTable={createLocation} isAddPage={true}/>
+                <AdminBlock flexValues={flexValues} arrayOfItems={[{...arrayOfSelectedItem}]} headersArray={headers} itemName={itemName} updateTable={createQuestionnaires} isAddPage={true}/>
             </div>
         </div>
     );

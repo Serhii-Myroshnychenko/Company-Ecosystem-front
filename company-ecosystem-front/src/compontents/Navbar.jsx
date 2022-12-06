@@ -6,7 +6,6 @@ import {
     EMPLOYERS_ROUTE,
     HOME_ROUTE,
     LOCATIONS_ROUTE, LOGIN_ROUTE,
-    PHOTO_THINGS_ROUTE,
     POSTS_ROUTE, QUESTIONNAIRES_ROUTE,
     THINGS_ROUTE
 } from "../utils/consts";
@@ -66,13 +65,7 @@ const Navbar = ({isAuth}) => {
                                 <NavLink to={THINGS_ROUTE} className={activeNavbarClass}>Things</NavLink>
                             </li>
                             <li className={s.menu__li}>
-                                <NavLink to={PHOTO_THINGS_ROUTE} className={activeNavbarClass}>PhotoThings</NavLink>
-                            </li>
-                            <li className={s.menu__li}>
                                 <NavLink to={QUESTIONNAIRES_ROUTE} className={activeNavbarClass}>Questionnaires</NavLink>
-                            </li>
-                            <li className={s.menu__li}>
-                                <NavLink to={LOGIN_ROUTE} className={activeNavbarClass}>Login</NavLink>
                             </li>
                         </ul>
                     </nav>
