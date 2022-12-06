@@ -7,11 +7,10 @@ const QuestionnairesAddPage = () => {
     const location = useLocation()
     const itemName = "questionnaire"
     const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
-    const headers = ['firstName', 'middleName','lastName','phone','birthday','photo','aboutMyself','linkToLinkedIn','employeeId','id', 'actions']
+    const headers = ['firstName', 'middleName','lastName','phone','birthday','photo','aboutMyself','linkToLinkedIn','employeeId', 'actions']
 
 
     async function createQuestionnaires(inputItems){
-        console.log(inputItems)
         let formData = new FormData();
         formData.append('firstName',inputItems.firstName);
         formData.append('middleName',inputItems.middleName);
@@ -32,7 +31,6 @@ const QuestionnairesAddPage = () => {
             alert("Успешно")
         } else {
             alert("Неверные данные")
-            console.log(result)
         }
     }
 

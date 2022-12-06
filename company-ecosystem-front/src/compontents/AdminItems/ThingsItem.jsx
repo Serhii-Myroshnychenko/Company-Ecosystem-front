@@ -16,7 +16,7 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
     const [isAddItem, setIsAddItem] = useState(false)
     const [toggleArray, setToggleArray] = useState([])
 
-    const [newArrayOfItems, setNewArrayOfItems] = useState({name: arrayOfItems.name, instruction: arrayOfItems.instruction, characteristic: arrayOfItems.characteristic, photos: arrayOfItems.photos});
+    const [newArrayOfItems, setNewArrayOfItems] = useState({name: arrayOfItems.name, instruction: arrayOfItems.instruction, characteristic: arrayOfItems.characteristic, photos: arrayOfItems.photos, id: arrayOfItems.id});
 
     const validArrayOfItems = {
         get filledArrayOfItems() {
@@ -167,14 +167,21 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
                                 <li className={s.item}
                                     style={flexValues.characteristic != null ? {flex: flexValues.characteristic} : {flex: flexValues.general}}>{arrayOfItems.characteristic}</li>
                                 <li className={s.item}
-                                    style={flexValues.create != null ? {flex: flexValues.create} : {flex: flexValues.general}}>{ arrayOfItems.photos?.map(p => {
-                                        return (<div className={s.photoContainer}>
+                                    style={flexValues.photos != null ? {flex: flexValues.photos} : {flex: flexValues.general}}>
+                                    <div className={s.photoContainerThings}>
+
+                                            {arrayOfItems.photos?.map(p => {
+                                                return (
+                                                    <div className={s.photoContainer}>
                                                     <img src={p.path !== undefined ? 'https://localhost:7032' + p.path : noPhotoImage} alt="photo"/>
-                                                </div>)
-                                    })}
+                                                    </div>
+                                                )
+                                            })}
+
+                                    </div>
                                 </li>
-                                
-                                
+                                <li className={s.item}
+                                    style={flexValues.id != null ? {flex: flexValues.id} : {flex: flexValues.general}}>{arrayOfItems.id}</li>
                                 <Link to={THINGS_EDIT_ROUTE} state={{
                                     arrayOfSelectedItem: arrayOfItems,
                                     flexValues: flexValues,

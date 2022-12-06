@@ -8,10 +8,9 @@ const ThingsPage = () => {
     const itemName = "thing"
     const headers = ['name', 'instruction','characteristic','photos','id','actions']
     const flexValues = {
-        id: '0 0 100px',
-        email: '0 0 250px',
+        id: '0 0 200px',
         general: '0 0 200px',
-        photo: '0 0 350px',
+        photos: '0 0 430px',
     }
     const searchedFieldName = 'name'
 
