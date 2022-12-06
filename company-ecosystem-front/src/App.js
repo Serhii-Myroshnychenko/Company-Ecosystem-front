@@ -9,28 +9,26 @@ import {useEffect, useState} from "react";
 import EmployeesItem from "./compontents/AdminItems/EmployeesItem";
 import AdminBlock from "./compontents/AdminBlock";
 import EmployeesPage from "./pages/AdminPages/MainPages/EmployeesPage";
+import {useLocation} from "react-router-dom";
 
 
 
 
 function App() {
-    const [isUserAuth, setIsUserAuth] = useState("1");
 
-    // Протестить, запишет ли в юз эффект из локал стореджа после логина, или нет
-    // Если нет, то как-то колбеками наверное передать надо будет
-    useEffect(() => {
-        if(localStorage.getItem("IsAuth") === '1') {
-            setIsUserAuth('1')
-        }
-    }, [])
+    const [isUserAuth, setIsUserAuthValue]  = useState(Boolean(localStorage.getItem('isAuth')) === true)
+    const getIsUserAuth = (result) => setIsUserAuthValue(result)
+    //const checkIsUserLogout = (value) => setIsUserAuthValue(value)
+
+
 
     return (
         <div className="App">
-            {isUserAuth === "0"
+            {!isUserAuth
                 ?
                 <div>
                     <Navbar isAuth={isUserAuth}/>
-                    <Login/>
+                    <Login setIsUserAuth={getIsUserAuth}/>
                 </div>
                 :
                 <div>

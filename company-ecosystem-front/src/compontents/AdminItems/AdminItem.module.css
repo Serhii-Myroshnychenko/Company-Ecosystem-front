@@ -22,7 +22,13 @@
 }
 
 .editButton {
+    cursor: pointer;
 }
+
+.deleteButton {
+    cursor: pointer;
+}
+
 .saveButton img{
     width: 19px;
 }

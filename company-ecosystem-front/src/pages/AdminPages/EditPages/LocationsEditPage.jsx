@@ -4,13 +4,12 @@ import AdminBlock from "../../../compontents/AdminBlock";
 import {useLocation} from "react-router-dom";
 
 
+
 const LocationsEditPage = (props) => {
     const location = useLocation()
-    const { arrayOfSelectedItem, flexValues, headerBlock } = location.state  // Для отрисовки Item-а из LocationsItem
-    //const [locations, setLocations] = useState([{...arrayOfSelectedItem}]);
+    const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
     const itemName = "location"
     const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','photo','actions']
-
 
     async function updateLocations(inputItems){
         let formData = new FormData();
@@ -21,26 +20,25 @@ const LocationsEditPage = (props) => {
         if(inputItems.photo.name === undefined){
             formData.append('photo',null);
             formData.append('path',inputItems.photo)
-        }
-        else{
+
+        } else {
             formData.append('photo',inputItems.photo);
             formData.append('path',inputItems.path)
         }
         formData.append('id',inputItems.id);
 
-
-        console.log(inputItems)
         let result = await fetch("https://localhost:7032/Location", {
             method: 'PUT',
             body: formData
         });
-        if(result.status == 200){
+        if(result.status === 200){
             alert("Успешно")
-        } else{
+        } else {
             alert("Неверные данные")
-            console.log(result)
         }
     }
+
+
 
     return (
         <div className={s.employeesContainer}>

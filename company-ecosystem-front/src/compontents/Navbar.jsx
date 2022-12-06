@@ -50,7 +50,7 @@ const Navbar = ({isAuth}) => {
                         <div className={s.logo__text}>Ecosystem</div>
                     </div>
                 </Link>
-                {isAuth === '1' ?
+                {isAuth ?
                     <nav className={s.menu}>
                         <ul className={s.menu__ul}>
                             <li className={s.menu__li}>

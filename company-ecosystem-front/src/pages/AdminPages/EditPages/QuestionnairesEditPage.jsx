@@ -1,43 +1,48 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useLocation} from "react-router-dom";
 import s from "../MainPages/styles/MainPages.module.css";
 import AdminBlock from "../../../compontents/AdminBlock";
 
-const LocationsAddPage = () => {
+const QuestionnairesEditPage = () => {
     const location = useLocation()
-    const itemName = "location"
     const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
+    const itemName = "location"
     const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','photo','actions']
 
-
-    async function createLocation(inputItems){
+    async function updateLocations(inputItems){
         let formData = new FormData();
         formData.append('title',inputItems.title);
         formData.append('chief',inputItems.chief);
         formData.append('workingStart',inputItems.workingStart);
         formData.append('workingEnd',inputItems.workingEnd);
-        formData.append('photo',inputItems.photo)
-
-        formData.append('id',0);
+        if(inputItems.photo.name === undefined){
+            formData.append('photo',null);
+            formData.append('path',inputItems.photo)
+        } else {
+            formData.append('photo',inputItems.photo);
+            formData.append('path',inputItems.path)
+        }
+        formData.append('id',inputItems.id);
         let result = await fetch("https://localhost:7032/Location", {
-            method: 'POST',
+            method: 'PUT',
             body: formData
         });
-        if(result.status == 200){
+        if(result.status === 200){
             alert("Успешно")
         } else {
             alert("Неверные данные")
-            console.log(result)
         }
     }
+
+
 
     return (
         <div className={s.employeesContainer}>
             <div className={s.block}>
-                <AdminBlock flexValues={flexValues} arrayOfItems={[{...arrayOfSelectedItem}]} headersArray={headers} itemName={itemName} updateTable={createLocation} isAddPage={true}/>
+                <AdminBlock flexValues={flexValues} arrayOfItems={[{...arrayOfSelectedItem}]} headersArray={headers} itemName={itemName} updateTable={updateLocations} isAddPage={true}/>
             </div>
         </div>
     );
 };
 
-export default LocationsAddPage;
+export default QuestionnairesEditPage;

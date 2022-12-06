@@ -4,9 +4,10 @@ import s from './AdminItem.module.css'
 import Delete from "../../img/icons/Delete.svg"
 import Edit from "../../img/icons/Edit.svg"
 import Save from "../../img/icons/Save.png"
+import noPhotoImage from "../../img/icons/noPhotoImage.png"
 import {Link, useLocation} from "react-router-dom";
 import InputAdmin from "../UI/input/InputAdmin";
-import axios from "axios";
+
 
 const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
 
@@ -15,8 +16,8 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
     const [isAddItem, setIsAddItem] = useState(false)
     const [toggleArray, setToggleArray] = useState([])
     const [employeeId, setEmployeeId] = useState()
-    const [selectedImageBytes, setSelectedImageBytes] = useState()
-    const [newArrayOfItems, setNewArrayOfItems] = useState({id: arrayOfItems.id, title: arrayOfItems.title, chief: employeeId, workingStart: arrayOfItems.workingStart, workingEnd:arrayOfItems.workingEnd, photo: arrayOfItems.photo, path: arrayOfItems.photo });
+
+    const [newArrayOfItems, setNewArrayOfItems] = useState({id: arrayOfItems.id, title: arrayOfItems.title, chief: employeeId, workingStart: arrayOfItems.workingStart, workingEnd:arrayOfItems.workingEnd, photo: arrayOfItems.photo, path: arrayOfItems.photo});
 
     const validArrayOfItems = {
         get filledArrayOfItems() {
@@ -94,53 +95,6 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
         }
     }
 
-
-    /*function photoReader(photo) {
-        let reader = new FileReader();
-        reader.onload = function(e) {
-            // binary data
-            //console.log(e.target.result);
-            return e.target.result
-        }
-       let res = reader.readAsBinaryString(photo)
-        //console.log(result)
-        console.log(res)
-        return res
-    }*/
-
-    function photoReader(photo) {
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-            const contents = evt.target.result;
-            setSelectedImageBytes(contents)
-            console.log(contents);
-        };
-        reader.readAsDataURL(photo);
-    }
-
-   /* async function getAsByteArray(file) {
-        return new Uint8Array(await readFile(file))
-    }
-
-    function readFile(file) {
-        return new Promise((resolve, reject) => {
-            // Create file reader
-            let reader = new FileReader()
-
-            // Register event listeners
-            reader.addEventListener("loadend", e => resolve(e.target.result))
-            reader.addEventListener("error", reject)
-
-            // Read file
-            reader.readAsArrayBuffer(file)
-        })
-    }*/
-
-   /* const byteFile = await getAsByteArray(file)*/
-
-
-    console.log(arrayOfItems.photo)
-
     return (
         <div className={s.adminItemContainer} style={{width: `${headerBlock}px`}}>
             <div className={s.content}>
@@ -189,7 +143,8 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
                                     onDoubleClick={() => changeArrayItems('photo')}>
                                     { !getIsToggleFromToggleArray('photo') ?
                                         <div className={s.photoContainer}>
-                                            <img src={'https://localhost:7032' + arrayOfItems.photo} alt="photo"/>
+
+                                            <img src={arrayOfItems.photo !== undefined ? 'https://localhost:7032' + arrayOfItems.photo : noPhotoImage} alt="photo"/>
                                         </div>
                                         : <input type="file" onChange={e => setNewArrayOfItems({...newArrayOfItems, photo: e.target.files[0]})}/>
                                     }
@@ -224,8 +179,16 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
                                 <li className={s.item}
                                     style={flexValues.photo != null ? {flex: flexValues.photo} : {flex: flexValues.general}}
                                     onDoubleClick={() => changeArrayItems('photo')}>
-                                        <input type="file" onChange={e => setNewArrayOfItems({...newArrayOfItems, photo: e.target.value})}/>
+                                    {
+                                        arrayOfItems.photo === undefined ?
+                                            <input type="file" onChange={e => setNewArrayOfItems({...newArrayOfItems, photo: e.target.files[0]})}/>
+                                            :
+                                            <div className={s.photoContainer}>
+                                                <img src={arrayOfItems.photo !== undefined ? 'https://localhost:7032' + arrayOfItems.photo : noPhotoImage} alt="photo"/>
+                                            </div>
+                                    }
                                 </li>
+
                                 <Link to={LOCATIONS_ROUTE}  state={{
                                     arrayOfSelectedItem: arrayOfItems,
                                     flexValues: flexValues,
@@ -237,7 +200,6 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
                                 <li className={`${s.item} ${s.deleteButton}`}><img src={Delete} alt="Delete"/></li>
                             </ul>
                         )
-
                     } else {
                         return (
                             <ul className={s.ul}>
@@ -254,7 +216,8 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) =>
                                 <li className={s.item}
                                     style={flexValues.photo != null ? {flex: flexValues.photo} : {flex: flexValues.general}}>
                                     <div className={s.photoContainer}>
-                                        <img src={'https://localhost:7032' + arrayOfItems.photo} alt="photo"/>
+
+                                        <img src={arrayOfItems.photo !== undefined ? 'https://localhost:7032' + arrayOfItems.photo : noPhotoImage} alt="photo"/>
                                     </div>
                                 </li>
                                 <Link to={LOCATIONS_EDIT_ROUTE} state={{

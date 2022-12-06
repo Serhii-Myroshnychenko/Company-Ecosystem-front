@@ -10,28 +10,50 @@ import {Link, useNavigate} from "react-router-dom";
 
 const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props}) => {
 
-    useEffect(() => {
-        setWidthBlockForCorrectScrollDrawing(elementRef.current.scrollWidth);
-    }, []);
-
     const [widthBlockForCorrectScrollDrawing, setWidthBlockForCorrectScrollDrawing] = useState(0);
+    const [isAdd, setIsAdd] = useState(false )
+    const [searchQuery, setSearchQuery] = useState('');
+    const [sortedArrayOfItems, setSortedArrayOfItems] = useState([{}]);
     const elementRef = useRef(null);
     const getElementsOfArray = arrayOfItems.map(el => el)
-    const [isAdd, setIsAdd] = useState(false )
+    const checkedItemNameToAddPageLink = itemSelector().filter(el => el.name === itemName)[0].addPagePath
 
     useEffect(() => {
         props.isAddPage ? setIsAdd(true) : setIsAdd(false)
     }, [props.isAddPage])
 
-    const checkedItemNameToAddPageLink = itemSelector().filter(el => el.name === itemName)[0].addPagePath
+    useEffect(() => {
+        setWidthBlockForCorrectScrollDrawing(elementRef.current.scrollWidth);
+    }, []);
 
-    
+    useEffect(() => {
+        setSortedArrayOfItems(arrayOfItems)
+    }, [arrayOfItems])
+
+    useEffect(() => {
+        searchSortedQuests();
+    }, [searchQuery])
+
+
+
+    const searchSortedQuests = () => {
+        const fieldName = props.searchedFieldName
+        if(searchQuery !== ''){
+            setSortedArrayOfItems(arrayOfItems.filter(item => item[fieldName]?.includes(searchQuery)));
+        } else if(searchQuery === ''){
+            setSortedArrayOfItems(arrayOfItems)
+        }
+    }
+
+
     return (
         <div className={s.adminBlockContainer}>
             <div className={s.adminBlockContent}>
                 <div className={s.topContainer}>
                     <div className={s.searchContainer}>
-                        <AdminSearch placeholder='Search...'/>
+                        <AdminSearch onChange={e => setSearchQuery(e.target.value)}
+                                     placeholder='Search...'
+                                     value={searchQuery} />
                     </div>
                     {!isAdd ?
                         <div className={s.addButtonContainer}>

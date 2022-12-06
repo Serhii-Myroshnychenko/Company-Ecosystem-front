@@ -13,7 +13,7 @@ const AppRouter = ({isAuth}) => {
                 <Route key={path} path={path} element={Component}/>
             )}
 
-            {isAuth === '1' && authRoutes.map(({path, Component}) =>
+            {isAuth && authRoutes.map(({path, Component}) =>
                 <Route key={path} path={path} element={Component}/>
             )}
             <Route path="*" element={<NotFound/>}/>

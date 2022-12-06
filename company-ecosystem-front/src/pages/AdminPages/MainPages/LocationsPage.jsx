@@ -5,8 +5,15 @@ import AdminBlock from "../../../compontents/AdminBlock";
 const LocationsPage = () => {
 
     const [locations, setLocations] = useState([{}]);
-/*    const [renderLocations, setRenderLocations] = useState(locations);*/
     const itemName = "location"
+    const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','photo','actions']
+    const flexValues = {
+        id: '0 0 100px',
+        email: '0 0 250px',
+        general: '0 0 200px',
+        photo: '0 0 350px',
+    }
+    const searchedFieldName = 'title'
 
     useEffect(() => {
         getLocations()
@@ -22,25 +29,16 @@ const LocationsPage = () => {
         }); 
         if(result.status === 200){
             setLocations(await result.json())
-        }
-        else { 
+        } else {
             alert("Произошла ошибка")
         }
     }
-    
-    const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','photo','actions']
-
-    const flexValues = {
-        id: '0 0 100px',
-        email: '0 0 250px',
-        general: '0 0 200px',
-        photo: '0 0 350px',
-    }
-    console.log(locations)
     return (
         <div className={s.employeesContainer}>
             <div className={s.block}>
-                <AdminBlock flexValues={flexValues} arrayOfItems={locations} headersArray={headers} itemName={itemName}/>
+                <AdminBlock flexValues={flexValues} arrayOfItems={locations}
+                            headersArray={headers} itemName={itemName}
+                            searchedFieldName={searchedFieldName}/>
             </div>
         </div>
     );
