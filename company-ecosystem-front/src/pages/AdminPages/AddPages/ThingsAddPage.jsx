@@ -11,8 +11,6 @@ const ThingsAddPage = () => {
 
 
     async function createThing(inputItems){
-        console.log(inputItems)
-        console.log(typeof(inputItems.photos))
         let formData = new FormData();
         formData.append('name',inputItems.name);
         formData.append('instruction',inputItems.instruction);
@@ -20,9 +18,6 @@ const ThingsAddPage = () => {
         inputItems.photos.forEach(item => formData.append('images', item))
         formData.append('locationId',inputItems.locationId);
         formData.append('id',0);
-        
-        console.log(formData.getAll('images'));
-        console.log(typeof(formData.getAll('images')))
 
         let result = await fetch("https://localhost:7032/Thing", {
             method: 'POST',

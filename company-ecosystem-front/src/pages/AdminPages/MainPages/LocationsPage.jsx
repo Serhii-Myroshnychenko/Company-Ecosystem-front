@@ -33,6 +33,7 @@ const LocationsPage = () => {
             alert("Произошла ошибка")
         }
     }
+
     return (
         <div className={s.employeesContainer}>
             <div className={s.block}>

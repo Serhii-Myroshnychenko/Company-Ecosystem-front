@@ -25,7 +25,6 @@ const PostsAddPage = () => {
             alert("Успешно")
         } else {
             alert("Неверные данные")
-            console.log(result)
         }
     }
 

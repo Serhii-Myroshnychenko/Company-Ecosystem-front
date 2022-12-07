@@ -12,7 +12,6 @@ const ThingsEditPage = (props) => {
     const headers = ['name', 'instruction','characteristic','photoes','actions']
 
     async function updateThings(inputItems){
-        console.log(inputItems)
         let formData = new FormData();
         formData.append('name',inputItems.name);
         formData.append('instruction',inputItems.instruction);
@@ -26,8 +25,6 @@ const ThingsEditPage = (props) => {
         }
         formData.append('locationId',inputItems.locationId);
         formData.append('id',inputItems.id);
-        console.log(inputItems)
-        console.log(formData)
         let result = await fetch("https://localhost:7032/Thing", {
             method: 'PUT',
             body: formData

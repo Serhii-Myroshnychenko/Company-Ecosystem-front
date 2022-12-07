@@ -13,14 +13,18 @@ import {navbarActiveClassName, navbarShadow} from "../utils/navbarRoutes";
 
 const Navbar = ({isAuth}) => {
 
-    const activeNavbarClass = (navData) => (navData.isActive ? s.activeLink : s.menu__link);
+    //const activeNavbarClass = (navData) => (navData?.isActive ? s.activeLink : s.menu__link );
+
+
     const [navbarShadowState, setNavbarShadowState] = useState('drop-shadow(0px 4px 5px #EFEFEF)');
+    const [displayedItemName, setDisplayedItemName] = useState('')
     const location = useLocation()
 
     useEffect(() => {
         changeNavbarShadow();
-       /* checkIsActiveNavbarClass()*/
+        checkIsActiveNavbarClass()
     }, [location.pathname])
+
 
     const changeNavbarShadow = () => {
         for (let path of navbarShadow) {
@@ -32,13 +36,27 @@ const Navbar = ({isAuth}) => {
             setNavbarShadowState('drop-shadow(0px 4px 5px #EFEFEF)')
         }
     }
+    const activeNavbarClass = (navData) => {
+        if(navData.isActive) {
+            return s.activeLink
+        } else {
+            return s.menu__link
+        }
+    }
 
-   /* const checkIsActiveNavbarClass = (displayedItemName) => {
+    const checkIsActiveNavbarClass = () => {
         const resultPathArray = navbarActiveClassName
             .map(item => item)
-            .filter(el => el.name === displayedItemName)[0].pathArray
-        console.log(resultPathArray)
-    }*/
+            .filter(el => el.name === displayedItemName)[0]?.pathArray
+        resultPathArray?.forEach(path => {
+            if(path === location.pathname) {
+                activeNavbarClass({isActive(match, location) {
+                    match(true)
+                        location(location.pathname)
+                    }})
+            }
+        })
+    }
 
     return (
         <header className={s.header} style={{filter: `${navbarShadowState}`}} >
@@ -53,19 +71,19 @@ const Navbar = ({isAuth}) => {
                     <nav className={s.menu}>
                         <ul className={s.menu__ul}>
                             <li className={s.menu__li}>
-                                <NavLink to={EMPLOYERS_ROUTE} className={activeNavbarClass}>Employees</NavLink>
+                                <NavLink to={EMPLOYERS_ROUTE} onClick={() => setDisplayedItemName('employees')} className={activeNavbarClass}>Employees</NavLink>
                             </li>
                             <li className={s.menu__li}>
-                                <NavLink to={LOCATIONS_ROUTE} className={activeNavbarClass} >Locations</NavLink>
+                                <NavLink to={LOCATIONS_ROUTE} onClick={() => setDisplayedItemName('locations')} className={activeNavbarClass}>Locations</NavLink>
                             </li>
                             <li className={s.menu__li}>
-                                <NavLink to={POSTS_ROUTE} className={activeNavbarClass}>Posts</NavLink>
+                                <NavLink to={POSTS_ROUTE} onClick={() => setDisplayedItemName('posts')} className={activeNavbarClass}>Posts</NavLink>
                             </li>
                             <li className={s.menu__li}>
-                                <NavLink to={THINGS_ROUTE} className={activeNavbarClass}>Things</NavLink>
+                                <NavLink to={THINGS_ROUTE} onClick={() => setDisplayedItemName('things')} className={activeNavbarClass}>Things</NavLink>
                             </li>
                             <li className={s.menu__li}>
-                                <NavLink to={QUESTIONNAIRES_ROUTE} className={activeNavbarClass}>Questionnaires</NavLink>
+                                <NavLink to={QUESTIONNAIRES_ROUTE} onClick={() => setDisplayedItemName('questionnaires')} className={activeNavbarClass}>Questionnaires</NavLink>
                             </li>
                         </ul>
                     </nav>

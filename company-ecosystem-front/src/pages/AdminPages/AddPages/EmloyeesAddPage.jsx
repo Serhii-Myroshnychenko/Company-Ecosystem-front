@@ -25,8 +25,6 @@ const EmloyeesAddPage = () => {
          } else{
              alert("Неверные данные")
          }*/
-
-        console.log(inputItems)
     }
 
     return (

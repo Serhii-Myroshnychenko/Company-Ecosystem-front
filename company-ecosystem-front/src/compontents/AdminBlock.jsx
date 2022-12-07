@@ -4,7 +4,8 @@ import AdminHeader from "./AdminHeaders/AdminHeader";
 import AdminSearch from "./UI/search/AdminSearch";
 import { itemSelector } from '../utils/selectors';
 import ButtonPurple from "./UI/button/ButtonPurple";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
+import {EMPLOYERS_ROUTE} from "../utils/consts";
 
 
 const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props}) => {
@@ -14,13 +15,14 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
     const [searchQuery, setSearchQuery] = useState('');
     const [sortedArrayOfItems, setSortedArrayOfItems] = useState([...arrayOfItems]);
     const elementRef = useRef(null);
+    const location = useLocation()
     const getElementsOfArray = arrayOfItems.map(el => el)
     const checkedItemNameToAddPageLink = itemSelector().filter(el => el.name === itemName)[0].addPagePath
-    
+    const checkIsEmployeePage = () => location.pathname === EMPLOYERS_ROUTE ? setIsAdd(true) : null
 
     useEffect(() => {
         props.isAddPage ? setIsAdd(true) : setIsAdd(false)
-        props.setNotVisibleAddButton ? setIsAdd(props.setNotVisibleAddButton) : setIsAdd(false)
+        checkIsEmployeePage()
     }, [props.isAddPage])
 
     useEffect(() => {

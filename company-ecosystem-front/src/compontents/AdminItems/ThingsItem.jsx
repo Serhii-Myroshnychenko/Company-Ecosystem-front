@@ -82,7 +82,6 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemNam
         return false;
     }
 
-    console.log(arrayOfItems)
 
     return (
         <div className={s.adminItemContainer} style={{width: `${headerBlock}px`}}>

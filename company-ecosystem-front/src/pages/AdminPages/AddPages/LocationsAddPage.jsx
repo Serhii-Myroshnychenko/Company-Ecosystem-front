@@ -19,7 +19,6 @@ const LocationsAddPage = () => {
         formData.append('photo',inputItems.photo)
 
         formData.append('id',0);
-        console.log(inputItems)
         let result = await fetch("https://localhost:7032/Location", {
             method: 'POST',
             body: formData
@@ -28,7 +27,6 @@ const LocationsAddPage = () => {
             alert("Успешно")
         } else {
             alert("Неверные данные")
-            console.log(result)
         }
     }
 
