@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 import s from "../MainPages/styles/MainPages.module.css";
 import AdminBlock from "../../../compontents/AdminBlock";
 import {useLocation} from "react-router-dom";
-
-
+import {useTranslation} from "react-i18next";
 
 const PostsEditPage = (props) => {
+    
     const location = useLocation()
+    const {t} = useTranslation();
     const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
     const itemName = "post"
     const headers = ['title', 'body','locationId','actions']
@@ -23,13 +24,11 @@ const PostsEditPage = (props) => {
             body: formData
         });
         if(result.status === 200){
-            alert("Успешно")
+            alert(t("Alert.success"))
         } else {
-            alert("Неверные данные")
+            alert(t("Alert.error"))
         }
     }
-
-
 
     return (
         <div className={s.employeesContainer}>

@@ -1,9 +1,11 @@
 import React , {useState ,useEffect} from 'react';
 import s from './styles/MainPages.module.css'
 import AdminBlock from "../../../compontents/AdminBlock";
+import {useTranslation} from "react-i18next";
 
 const EmployeesPage = () => {
 
+    const {t} = useTranslation();
     const [employees, setEmployees] = useState([{}]);
     const itemName = "employee"
     const headers = ['id', 'email','role','position','actions']
@@ -18,7 +20,6 @@ const EmployeesPage = () => {
         getEmployees()
     },[]);
 
-
     async function getEmployees(){
         let result = await fetch("https://localhost:7032/Account", {
             method: 'GET',
@@ -30,10 +31,9 @@ const EmployeesPage = () => {
         if(result.status === 200){
             setEmployees(await result.json())
         } else {
-            alert("Произошла ошибка")
+            alert(t("Alert.error"))
         }
     }
-
 
     return (
         <div className={s.employeesContainer}>

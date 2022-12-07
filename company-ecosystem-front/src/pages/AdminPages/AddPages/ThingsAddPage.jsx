@@ -2,17 +2,18 @@ import React, {useState} from 'react';
 import {useLocation} from "react-router-dom";
 import s from "../MainPages/styles/MainPages.module.css";
 import AdminBlock from "../../../compontents/AdminBlock";
-
+import {useTranslation} from "react-i18next";
 const ThingsAddPage = () => {
+
     const location = useLocation()
+    const {t} = useTranslation();
     const itemName = "thing"
     const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
     const headers = ['name', 'instruction','characteristic','photoes','locationId','actions']
 
 
     async function createThing(inputItems){
-        console.log(inputItems)
-        console.log(typeof(inputItems.photos))
+
         let formData = new FormData();
         formData.append('name',inputItems.name);
         formData.append('instruction',inputItems.instruction);
@@ -20,18 +21,15 @@ const ThingsAddPage = () => {
         inputItems.photos.forEach(item => formData.append('images', item))
         formData.append('locationId',inputItems.locationId);
         formData.append('id',0);
-        
-        console.log(formData.getAll('images'));
-        console.log(typeof(formData.getAll('images')))
 
         let result = await fetch("https://localhost:7032/Thing", {
             method: 'POST',
             body: formData
         });
         if(result.status == 200){
-            alert("Успешно")
+            alert(t("Alert.success"))
         } else {
-            alert("Неверные данные")
+            alert(t("Alert.error"))
         }
     }
 

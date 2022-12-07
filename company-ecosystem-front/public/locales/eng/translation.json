@@ -1,0 +1,35 @@
+{
+    "Home":{
+        "greetings":"Hello",
+        "welcome":"Welcome to the system",
+        "selectTable":"Select the desired table to perform",
+        "purpleText":"operations!",
+        "operations":"Then you can perform the following operations: Edit, Delete, Add and Review ",
+        "exitButtonContainer":"Log out"
+    },
+    "Login":{
+        "signIn":"Sign in to",
+        "companyEcosystem":"Company Ecosystem",
+        "description":"Here you can ",
+        "manage1":"manage",
+        "manage2":"all the important",
+        "manage3":"parts of the system!"
+    },
+    "NotFound":{
+        "notFound":"NOT FOUND PAGE"
+    },
+    "AdminBlock":{
+        "addButtonContainer":"Add",
+        "search":"Search..."
+    },
+    "LoginForm":{
+        "titleText":"Sign in",
+        "button":"Login"
+    },
+    "Alert":{
+        "success":"Successfully!",
+        "error":"Invalid data!"
+    }
+    
+
+}

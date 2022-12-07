@@ -2,13 +2,15 @@ import React, {useState} from 'react';
 import {useLocation} from "react-router-dom";
 import s from "../MainPages/styles/MainPages.module.css";
 import AdminBlock from "../../../compontents/AdminBlock";
+import {useTranslation} from "react-i18next";
 
 const PostsAddPage = () => {
+
     const location = useLocation()
+    const {t} = useTranslation();
     const itemName = "post"
     const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
     const headers = ['title', 'body','locationId','actions']
-
 
     async function createPost(inputItems){
         let formData = new FormData();
@@ -22,10 +24,9 @@ const PostsAddPage = () => {
             body: formData
         });
         if(result.status == 200){
-            alert("Успешно")
+            alert(t("Alert.success"))
         } else {
-            alert("Неверные данные")
-            console.log(result)
+            alert(t("Alert.error"))
         }
     }
 

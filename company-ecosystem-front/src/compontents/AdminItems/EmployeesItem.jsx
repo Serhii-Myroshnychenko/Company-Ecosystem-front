@@ -3,28 +3,16 @@ import s from './AdminItem.module.css'
 import Delete from "../../img/icons/Delete.svg"
 import Edit from "../../img/icons/Edit.svg"
 import {Link, useLocation} from "react-router-dom";
-import {EMPLOYERS_ADD_ROUTE, EMPLOYERS_EDIT_ROUTE, LOCATIONS_ADD_ROUTE, LOCATIONS_EDIT_ROUTE} from "../../utils/consts";
+import {EMPLOYERS_ADD_ROUTE, EMPLOYERS_EDIT_ROUTE} from "../../utils/consts";
 import InputAdmin from "../UI/input/InputAdmin";
 
 const EmployeesItem = ({arrayOfItems, flexValues, headerBlock, updateTable}) => {
-
 
     const location = useLocation()
     const [isEditItem, setIsEditItem] = useState(false)
     const [isAddItem, setIsAddItem] = useState(false)
     const [toggleArray, setToggleArray] = useState([])
     const [newArrayOfItems, setNewArrayOfItems] = useState({id: arrayOfItems.id, title2: arrayOfItems.title2, chief2: 2, workingStart: arrayOfItems.workingStart, workingEnd:arrayOfItems.workingEnd});
-
-    const validArrayOfItems = {
-        get filledArrayOfItems() {
-            if(Object.keys(arrayOfItems).length === 0) {
-                return arrayOfItems = {employees: [{email: 'empty'}]}
-            } else {
-                return arrayOfItems
-            }
-        }
-    }
-
 
     useEffect(() => {
         setToggleValues()
@@ -74,10 +62,6 @@ const EmployeesItem = ({arrayOfItems, flexValues, headerBlock, updateTable}) => 
         }
         return false;
     }
-
-
-
-
 
     return (
         <div className={s.adminItemContainer} style={{width: `${headerBlock}px`}}>

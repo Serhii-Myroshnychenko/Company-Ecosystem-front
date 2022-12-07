@@ -1,10 +1,12 @@
 import React , {useState ,useEffect} from 'react';
 import s from './styles/MainPages.module.css'
 import AdminBlock from "../../../compontents/AdminBlock";
+import {useTranslation} from "react-i18next";
 
 const LocationsPage = () => {
 
     const [locations, setLocations] = useState([]);
+    const {t} = useTranslation();
     const itemName = "location"
     const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','photo','actions']
     const flexValues = {
@@ -30,7 +32,7 @@ const LocationsPage = () => {
         if(result.status === 200){
             setLocations(await result.json())
         } else {
-            alert("Произошла ошибка")
+            alert(t("Alert.error"))
         }
     }
     return (

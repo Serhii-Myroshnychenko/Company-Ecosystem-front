@@ -2,16 +2,18 @@ import React, {useEffect, useState} from 'react';
 import s from "../MainPages/styles/MainPages.module.css";
 import AdminBlock from "../../../compontents/AdminBlock";
 import {useLocation} from "react-router-dom";
-
-
+import {useTranslation} from "react-i18next";
 
 const LocationsEditPage = (props) => {
+
     const location = useLocation()
+    const {t} = useTranslation();
     const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
     const itemName = "location"
     const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','photo','actions']
 
     async function updateLocations(inputItems){
+
         let formData = new FormData();
         formData.append('title',inputItems.title);
         formData.append('chief',inputItems.chief);
@@ -32,14 +34,11 @@ const LocationsEditPage = (props) => {
             body: formData
         });
         if(result.status === 200){
-            alert("Успешно")
+            alert(t("Alert.success"))
         } else {
-            alert("Неверные данные")
+            alert(t("Alert.error"))
         }
     }
-
-
-
 
     return (
         <div className={s.employeesContainer}>

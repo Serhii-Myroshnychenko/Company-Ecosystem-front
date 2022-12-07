@@ -8,16 +8,16 @@ import noPhotoImage from "../../img/icons/noPhotoImage.png"
 import DeleteRequest from '../../requests/requests';
 import {Link, useLocation} from "react-router-dom";
 import InputAdmin from "../UI/input/InputAdmin";
-
+import {useTranslation} from "react-i18next";
 
 const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable, itemName}) => {
 
     const location = useLocation()
+    const {t} = useTranslation();
     const [isEditItem, setIsEditItem] = useState(false)
     const [isAddItem, setIsAddItem] = useState(false)
     const [toggleArray, setToggleArray] = useState([])
     const [employeeId, setEmployeeId] = useState()
-
     const [newArrayOfItems, setNewArrayOfItems] = useState({id: arrayOfItems.id, title: arrayOfItems.title, chief: employeeId, workingStart: arrayOfItems.workingStart, workingEnd:arrayOfItems.workingEnd, photo: arrayOfItems.photo, path: arrayOfItems.photo});
 
     const validArrayOfItems = {
@@ -97,8 +97,6 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable, ite
             }
         }
     }
-
-
 
     return (
         <div className={s.adminItemContainer} style={{width: `${headerBlock}px`}}>

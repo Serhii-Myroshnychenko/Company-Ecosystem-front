@@ -1,4 +1,4 @@
-export default async function DeleteRequest (name, id) {
+export default async function DeleteRequest (name, id, t) {
     let result = await fetch("https://localhost:7032/" + name.charAt(0).toUpperCase() + name.slice(1), {
         method: 'DELETE',
         headers: {
@@ -8,7 +8,8 @@ export default async function DeleteRequest (name, id) {
         },
     }); 
     if(result.status === 200){
+        alert(t("Alert.success"))
     } else {
-        alert("Произошла ошибка")
+        alert(t("Alert.error"))
     }
 };

@@ -8,28 +8,17 @@ import Edit from "../../img/icons/Edit.svg"
 import Save from "../../img/icons/Save.png"
 import {Link, useLocation} from "react-router-dom";
 import InputAdmin from "../UI/input/InputAdmin";
+import {useTranslation} from "react-i18next";
 
 
 const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemName}) => {
 
     const location = useLocation()
+    const {t} = useTranslation();
     const [isEditItem, setIsEditItem] = useState(false)
     const [isAddItem, setIsAddItem] = useState(false)
     const [toggleArray, setToggleArray] = useState([])
-
     const [newArrayOfItems, setNewArrayOfItems] = useState({name: arrayOfItems.name, instruction: arrayOfItems.instruction, characteristic: arrayOfItems.characteristic, locationId:arrayOfItems.locationId,photos: arrayOfItems.photos, id: arrayOfItems.id, path:arrayOfItems.photos});
-
-    const validArrayOfItems = {
-        get filledArrayOfItems() {
-            if(Object.keys(arrayOfItems).length === 0) {
-                return arrayOfItems = {employees: [{email: 'empty'}]}
-            } else {
-                return arrayOfItems
-            }
-        }
-    }
-
-    
 
     useEffect(() => {
         setToggleValues()
@@ -81,8 +70,6 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemNam
         }
         return false;
     }
-
-    console.log(arrayOfItems)
 
     return (
         <div className={s.adminItemContainer} style={{width: `${headerBlock}px`}}>
@@ -206,7 +193,7 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemNam
                                     <li className={`${s.item}`}><img src={Edit} alt="Edit"/></li>
                                 </Link>
                                 <li className={`${s.spaceBetweenLinkButtons}`}></li>
-                                <li className={`${s.item} ${s.deleteButton}`}><img src={Delete} alt="Delete" onClick={() => DeleteRequest(itemName,arrayOfItems.id)}/></li>
+                                <li className={`${s.item} ${s.deleteButton}`}><img src={Delete} alt="Delete" onClick={() => DeleteRequest(itemName,arrayOfItems.id,t)}/></li>
                             </ul>
                         )
                     }

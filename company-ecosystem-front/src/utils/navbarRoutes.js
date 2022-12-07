@@ -13,10 +13,6 @@ export const navbarShadow = [LOGIN_ROUTE, HOME_ROUTE]
 export const navbarActiveClassName = [
     {
         name: 'locations',
-        /*get pathArray() {
-            if(Object.keys(arrayOfItems).length === 0)
-            [LOCATIONS_ADD_ROUTE, LOCATIONS_EDIT_ROUTE]
-        }*/
         pathArray: [LOCATIONS_ADD_ROUTE, LOCATIONS_EDIT_ROUTE]
     },
     {
@@ -26,13 +22,5 @@ export const navbarActiveClassName = [
 
 
 ]
-
-/*get filledArrayOfItems() {
-    if(Object.keys(arrayOfItems).length === 0) {
-        return arrayOfItems = {employees: [{email: 'empty'}]}
-    } else {
-        return arrayOfItems
-    }
-}*/
 
 

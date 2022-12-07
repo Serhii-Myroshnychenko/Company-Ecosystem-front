@@ -4,8 +4,9 @@ import AdminHeader from "./AdminHeaders/AdminHeader";
 import AdminSearch from "./UI/search/AdminSearch";
 import { itemSelector } from '../utils/selectors';
 import ButtonPurple from "./UI/button/ButtonPurple";
-import {HOME_ROUTE, LOCATIONS_ADD_ROUTE, LOCATIONS_ROUTE} from "../utils/consts";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
+import "../utils/i18next";
 
 
 const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props}) => {
@@ -17,6 +18,7 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
     const elementRef = useRef(null);
     const getElementsOfArray = arrayOfItems.map(el => el)
     const checkedItemNameToAddPageLink = itemSelector().filter(el => el.name === itemName)[0].addPagePath
+    const {t} = useTranslation();
 
     useEffect(() => {
         props.isAddPage ? setIsAdd(true) : setIsAdd(false)
@@ -51,7 +53,7 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
                 <div className={s.topContainer}>
                     <div className={s.searchContainer}>
                         <AdminSearch onChange={e => setSearchQuery(e.target.value)}
-                                     placeholder='Search...'
+                                     placeholder={t("AdminBlock.search")}
                                      value={searchQuery} />
                     </div>
                     {!isAdd ?
@@ -60,7 +62,7 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
                                 arrayOfItems: arrayOfItems,
                                 flexValues: flexValues
                             }} onClick={() => setIsAdd(true)}>
-                                <ButtonPurple style={{height: '42px'}} >Додати</ButtonPurple>
+                                <ButtonPurple style={{height: '42px'}} >{t("AdminBlock.addButtonContainer")}</ButtonPurple>
                             </Link>
                         </div>
                         : <div></div>

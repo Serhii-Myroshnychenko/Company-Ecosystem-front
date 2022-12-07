@@ -2,17 +2,19 @@ import React, {useEffect, useState} from 'react';
 import s from "../MainPages/styles/MainPages.module.css";
 import AdminBlock from "../../../compontents/AdminBlock";
 import {useLocation} from "react-router-dom";
-
+import {useTranslation} from "react-i18next";
 
 
 const ThingsEditPage = (props) => {
+
     const location = useLocation()
+    const {t} = useTranslation();
     const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
     const itemName = "thing"
     const headers = ['name', 'instruction','characteristic','photoes','actions']
 
     async function updateThings(inputItems){
-        console.log(inputItems)
+
         let formData = new FormData();
         formData.append('name',inputItems.name);
         formData.append('instruction',inputItems.instruction);
@@ -26,20 +28,17 @@ const ThingsEditPage = (props) => {
         }
         formData.append('locationId',inputItems.locationId);
         formData.append('id',inputItems.id);
-        console.log(inputItems)
-        console.log(formData)
+
         let result = await fetch("https://localhost:7032/Thing", {
             method: 'PUT',
             body: formData
         });
         if(result.status === 200){
-            alert("Успешно")
+            alert(t("Alert.success"))
         } else {
-            alert("Неверные данные")
+            alert(t("Alert.error"))
         }
     }
-
-
 
     return (
         <div className={s.employeesContainer}>

@@ -9,17 +9,23 @@ import {
     POSTS_ROUTE, QUESTIONNAIRES_ROUTE,
     THINGS_ROUTE
 } from "../utils/consts";
-import {navbarActiveClassName, navbarShadow} from "../utils/navbarRoutes";
+import {useTranslation} from "react-i18next";
+import "../utils/i18next";
+import {navbarShadow} from "../utils/navbarRoutes";
 
 const Navbar = ({isAuth}) => {
 
     const activeNavbarClass = (navData) => (navData.isActive ? s.activeLink : s.menu__link);
     const [navbarShadowState, setNavbarShadowState] = useState('drop-shadow(0px 4px 5px #EFEFEF)');
-    const location = useLocation()
+    const {t, i18n} = useTranslation();
+    const location = useLocation();
+
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang);
+    };
 
     useEffect(() => {
         changeNavbarShadow();
-       /* checkIsActiveNavbarClass()*/
     }, [location.pathname])
 
     const changeNavbarShadow = () => {
@@ -33,13 +39,6 @@ const Navbar = ({isAuth}) => {
         }
     }
 
-   /* const checkIsActiveNavbarClass = (displayedItemName) => {
-        const resultPathArray = navbarActiveClassName
-            .map(item => item)
-            .filter(el => el.name === displayedItemName)[0].pathArray
-        console.log(resultPathArray)
-    }*/
-
     return (
         <header className={s.header} style={{filter: `${navbarShadowState}`}} >
             <div className={s.headerContainer}>
@@ -51,12 +50,12 @@ const Navbar = ({isAuth}) => {
                 </Link>
                 {isAuth ?
                     <nav className={s.menu}>
-                        <ul className={s.menu__ul}>
+                        <ul className={s.menu__ul} >
                             <li className={s.menu__li}>
                                 <NavLink to={EMPLOYERS_ROUTE} className={activeNavbarClass}>Employees</NavLink>
                             </li>
                             <li className={s.menu__li}>
-                                <NavLink to={LOCATIONS_ROUTE} className={activeNavbarClass} >Locations</NavLink>
+                                <NavLink to={LOCATIONS_ROUTE} className={activeNavbarClass}>Locations</NavLink>
                             </li>
                             <li className={s.menu__li}>
                                 <NavLink to={POSTS_ROUTE} className={activeNavbarClass}>Posts</NavLink>
@@ -66,6 +65,12 @@ const Navbar = ({isAuth}) => {
                             </li>
                             <li className={s.menu__li}>
                                 <NavLink to={QUESTIONNAIRES_ROUTE} className={activeNavbarClass}>Questionnaires</NavLink>
+                            </li>
+                            <li>
+                            <div >
+                              <button onClick={() => changeLanguage("ua")} >UA</button>
+                              <button onClick={() => changeLanguage("eng")}>ENG</button>
+                          </div>  
                             </li>
                         </ul>
                     </nav>
