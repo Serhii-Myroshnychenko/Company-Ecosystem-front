@@ -13,7 +13,7 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
     const [widthBlockForCorrectScrollDrawing, setWidthBlockForCorrectScrollDrawing] = useState(0);
     const [isAdd, setIsAdd] = useState(false )
     const [searchQuery, setSearchQuery] = useState('');
-    const [sortedArrayOfItems, setSortedArrayOfItems] = useState([{}]);
+    const [sortedArrayOfItems, setSortedArrayOfItems] = useState([...arrayOfItems]);
     const elementRef = useRef(null);
     const getElementsOfArray = arrayOfItems.map(el => el)
     const checkedItemNameToAddPageLink = itemSelector().filter(el => el.name === itemName)[0].addPagePath
@@ -45,7 +45,6 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
         }
     }
 
-
     return (
         <div className={s.adminBlockContainer}>
             <div className={s.adminBlockContent}>
@@ -72,7 +71,7 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
                         <AdminHeader arrayOfItems={getElementsOfArray} headers={headersArray} flexValues={flexValues}  headerBlock={widthBlockForCorrectScrollDrawing}/>
                     </div>
                     <div className={s.informationContainer}>
-                        {arrayOfItems.map(item => itemSelector(item,flexValues,widthBlockForCorrectScrollDrawing, props.updateTable).map(el => {
+                        {sortedArrayOfItems.map(item => itemSelector(item,flexValues,widthBlockForCorrectScrollDrawing, props.updateTable).map(el => {
                             if(el.name === itemName){
                                 return el.Component
                             }
