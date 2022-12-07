@@ -6,7 +6,7 @@ const EmployeesPage = () => {
 
     const [employees, setEmployees] = useState([{}]);
     const itemName = "employee"
-    const headers = ['id', 'email','role','position','actions']
+    const headers = ['id', 'email','role','position']
     const flexValues = {
         id: '0 0 60px',
         email: '0 0 250px',
@@ -40,7 +40,7 @@ const EmployeesPage = () => {
             <div className={s.block}>
                 <AdminBlock flexValues={flexValues} arrayOfItems={employees}
                             headersArray={headers} itemName={itemName}
-                            searchedFieldName={searchedFieldName}/>
+                            searchedFieldName={searchedFieldName} setNotVisibleAddButton={true}/>
             </div>
         </div>
     );

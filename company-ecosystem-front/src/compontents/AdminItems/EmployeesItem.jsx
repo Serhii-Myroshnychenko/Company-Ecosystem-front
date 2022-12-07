@@ -114,7 +114,7 @@ const EmployeesItem = ({arrayOfItems, flexValues, headerBlock, updateTable}) => 
                                     : <InputAdmin/>
                                     }
                                 </li>
-                                <Link to={EMPLOYERS_EDIT_ROUTE}
+                                {/*<Link to={EMPLOYERS_EDIT_ROUTE}
                                       state={{
                                           arrayOfSelectedItem: arrayOfItems,
                                           flexValues: flexValues,
@@ -123,7 +123,7 @@ const EmployeesItem = ({arrayOfItems, flexValues, headerBlock, updateTable}) => 
                                     <li className={`${s.item} ${s.editButton}`}><img src={Edit} alt="Edit"/></li>
                                 </Link>
                                 <li className={`${s.spaceBetweenLinkButtons}`}></li>
-                                <li className={s.item}><img src={Delete} alt="Delete"/></li>
+                                <li className={s.item}><img src={Delete} alt="Delete"/></li>*/}
                             </ul>)
 
                     } else if (isAddItem) {
@@ -137,7 +137,7 @@ const EmployeesItem = ({arrayOfItems, flexValues, headerBlock, updateTable}) => 
                                     style={flexValues.role != null ? {flex: flexValues.role} : {flex: flexValues.general}}>{arrayOfItems.role}</li>
                                 <li className={s.item}
                                     style={flexValues.position != null ? {flex: flexValues.position} : {flex: flexValues.general}}>{arrayOfItems.position}</li>
-                                <Link to={EMPLOYERS_EDIT_ROUTE} state={{
+                              {/*  <Link to={EMPLOYERS_EDIT_ROUTE} state={{
                                     arrayOfSelectedItem: arrayOfItems,
                                     flexValues: flexValues,
                                     headerBlock: headerBlock
@@ -145,7 +145,7 @@ const EmployeesItem = ({arrayOfItems, flexValues, headerBlock, updateTable}) => 
                                     <li className={`${s.item} ${s.editButton}`}><img src={Edit} alt="Edit"/></li>
                                 </Link>
                                 <li className={`${s.spaceBetweenLinkButtons}`}></li>
-                                <li className={s.item}><img src={Delete} alt="Delete"/></li>
+                                <li className={s.item}><img src={Delete} alt="Delete"/></li>*/}
                             </ul>
                         )
 
@@ -160,7 +160,7 @@ const EmployeesItem = ({arrayOfItems, flexValues, headerBlock, updateTable}) => 
                                     style={flexValues.role != null ? {flex: flexValues.role} : {flex: flexValues.general}}>{arrayOfItems.role}</li>
                                 <li className={s.item}
                                     style={flexValues.position != null ? {flex: flexValues.position} : {flex: flexValues.general}}>{arrayOfItems.position}</li>
-                                <Link to={EMPLOYERS_EDIT_ROUTE} state={{
+                              {/*  <Link to={EMPLOYERS_EDIT_ROUTE} state={{
                                     arrayOfSelectedItem: arrayOfItems,
                                     flexValues: flexValues,
                                     headerBlock: headerBlock
@@ -168,7 +168,7 @@ const EmployeesItem = ({arrayOfItems, flexValues, headerBlock, updateTable}) => 
                                     <li className={`${s.item} ${s.editButton}`}><img src={Edit} alt="Edit"/></li>
                                 </Link>
                                 <li className={`${s.spaceBetweenLinkButtons}`}></li>
-                                <li className={s.item}><img src={Delete} alt="Delete"/></li>
+                                <li className={s.item}><img src={Delete} alt="Delete"/></li>*/}
                             </ul>
                         )
                     }

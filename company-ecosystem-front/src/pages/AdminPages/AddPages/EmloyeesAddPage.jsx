@@ -32,7 +32,7 @@ const EmloyeesAddPage = () => {
     return (
         <div className={s.employeesContainer}>
             <div className={s.block}>
-                <AdminBlock flexValues={flexValues} arrayOfItems={[{...arrayOfSelectedItem}]} headersArray={headers} itemName={itemName} updateTable={updateLocations} isAddPage={true}/>
+                <AdminBlock flexValues={flexValues} arrayOfItems={[{...arrayOfSelectedItem}]} headersArray={headers} itemName={itemName}  isAddPage={false}/>
             </div>
         </div>
     );

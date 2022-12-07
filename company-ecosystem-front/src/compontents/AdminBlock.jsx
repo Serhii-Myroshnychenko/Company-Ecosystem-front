@@ -4,8 +4,7 @@ import AdminHeader from "./AdminHeaders/AdminHeader";
 import AdminSearch from "./UI/search/AdminSearch";
 import { itemSelector } from '../utils/selectors';
 import ButtonPurple from "./UI/button/ButtonPurple";
-import {HOME_ROUTE, LOCATIONS_ADD_ROUTE, LOCATIONS_ROUTE} from "../utils/consts";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props}) => {
@@ -17,9 +16,11 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
     const elementRef = useRef(null);
     const getElementsOfArray = arrayOfItems.map(el => el)
     const checkedItemNameToAddPageLink = itemSelector().filter(el => el.name === itemName)[0].addPagePath
+    
 
     useEffect(() => {
         props.isAddPage ? setIsAdd(true) : setIsAdd(false)
+        props.setNotVisibleAddButton ? setIsAdd(props.setNotVisibleAddButton) : setIsAdd(false)
     }, [props.isAddPage])
 
     useEffect(() => {
