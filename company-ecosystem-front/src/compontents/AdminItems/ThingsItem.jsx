@@ -16,7 +16,7 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
     const [isAddItem, setIsAddItem] = useState(false)
     const [toggleArray, setToggleArray] = useState([])
 
-    const [newArrayOfItems, setNewArrayOfItems] = useState({name: arrayOfItems.name, instruction: arrayOfItems.instruction, characteristic: arrayOfItems.characteristic, photos: arrayOfItems.photos});
+    const [newArrayOfItems, setNewArrayOfItems] = useState({name: arrayOfItems.name, instruction: arrayOfItems.instruction, characteristic: arrayOfItems.characteristic, photos: arrayOfItems.photos, id: arrayOfItems.id});
 
     const validArrayOfItems = {
         get filledArrayOfItems() {
@@ -81,15 +81,6 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
         return false;
     }
 
-    const getEmployeeIdWithFilledArrayOfItems = () => {
-        for (let emp of validArrayOfItems.filledArrayOfItems.employees) {
-            if (emp.email === arrayOfItems.chiefEmail) {
-                return emp.id
-            } else {
-                return 0
-            }
-        }
-    }
     console.log(arrayOfItems)
 
     return (
@@ -101,24 +92,50 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
                         return (
                             <ul className={s.ul}>
                                 <li className={s.item}
-                                    style={flexValues.title != null ? {flex: flexValues.title} : {flex: flexValues.general}}
-                                    onDoubleClick={() => changeArrayItems('title')}>
-                                    { !getIsToggleFromToggleArray('title') ? arrayOfItems.title
-                                    : <InputAdmin value={newArrayOfItems.title} onChange={e => setNewArrayOfItems({...newArrayOfItems, title: e.target.value})}/>
+                                    style={flexValues.name != null ? {flex: flexValues.name} : {flex: flexValues.general}}
+                                    onDoubleClick={() => changeArrayItems('name')}>
+                                    { !getIsToggleFromToggleArray('name') ? arrayOfItems.name
+                                    : <InputAdmin value={newArrayOfItems.name} onChange={e => setNewArrayOfItems({...newArrayOfItems, name: e.target.value})}/>
                                     }
                                 </li>
                                 <li className={s.item}
-                                    style={flexValues.body != null ? {flex: flexValues.body} : {flex: flexValues.general}}
-                                    onDoubleClick={() => changeArrayItems('body')}>
-                                    { !getIsToggleFromToggleArray('body') ? arrayOfItems.body
-                                    : <InputAdmin value={newArrayOfItems.body} onChange={e => setNewArrayOfItems({...newArrayOfItems, body: e.target.value})}/>
+                                    style={flexValues.instruction != null ? {flex: flexValues.instruction} : {flex: flexValues.general}}
+                                    onDoubleClick={() => changeArrayItems('instruction')}>
+                                    { !getIsToggleFromToggleArray('instruction') ? arrayOfItems.instruction
+                                    : <InputAdmin value={newArrayOfItems.instruction} onChange={e => setNewArrayOfItems({...newArrayOfItems, instruction: e.target.value})}/>
                                     }
+                                </li>
+                                <li className={s.item}
+                                    style={flexValues.characteristic != null ? {flex: flexValues.characteristic} : {flex: flexValues.general}}
+                                    onDoubleClick={() => changeArrayItems('characteristic')}>
+                                    { !getIsToggleFromToggleArray('characteristic') ? arrayOfItems.characteristic
+                                    : <InputAdmin value={newArrayOfItems.characteristic} onChange={e => setNewArrayOfItems({...newArrayOfItems, characteristic: e.target.value})}/>
+                                    }
+                                </li>
+                                <li className={s.item}
+                                        style={flexValues.photos != null ? {flex: flexValues.photos} : {flex: flexValues.general}}
+                                        onDoubleClick={() => changeArrayItems('photos')}>
+                                        { !getIsToggleFromToggleArray('photos') ?
+                                         arrayOfItems.photos?.map(p => {
+                                        return (<div className={s.photoContainer}>
+                                                    <img src={p.path !== undefined ? 'https://localhost:7032' + p.path : noPhotoImage} alt="photo"/>
+                                                </div>)
+                                            })
+                                            : <input type="file" multiple onChange={e => setNewArrayOfItems({...newArrayOfItems, photos: [...e.target.files]})}/>
+                                        }
                                 </li>
                                 <li className={s.item}
                                     style={flexValues.locationId != null ? {flex: flexValues.locationId} : {flex: flexValues.general}}
                                     onDoubleClick={() => changeArrayItems('locationId')}>
                                     { !getIsToggleFromToggleArray('locationId') ? arrayOfItems.locationId
                                     : <InputAdmin value={newArrayOfItems.locationId} onChange={e => setNewArrayOfItems({...newArrayOfItems, locationId: Number(e.target.value)})}/>
+                                    }
+                                </li>
+                                <li className={s.item}
+                                    style={flexValues.id != null ? {flex: flexValues.id} : {flex: flexValues.general}}
+                                    onDoubleClick={() => changeArrayItems('id')}>
+                                    { !getIsToggleFromToggleArray('id') ? arrayOfItems.id
+                                    : <InputAdmin value={newArrayOfItems.id} onChange={e => setNewArrayOfItems({...newArrayOfItems, id: Number(e.target.value)})}/>
                                     }
                                 </li>
                                 <Link to={THINGS_ROUTE}
@@ -139,13 +156,23 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
                         return (
                             <ul className={s.ul}>
                                 <li className={s.item}
-                                    style={flexValues.title != null ? {flex: flexValues.title} : {flex: flexValues.general}}><InputAdmin value={newArrayOfItems.title || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, title: e.target.value})}/></li>
+                                    style={flexValues.name != null ? {flex: flexValues.name} : {flex: flexValues.general}}><InputAdmin value={newArrayOfItems.name || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, name: e.target.value})}/></li>
                                 <li className={s.item}
-                                    style={flexValues.body != null ? {flex: flexValues.body} : {flex: flexValues.general}}><InputAdmin value={newArrayOfItems.body || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, body: e.target.value})}/></li>
+                                    style={flexValues.instruction != null ? {flex: flexValues.instruction} : {flex: flexValues.general}}><InputAdmin value={newArrayOfItems.instruction || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, instruction: e.target.value})}/></li>
+                                <li className={s.item}
+                                    style={flexValues.characteristic != null ? {flex: flexValues.characteristic} : {flex: flexValues.general}}><InputAdmin  value={newArrayOfItems.characteristic || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, characteristic: e.target.value})}/></li>
+                                <li className={s.item}
+                                    style={flexValues.photos != null ? {flex: flexValues.photos} : {flex: flexValues.general}}
+                                        onDoubleClick={() => changeArrayItems('photos')}>
+                                        {
+                                            
+                                          <input type="file" multiple onChange={e => setNewArrayOfItems({...newArrayOfItems, photos: [...e.target.files]})}/>
+         
+                                        }
+                                </li>
                                 <li className={s.item}
                                     style={flexValues.locationId != null ? {flex: flexValues.locationId} : {flex: flexValues.general}}><InputAdmin  value={newArrayOfItems.locationId || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, locationId: Number(e.target.value)})}/></li>
-                               
-
+                                
                                 <Link to={THINGS_ROUTE}  state={{
                                     arrayOfSelectedItem: arrayOfItems,
                                     flexValues: flexValues,
@@ -167,11 +194,14 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
                                 <li className={s.item}
                                     style={flexValues.characteristic != null ? {flex: flexValues.characteristic} : {flex: flexValues.general}}>{arrayOfItems.characteristic}</li>
                                 <li className={s.item}
-                                    style={flexValues.create != null ? {flex: flexValues.create} : {flex: flexValues.general}}>{ arrayOfItems.photos?.map(p => {
+                                    style={flexValues.photos != null ? {flex: flexValues.photos} : {flex: flexValues.general}}>{ arrayOfItems.photos?.map(p => {
                                         return (<div className={s.photoContainer}>
                                                     <img src={p.path !== undefined ? 'https://localhost:7032' + p.path : noPhotoImage} alt="photo"/>
                                                 </div>)
                                     })}
+                                </li>
+                                <li className={s.item}
+                                    style={flexValues.id != null ? {flex: flexValues.id} : {flex: flexValues.general}}>{arrayOfItems.id}
                                 </li>
                                 
                                 
