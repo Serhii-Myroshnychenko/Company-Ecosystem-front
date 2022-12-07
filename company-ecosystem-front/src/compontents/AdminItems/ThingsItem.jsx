@@ -117,11 +117,14 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemNam
                                         style={flexValues.photos != null ? {flex: flexValues.photos} : {flex: flexValues.general}}
                                         onDoubleClick={() => changeArrayItems('photos')}>
                                         { !getIsToggleFromToggleArray('photos') ?
-                                         arrayOfItems.photos?.map(p => {
-                                        return (<div className={s.photoContainer}>
+                                        <div className={s.photoContainerThings}>
+                                                {arrayOfItems.photos?.map(p => {
+                                                return (
+                                                <div className={s.photoContainer}>
                                                     <img src={p.path !== undefined ? 'https://localhost:7032' + p.path : noPhotoImage} alt="photo"/>
-                                                </div>)
-                                            })
+                                                </div>
+                                                )})}
+                                        </div>
                                             : <input type="file" multiple onChange={e => setNewArrayOfItems({...newArrayOfItems, photos: [...e.target.files]})}/>
                                         }
                                 </li>
