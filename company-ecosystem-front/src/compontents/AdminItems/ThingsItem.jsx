@@ -181,11 +181,19 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemNam
                                 <li className={s.item}
                                     style={flexValues.characteristic != null ? {flex: flexValues.characteristic} : {flex: flexValues.general}}>{arrayOfItems.characteristic}</li>
                                 <li className={s.item}
-                                    style={flexValues.photos != null ? {flex: flexValues.photos} : {flex: flexValues.general}}>{ arrayOfItems.photos?.map(p => {
-                                        return (<div className={s.photoContainer}>
+
+                                    style={flexValues.photos != null ? {flex: flexValues.photos} : {flex: flexValues.general}}>
+                                    <div className={s.photoContainerThings}>
+
+                                            {arrayOfItems.photos?.map(p => {
+                                                return (
+                                                    <div className={s.photoContainer}>
                                                     <img src={p.path !== undefined ? 'https://localhost:7032' + p.path : noPhotoImage} alt="photo"/>
-                                                </div>)
-                                    })}
+                                                    </div>
+                                                )
+                                            })}
+
+                                    </div>
                                 </li>
                                 <Link to={THINGS_EDIT_ROUTE} state={{
                                     arrayOfSelectedItem: arrayOfItems,

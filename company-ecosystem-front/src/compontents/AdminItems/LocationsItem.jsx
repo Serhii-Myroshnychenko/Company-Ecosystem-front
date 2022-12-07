@@ -66,6 +66,7 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable, ite
     }
 
     const changeArrayItems = (item) => {
+        debugger
         let array = []
         toggleArray.map(obj => {
             if(obj.itemName === item) {
@@ -78,6 +79,7 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable, ite
     }
 
     function getIsToggleFromToggleArray(elem){
+        debugger
         for(let i = 0; i < toggleArray.length; i++){
             if(toggleArray[i].itemName === elem && toggleArray[i].isToggle === false){
                 return true;
@@ -95,6 +97,8 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable, ite
             }
         }
     }
+
+
 
     return (
         <div className={s.adminItemContainer} style={{width: `${headerBlock}px`}}>

@@ -4,7 +4,7 @@ import AdminBlock from "../../../compontents/AdminBlock";
 
 const LocationsPage = () => {
 
-    const [locations, setLocations] = useState([{}]);
+    const [locations, setLocations] = useState([]);
     const itemName = "location"
     const headers = ['id', 'title','chiefEmail','workingStart','workingEnd','photo','actions']
     const flexValues = {
