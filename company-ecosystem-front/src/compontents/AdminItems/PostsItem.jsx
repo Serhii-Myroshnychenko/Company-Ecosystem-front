@@ -3,6 +3,7 @@ import {POSTS_EDIT_ROUTE, POSTS_ADD_ROUTE, POSTS_ROUTE} from '../../utils/consts
 import React, {useEffect, useRef, useState} from 'react';
 import s from './AdminItem.module.css'
 import Delete from "../../img/icons/Delete.svg"
+import DeleteRequest from '../../requests/requests';
 import Edit from "../../img/icons/Edit.svg"
 import Save from "../../img/icons/Save.png"
 import noPhotoImage from "../../img/icons/noPhotoImage.png"
@@ -10,7 +11,7 @@ import {Link, useLocation} from "react-router-dom";
 import InputAdmin from "../UI/input/InputAdmin";
 
 
-const PostsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
+const PostsItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemName}) => {
 
     const location = useLocation()
     const [isEditItem, setIsEditItem] = useState(false)
@@ -181,7 +182,7 @@ const PostsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
                                     <li className={`${s.item}`}><img src={Edit} alt="Edit"/></li>
                                 </Link>
                                 <li className={`${s.spaceBetweenLinkButtons}`}></li>
-                                <li className={`${s.item} ${s.deleteButton}`}><img src={Delete} alt="Delete"/></li>
+                                <li className={`${s.item} ${s.deleteButton}`}><img src={Delete} alt="Delete" onClick={() => DeleteRequest(itemName,arrayOfItems.id)}/></li>
                             </ul>
                         )
                     }

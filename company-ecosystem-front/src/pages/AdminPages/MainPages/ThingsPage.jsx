@@ -6,7 +6,7 @@ const ThingsPage = () => {
 
     const [things, setThings] = useState([{}]);
     const itemName = "thing"
-    const headers = ['name', 'instruction','characteristic','photos','id','actions']
+    const headers = ['name', 'instruction','characteristic','photos','actions']
     const flexValues = {
         id: '0 0 100px',
         email: '0 0 250px',

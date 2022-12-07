@@ -12,9 +12,10 @@ import InputAdmin from "../UI/input/InputAdmin";
 import noPhotoImage from "../../img/icons/noPhotoImage.png";
 import Save from "../../img/icons/Save.png";
 import Delete from "../../img/icons/Delete.svg";
+import DeleteRequest from '../../requests/requests';
 import Edit from "../../img/icons/Edit.svg";
 
-const QuestionnairesItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
+const QuestionnairesItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemName}) => {
     const location = useLocation()
     const [isEditItem, setIsEditItem] = useState(false)
     const [isAddItem, setIsAddItem] = useState(false)
@@ -281,7 +282,7 @@ const QuestionnairesItem = ({arrayOfItems , flexValues, headerBlock, updateTable
                                         <li className={`${s.item}`}><img src={Edit} alt="Edit"/></li>
                                     </Link>
                                     <li className={`${s.spaceBetweenLinkButtons}`}></li>
-                                    <li className={`${s.item} ${s.deleteButton}`}><img src={Delete} alt="Delete"/></li>
+                                    <li className={`${s.item} ${s.deleteButton}`}><img src={Delete} alt="Delete" onClick={() => DeleteRequest(itemName,arrayOfItems.id)}/></li>
                                 </ul>
                             )
                         }

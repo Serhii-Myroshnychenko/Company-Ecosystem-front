@@ -72,7 +72,7 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
                         <AdminHeader arrayOfItems={getElementsOfArray} headers={headersArray} flexValues={flexValues}  headerBlock={widthBlockForCorrectScrollDrawing}/>
                     </div>
                     <div className={s.informationContainer}>
-                        {arrayOfItems.map(item => itemSelector(item,flexValues,widthBlockForCorrectScrollDrawing, props.updateTable).map(el => {
+                        {arrayOfItems.map(item => itemSelector(item,flexValues,widthBlockForCorrectScrollDrawing, props.updateTable,itemName).map(el => {
                             if(el.name === itemName){
                                 return el.Component
                             }

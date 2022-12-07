@@ -2,6 +2,7 @@ import {THINGS_ROUTE,THINGS_ADD_ROUTE,THINGS_EDIT_ROUTE} from '../../utils/const
 import noPhotoImage from "../../img/icons/noPhotoImage.png";
 import React, {useEffect, useRef, useState} from 'react';
 import s from './AdminItem.module.css'
+import DeleteRequest from '../../requests/requests';
 import Delete from "../../img/icons/Delete.svg"
 import Edit from "../../img/icons/Edit.svg"
 import Save from "../../img/icons/Save.png"
@@ -9,14 +10,14 @@ import {Link, useLocation} from "react-router-dom";
 import InputAdmin from "../UI/input/InputAdmin";
 
 
-const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
+const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemName}) => {
 
     const location = useLocation()
     const [isEditItem, setIsEditItem] = useState(false)
     const [isAddItem, setIsAddItem] = useState(false)
     const [toggleArray, setToggleArray] = useState([])
 
-    const [newArrayOfItems, setNewArrayOfItems] = useState({name: arrayOfItems.name, instruction: arrayOfItems.instruction, characteristic: arrayOfItems.characteristic, photos: arrayOfItems.photos, id: arrayOfItems.id});
+    const [newArrayOfItems, setNewArrayOfItems] = useState({name: arrayOfItems.name, instruction: arrayOfItems.instruction, characteristic: arrayOfItems.characteristic, locationId:arrayOfItems.locationId,photos: arrayOfItems.photos, id: arrayOfItems.id, path:arrayOfItems.photos});
 
     const validArrayOfItems = {
         get filledArrayOfItems() {
@@ -124,20 +125,6 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
                                             : <input type="file" multiple onChange={e => setNewArrayOfItems({...newArrayOfItems, photos: [...e.target.files]})}/>
                                         }
                                 </li>
-                                <li className={s.item}
-                                    style={flexValues.locationId != null ? {flex: flexValues.locationId} : {flex: flexValues.general}}
-                                    onDoubleClick={() => changeArrayItems('locationId')}>
-                                    { !getIsToggleFromToggleArray('locationId') ? arrayOfItems.locationId
-                                    : <InputAdmin value={newArrayOfItems.locationId} onChange={e => setNewArrayOfItems({...newArrayOfItems, locationId: Number(e.target.value)})}/>
-                                    }
-                                </li>
-                                <li className={s.item}
-                                    style={flexValues.id != null ? {flex: flexValues.id} : {flex: flexValues.general}}
-                                    onDoubleClick={() => changeArrayItems('id')}>
-                                    { !getIsToggleFromToggleArray('id') ? arrayOfItems.id
-                                    : <InputAdmin value={newArrayOfItems.id} onChange={e => setNewArrayOfItems({...newArrayOfItems, id: Number(e.target.value)})}/>
-                                    }
-                                </li>
                                 <Link to={THINGS_ROUTE}
                                       state={{
                                           arrayOfSelectedItem: arrayOfItems,
@@ -200,11 +187,6 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
                                                 </div>)
                                     })}
                                 </li>
-                                <li className={s.item}
-                                    style={flexValues.id != null ? {flex: flexValues.id} : {flex: flexValues.general}}>{arrayOfItems.id}
-                                </li>
-                                
-                                
                                 <Link to={THINGS_EDIT_ROUTE} state={{
                                     arrayOfSelectedItem: arrayOfItems,
                                     flexValues: flexValues,
@@ -213,7 +195,7 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable}) => {
                                     <li className={`${s.item}`}><img src={Edit} alt="Edit"/></li>
                                 </Link>
                                 <li className={`${s.spaceBetweenLinkButtons}`}></li>
-                                <li className={`${s.item} ${s.deleteButton}`}><img src={Delete} alt="Delete"/></li>
+                                <li className={`${s.item} ${s.deleteButton}`}><img src={Delete} alt="Delete" onClick={() => DeleteRequest(itemName,arrayOfItems.id)}/></li>
                             </ul>
                         )
                     }
