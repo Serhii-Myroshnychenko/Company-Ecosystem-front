@@ -34,6 +34,7 @@ const EmployeesPage = () => {
             alert(t("Alert.error"))
         }
     }
+    console.log(employees)
 
     return (
         <div className={s.employeesContainer}>
