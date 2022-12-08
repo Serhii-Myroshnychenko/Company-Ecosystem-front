@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import s from "./styles/Navbar.module.css"
+import btnStyles from './UI/button/ButtonPurple.module.css'
 import {Link, NavLink, useLocation} from "react-router-dom";
 import logo from "../img/logo/Logo.png"
 import {
@@ -12,28 +13,23 @@ import {
 import {useTranslation} from "react-i18next";
 import "../utils/i18next";
 import {navbarActiveClassName, navbarShadow} from "../utils/navbarRoutes";
+import ButtonUa from "./UI/button/ButtonUa";
+import ButtonEn from "./UI/button/ButtonEn";
 
 const Navbar = ({isAuth}) => {
 
-    //const activeNavbarClass = (navData) => (navData?.isActive ? s.activeLink : s.menu__link );
-
-
     const [navbarShadowState, setNavbarShadowState] = useState('drop-shadow(0px 4px 5px #EFEFEF)');
     const [displayedItemName, setDisplayedItemName] = useState('')
+    const [isActiveUABtn, setIsActiveUABtn] = useState(true);
+    const [isActiveENGBtn, setIsActiveENGBtn] = useState(false);
     const location = useLocation()
-
     const {t, i18n} = useTranslation();
-    const changeLanguage = (lang) => {
-        i18n.changeLanguage(lang);
-    };
 
 
     useEffect(() => {
         changeNavbarShadow();
         checkIsActiveNavbarClass()
     }, [location.pathname])
-
-
 
     const changeNavbarShadow = () => {
         for (let path of navbarShadow) {
@@ -45,6 +41,21 @@ const Navbar = ({isAuth}) => {
             setNavbarShadowState('drop-shadow(0px 4px 5px #EFEFEF)')
         }
     }
+
+    function changeLanguageAndActiveStateForUABtn(lang) {
+        setIsActiveUABtn(true);
+        setIsActiveENGBtn(false);
+        i18n.changeLanguage(lang);
+    }
+
+    function changeLanguageAndActiveStateForENGBtn(lang) {
+        setIsActiveENGBtn(true);
+        setIsActiveUABtn(false);
+        i18n.changeLanguage(lang);
+    }
+
+
+    //const activeNavbarClass = (navData) => (navData?.isActive ? s.activeLink : s.menu__link );
     const activeNavbarClass = (navData) => {
         if(navData.isActive) {
             return s.activeLink
@@ -59,10 +70,7 @@ const Navbar = ({isAuth}) => {
             .filter(el => el.name === displayedItemName)[0]?.pathArray
         resultPathArray?.forEach(path => {
             if(path === location.pathname) {
-                activeNavbarClass({isActive(match, location) {
-                    match(true)
-                        location(location.pathname)
-                    }})
+                activeNavbarClass({isActive: true})
             }
         })
     }
@@ -96,10 +104,16 @@ const Navbar = ({isAuth}) => {
                                 <NavLink to={QUESTIONNAIRES_ROUTE} onClick={() => setDisplayedItemName('questionnaires')} className={activeNavbarClass}>Questionnaires</NavLink>
                             </li>
                             <li>
-                            <div >
-                              <button onClick={() => changeLanguage("ua")} >UA</button>
-                              <button onClick={() => changeLanguage("eng")}>ENG</button>
-                          </div>  
+                                <div className={s.languageButtonsContainer}>
+                                    <div className={s.engButtonContainer}>
+                                    <ButtonUa onClick={() => changeLanguageAndActiveStateForUABtn("ua")}
+                                              className={isActiveUABtn ? btnStyles.uaButtonActive : btnStyles.uaButton}>UA</ButtonUa>
+                                    </div>
+                                    <div className={s.uaButtonContainer}>
+                                    <ButtonEn onClick={() => changeLanguageAndActiveStateForENGBtn("eng")}
+                                              className={isActiveENGBtn ? btnStyles.enButtonActive : btnStyles.enButton}>EN</ButtonEn>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </nav>

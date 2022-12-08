@@ -209,8 +209,6 @@ const QuestionnairesItem = ({arrayOfItems , flexValues, headerBlock, updateTable
                                         style={flexValues.employeeId != null ? {flex: flexValues.employeeId} : {flex: flexValues.general}}>
                                         <InputAdmin value={newArrayOfItems.employeeId || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, employeeId: Number(e.target.value)})}/>
                                     </li>
-                                        
-
                                     <Link to={QUESTIONNAIRES_ROUTE}  state={{
                                         arrayOfSelectedItem: arrayOfItems,
                                         flexValues: flexValues,

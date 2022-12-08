@@ -217,7 +217,6 @@ const LocationsItem = ({arrayOfItems , flexValues, headerBlock, updateTable, ite
                                 <li className={s.item}
                                     style={flexValues.photo != null ? {flex: flexValues.photo} : {flex: flexValues.general}}>
                                     <div className={s.photoContainer}>
-
                                         <img src={arrayOfItems.photo !== undefined ? 'https://localhost:7032' + arrayOfItems.photo : noPhotoImage} alt="photo"/>
                                     </div>
                                 </li>

@@ -42,7 +42,6 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
     }, [searchQuery])
 
 
-
     const searchSortedQuests = () => {
         const fieldName = props.searchedFieldName
         if(searchQuery !== ''){

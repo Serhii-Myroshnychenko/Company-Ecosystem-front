@@ -198,3 +198,20 @@
         flex-wrap: wrap;
     }
 }
+
+.languageButtonsContainer {
+    display: flex;
+    width: 84px;
+}
+
+.languageButtonsContainer >*:not(:last-child) {
+    margin-right: 5px;
+}
+
+.engButtonContainer {
+    flex: 0 0 50%;
+}
+
+.uaButtonContainer {
+    flex: 0 0 50%;
+}

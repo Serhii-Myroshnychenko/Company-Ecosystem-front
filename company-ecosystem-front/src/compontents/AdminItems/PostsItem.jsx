@@ -122,8 +122,6 @@ const PostsItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemName
                                     style={flexValues.body != null ? {flex: flexValues.body} : {flex: flexValues.general}}><InputAdmin value={newArrayOfItems.body || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, body: e.target.value})}/></li>
                                 <li className={s.item}
                                     style={flexValues.locationId != null ? {flex: flexValues.locationId} : {flex: flexValues.general}}><InputAdmin  value={newArrayOfItems.locationId || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, locationId: Number(e.target.value)})}/></li>
-                               
-
                                 <Link to={POSTS_ROUTE}  state={{
                                     arrayOfSelectedItem: arrayOfItems,
                                     flexValues: flexValues,

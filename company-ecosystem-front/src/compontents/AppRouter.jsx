@@ -4,9 +4,6 @@ import {authRoutes, publicRoutes} from "../utils/routes";
 import NotFound from "../pages/NotFound";
 
 const AppRouter = ({isAuth}) => {
-
-    // Протестировать, работает ли isAuth динамически без использования useState(),
-    // или же надо его бахнуть чтоб оно динамически все отрисовывало
     return (
         <Routes>
             {publicRoutes.map(({path, Component}) =>

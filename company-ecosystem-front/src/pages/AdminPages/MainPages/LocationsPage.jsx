@@ -4,7 +4,6 @@ import AdminBlock from "../../../compontents/AdminBlock";
 import {useTranslation} from "react-i18next";
 
 const LocationsPage = () => {
-
     const [locations, setLocations] = useState([]);
     const {t} = useTranslation();
     const itemName = "location"

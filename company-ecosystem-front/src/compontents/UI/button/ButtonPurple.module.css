@@ -17,3 +17,87 @@
     cursor: pointer;
 }
 
+
+
+.uaButton {
+    cursor: pointer;
+    text-align: center;
+    background: #00A3FF;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #ffffff;
+    font-family: inherit;
+    width: 100%;
+    height: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.uaButton:hover {
+    filter: drop-shadow(0px 4px 4px rgba(0, 176, 255, 0.5));
+    background: #006fff;
+}
+
+.uaButtonActive {
+    cursor: pointer;
+    text-align: center;
+    background: #00A3FF;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #ffffff;
+    font-family: inherit;
+    width: 100%;
+    height: 25px;
+    transition: background-color 0.3s ease;
+    filter: drop-shadow(0px 4px 4px rgba(0, 255, 255, 0.5));
+}
+
+.uaButtonActive:hover {
+    filter: drop-shadow(0px 4px 4px rgba(0, 166, 255, 0.5));
+    background: #006fff;
+}
+
+
+.enButton {
+    cursor: pointer;
+    text-align: center;
+    background: #FF3D00;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #ffffff;
+    font-family: inherit;
+    width: 100%;
+    height: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.enButtonActive {
+    cursor: pointer;
+    text-align: center;
+    background: #ff0000;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #ffffff;
+    font-family: inherit;
+    width: 100%;
+    height: 25px;
+    transition: background-color 0.3s ease;
+    filter: drop-shadow(0px 4px 4px rgba(255, 46, 46, 0.5));
+}
+
+.enButton:hover {
+    filter: drop-shadow(0px 4px 4px rgba(255, 35, 35, 0.5));
+    background: #d50000;
+}
+
+.enButtonActive:hover {
+    filter: drop-shadow(0px 4px 4px rgba(255, 1, 1, 0.5));
+    background: #d50000;
+}

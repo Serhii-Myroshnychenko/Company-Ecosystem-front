@@ -19,6 +19,5 @@ export const navbarActiveClassName = [
         name: 'employees',
         pathArray: [EMPLOYERS_ADD_ROUTE, EMPLOYERS_EDIT_ROUTE]
     }
-
 ]
 

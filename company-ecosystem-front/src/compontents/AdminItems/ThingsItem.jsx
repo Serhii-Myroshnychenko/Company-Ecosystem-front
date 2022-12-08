@@ -128,16 +128,21 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemNam
                                     <li className={`${s.item} ${s.deleteButton}`}><img src={Delete} alt="Delete"/></li>
                                 </Link>
                             </ul>)
-
                     } else if (isAddItem) {
                         return (
                             <ul className={s.ul}>
                                 <li className={s.item}
-                                    style={flexValues.name != null ? {flex: flexValues.name} : {flex: flexValues.general}}><InputAdmin value={newArrayOfItems.name || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, name: e.target.value})}/></li>
+                                    style={flexValues.name != null ? {flex: flexValues.name} : {flex: flexValues.general}}>
+                                    <InputAdmin value={newArrayOfItems.name || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, name: e.target.value})}/>
+                                </li>
                                 <li className={s.item}
-                                    style={flexValues.instruction != null ? {flex: flexValues.instruction} : {flex: flexValues.general}}><InputAdmin value={newArrayOfItems.instruction || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, instruction: e.target.value})}/></li>
+                                    style={flexValues.instruction != null ? {flex: flexValues.instruction} : {flex: flexValues.general}}>
+                                    <InputAdmin value={newArrayOfItems.instruction || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, instruction: e.target.value})}/>
+                                </li>
                                 <li className={s.item}
-                                    style={flexValues.characteristic != null ? {flex: flexValues.characteristic} : {flex: flexValues.general}}><InputAdmin  value={newArrayOfItems.characteristic || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, characteristic: e.target.value})}/></li>
+                                    style={flexValues.characteristic != null ? {flex: flexValues.characteristic} : {flex: flexValues.general}}>
+                                    <InputAdmin  value={newArrayOfItems.characteristic || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, characteristic: e.target.value})}/>
+                                </li>
                                 <li className={s.item}
                                     style={flexValues.photos != null ? {flex: flexValues.photos} : {flex: flexValues.general}}
                                         onDoubleClick={() => changeArrayItems('photos')}>
@@ -148,7 +153,9 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemNam
                                         }
                                 </li>
                                 <li className={s.item}
-                                    style={flexValues.locationId != null ? {flex: flexValues.locationId} : {flex: flexValues.general}}><InputAdmin  value={newArrayOfItems.locationId || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, locationId: Number(e.target.value)})}/></li>
+                                    style={flexValues.locationId != null ? {flex: flexValues.locationId} : {flex: flexValues.general}}>
+                                    <InputAdmin  value={newArrayOfItems.locationId || ''} onChange={e => setNewArrayOfItems({...newArrayOfItems, locationId: Number(e.target.value)})}/>
+                                </li>
                                 
                                 <Link to={THINGS_ROUTE}  state={{
                                     arrayOfSelectedItem: arrayOfItems,
@@ -171,18 +178,15 @@ const ThingsItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemNam
                                 <li className={s.item}
                                     style={flexValues.characteristic != null ? {flex: flexValues.characteristic} : {flex: flexValues.general}}>{arrayOfItems.characteristic}</li>
                                 <li className={s.item}
-
                                     style={flexValues.photos != null ? {flex: flexValues.photos} : {flex: flexValues.general}}>
                                     <div className={s.photoContainerThings}>
-
                                             {arrayOfItems.photos?.map(p => {
                                                 return (
                                                     <div className={s.photoContainer}>
-                                                    <img src={p.path !== undefined ? 'https://localhost:7032' + p.path : noPhotoImage} alt="photo"/>
+                                                        <img src={p.path !== undefined ? 'https://localhost:7032' + p.path : noPhotoImage} alt="photo"/>
                                                     </div>
                                                 )
                                             })}
-
                                     </div>
                                 </li>
                                 <Link to={THINGS_EDIT_ROUTE} state={{
