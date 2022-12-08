@@ -2,14 +2,18 @@ import React from 'react';
 import {useLocation} from "react-router-dom";
 import s from "../MainPages/styles/MainPages.module.css";
 import AdminBlock from "../../../compontents/AdminBlock";
+import {useTranslation} from "react-i18next";
 
 const QuestionnairesEditPage = () => {
+
     const location = useLocation()
+    const {t} = useTranslation();
     const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
     const itemName = "questionnaire"
     const headers = ['firstName', 'middleName','lastName','phone','birthday','photo','aboutMyself','linkToLinkedIn','actions']
 
     async function updateQuestionnaires(inputItems){
+
         let formData = new FormData();
         formData.append('firstName',inputItems.firstName);
         formData.append('middleName',inputItems.middleName);
@@ -27,18 +31,17 @@ const QuestionnairesEditPage = () => {
         formData.append('linkToLinkedIn',inputItems.linkToLinkedIn)
         formData.append('employeeId',inputItems.employeeId)
         formData.append('id',inputItems.id);
+
         let result = await fetch("https://localhost:7032/Questionnaire", {
             method: 'PUT',
             body: formData
         });
         if(result.status === 200){
-            alert("Успешно")
+            alert(t("Alert.success"))
         } else {
-            alert("Неверные данные")
+            alert(t("Alert.error"))
         }
     }
-
-
 
     return (
         <div className={s.employeesContainer}>

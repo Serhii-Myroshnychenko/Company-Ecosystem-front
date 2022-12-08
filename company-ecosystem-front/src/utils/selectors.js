@@ -34,8 +34,3 @@ export const itemSelector = (arrayOfItem,flexValue,headerBlock1, updateTable,ite
         }
     ]
 )
-
-/*{
-            name : "employeeEdit",
-            Component : <EmployeesEditItem arrayOfSelectedItem={arrayOfItem} flexValues={flexValue} headerBlock={headerBlock1}/>
-        },*/

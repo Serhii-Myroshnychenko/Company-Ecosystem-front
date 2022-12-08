@@ -1,36 +1,23 @@
-
 import {POSTS_EDIT_ROUTE, POSTS_ADD_ROUTE, POSTS_ROUTE} from '../../utils/consts';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import s from './AdminItem.module.css'
 import Delete from "../../img/icons/Delete.svg"
 import DeleteRequest from '../../requests/requests';
 import Edit from "../../img/icons/Edit.svg"
 import Save from "../../img/icons/Save.png"
-import noPhotoImage from "../../img/icons/noPhotoImage.png"
 import {Link, useLocation} from "react-router-dom";
 import InputAdmin from "../UI/input/InputAdmin";
+import {useTranslation} from "react-i18next";
 
 
 const PostsItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemName}) => {
 
     const location = useLocation()
+    const {t} = useTranslation();
     const [isEditItem, setIsEditItem] = useState(false)
     const [isAddItem, setIsAddItem] = useState(false)
     const [toggleArray, setToggleArray] = useState([])
-
     const [newArrayOfItems, setNewArrayOfItems] = useState({title: arrayOfItems.title, body: arrayOfItems.body, mark: arrayOfItems.mark, create: arrayOfItems.create, locationId: arrayOfItems.locationId, id:arrayOfItems.id});
-
-    const validArrayOfItems = {
-        get filledArrayOfItems() {
-            if(Object.keys(arrayOfItems).length === 0) {
-                return arrayOfItems = {employees: [{email: 'empty'}]}
-            } else {
-                return arrayOfItems
-            }
-        }
-    }
-
-    
 
     useEffect(() => {
         setToggleValues()
@@ -81,16 +68,6 @@ const PostsItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemName
             }
         }
         return false;
-    }
-
-    const getEmployeeIdWithFilledArrayOfItems = () => {
-        for (let emp of validArrayOfItems.filledArrayOfItems.employees) {
-            if (emp.email === arrayOfItems.chiefEmail) {
-                return emp.id
-            } else {
-                return 0
-            }
-        }
     }
 
     return (
@@ -182,7 +159,7 @@ const PostsItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemName
                                     <li className={`${s.item}`}><img src={Edit} alt="Edit"/></li>
                                 </Link>
                                 <li className={`${s.spaceBetweenLinkButtons}`}></li>
-                                <li className={`${s.item} ${s.deleteButton}`}><img src={Delete} alt="Delete" onClick={() => DeleteRequest(itemName,arrayOfItems.id)}/></li>
+                                <li className={`${s.item} ${s.deleteButton}`}><img src={Delete} alt="Delete" onClick={() => DeleteRequest(itemName,arrayOfItems.id,t)}/></li>
                             </ul>
                         )
                     }

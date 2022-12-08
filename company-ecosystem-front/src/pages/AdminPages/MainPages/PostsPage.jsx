@@ -1,14 +1,16 @@
 import React , {useState ,useEffect} from 'react';
 import s from './styles/MainPages.module.css'
 import AdminBlock from "../../../compontents/AdminBlock";
+import {useTranslation} from "react-i18next";
 
 const PostsPage = () => {
 
     const [posts, setPosts] = useState([{}]);
+    const {t} = useTranslation();
     const itemName = "post"
     const headers = ['title', 'body','mark','create','locationId','id','actions']
     const flexValues = {
-        id: '0 0 100px',
+        id: '0 0 800px',
         email: '0 0 250px',
         general: '0 0 200px',
         photo: '0 0 350px',
@@ -30,7 +32,7 @@ const PostsPage = () => {
         if(result.status === 200){
             setPosts(await result.json())
         } else {
-            alert("Произошла ошибка")
+            alert(t("Alert.error"))
         }
     }
 

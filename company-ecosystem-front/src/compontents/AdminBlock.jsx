@@ -6,6 +6,9 @@ import { itemSelector } from '../utils/selectors';
 import ButtonPurple from "./UI/button/ButtonPurple";
 import {Link, useLocation} from "react-router-dom";
 import {EMPLOYERS_ROUTE} from "../utils/consts";
+import {useTranslation} from "react-i18next";
+import "../utils/i18next";
+
 
 
 const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props}) => {
@@ -19,6 +22,7 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
     const getElementsOfArray = arrayOfItems.map(el => el)
     const checkedItemNameToAddPageLink = itemSelector().filter(el => el.name === itemName)[0].addPagePath
     const checkIsEmployeePage = () => location.pathname === EMPLOYERS_ROUTE ? setIsAdd(true) : null
+    const {t} = useTranslation();
 
     useEffect(() => {
         props.isAddPage ? setIsAdd(true) : setIsAdd(false)
@@ -54,7 +58,7 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
                 <div className={s.topContainer}>
                     <div className={s.searchContainer}>
                         <AdminSearch onChange={e => setSearchQuery(e.target.value)}
-                                     placeholder='Search...'
+                                     placeholder={t("AdminBlock.search")}
                                      value={searchQuery} />
                     </div>
                     {!isAdd ?
@@ -63,7 +67,7 @@ const AdminBlock = ({arrayOfItems, headersArray, flexValues,itemName, ...props})
                                 arrayOfItems: arrayOfItems,
                                 flexValues: flexValues
                             }} onClick={() => setIsAdd(true)}>
-                                <ButtonPurple style={{height: '42px'}} >Додати</ButtonPurple>
+                                <ButtonPurple style={{height: '42px'}} >{t("AdminBlock.addButtonContainer")}</ButtonPurple>
                             </Link>
                         </div>
                         : <div></div>

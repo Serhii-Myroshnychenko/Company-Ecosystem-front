@@ -1,12 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Link, useLocation} from "react-router-dom";
-import {
-    LOCATIONS_ADD_ROUTE,
-    LOCATIONS_EDIT_ROUTE,
-    LOCATIONS_ROUTE, QUESTIONNAIRES_ADD_ROUTE,
-    QUESTIONNAIRES_EDIT_ROUTE,
-    QUESTIONNAIRES_ROUTE
-} from "../../utils/consts";
+import {LOCATIONS_ROUTE, QUESTIONNAIRES_ADD_ROUTE,QUESTIONNAIRES_EDIT_ROUTE,QUESTIONNAIRES_ROUTE} from "../../utils/consts";
 import s from "./AdminItem.module.css";
 import InputAdmin from "../UI/input/InputAdmin";
 import noPhotoImage from "../../img/icons/noPhotoImage.png";
@@ -14,26 +8,18 @@ import Save from "../../img/icons/Save.png";
 import Delete from "../../img/icons/Delete.svg";
 import DeleteRequest from '../../requests/requests';
 import Edit from "../../img/icons/Edit.svg";
+import {useTranslation} from "react-i18next";
 
 const QuestionnairesItem = ({arrayOfItems , flexValues, headerBlock, updateTable,itemName}) => {
+
     const location = useLocation()
+    const {t} = useTranslation();
     const [isEditItem, setIsEditItem] = useState(false)
     const [isAddItem, setIsAddItem] = useState(false)
     const [toggleArray, setToggleArray] = useState([])
     const [employeeId, setEmployeeId] = useState()
     const [newArrayOfItems, setNewArrayOfItems] = useState({firstName: arrayOfItems.firstName, middleName: arrayOfItems.middleName, lastName: arrayOfItems.lastName, phone: arrayOfItems.phone, birthday:arrayOfItems.birthday, photo: arrayOfItems.photo, aboutMyself: arrayOfItems.aboutMyself,  linkToLinkedIn: arrayOfItems.linkToLinkedIn,  id: arrayOfItems.id, employeeId: employeeId});
 
-    
-
-    const validArrayOfItems = {
-        get filledArrayOfItems() {
-            if(Object.keys(arrayOfItems).length === 0) {
-                return arrayOfItems = {employee: [{email: 'empty'}]}
-            } else {
-                return arrayOfItems
-            }
-        }
-    }
     useEffect(() => {
         setEmployeeId(arrayOfItems?.employee?.id)
     },[arrayOfItems?.employee?.id])
@@ -92,17 +78,6 @@ const QuestionnairesItem = ({arrayOfItems , flexValues, headerBlock, updateTable
         }
         return false;
     }
-
-    // const getEmployeeIdWithFilledArrayOfItems = () => {
-    //     for (let emp of validArrayOfItems.filledArrayOfItems.employee) {
-    //             if (emp.email === arrayOfItems.chiefEmail) {
-    //                 return emp.id
-    //             } else {
-    //                 return 0
-    //             }
-    //     }
-    // }
-
 
     return (
         <div className={s.adminItemContainer} style={{width: `${headerBlock}px`}}>
@@ -282,7 +257,7 @@ const QuestionnairesItem = ({arrayOfItems , flexValues, headerBlock, updateTable
                                         <li className={`${s.item}`}><img src={Edit} alt="Edit"/></li>
                                     </Link>
                                     <li className={`${s.spaceBetweenLinkButtons}`}></li>
-                                    <li className={`${s.item} ${s.deleteButton}`}><img src={Delete} alt="Delete" onClick={() => DeleteRequest(itemName,arrayOfItems.id)}/></li>
+                                    <li className={`${s.item} ${s.deleteButton}`}><img src={Delete} alt="Delete" onClick={() => DeleteRequest(itemName,arrayOfItems.id,t)}/></li>
                                 </ul>
                             )
                         }

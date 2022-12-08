@@ -2,15 +2,19 @@ import React from 'react';
 import {useLocation} from "react-router-dom";
 import s from "../MainPages/styles/MainPages.module.css";
 import AdminBlock from "../../../compontents/AdminBlock";
+import {useTranslation} from "react-i18next";
 
 const QuestionnairesAddPage = () => {
+
     const location = useLocation()
+    const {t} = useTranslation();
     const itemName = "questionnaire"
     const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
     const headers = ['firstName', 'middleName','lastName','phone','birthday','photo','aboutMyself','linkToLinkedIn','employeeId', 'actions']
 
 
     async function createQuestionnaires(inputItems){
+
         let formData = new FormData();
         formData.append('firstName',inputItems.firstName);
         formData.append('middleName',inputItems.middleName);
@@ -28,12 +32,11 @@ const QuestionnairesAddPage = () => {
             body: formData
         });
         if(result.status == 200){
-            alert("Успешно")
+            alert(t("Alert.success"))
         } else {
-            alert("Неверные данные")
+            alert(t("Alert.error"))
         }
     }
-
 
 
     return (

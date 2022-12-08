@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import {useLocation} from "react-router-dom";
 import s from "../MainPages/styles/MainPages.module.css";
 import AdminBlock from "../../../compontents/AdminBlock";
-
+import {useTranslation} from "react-i18next";
 const ThingsAddPage = () => {
+
     const location = useLocation()
+    const {t} = useTranslation();
     const itemName = "thing"
     const { arrayOfSelectedItem, flexValues, headerBlock } = location.state
     const headers = ['name', 'instruction','characteristic','photoes','locationId','actions']
@@ -24,9 +26,9 @@ const ThingsAddPage = () => {
             body: formData
         });
         if(result.status == 200){
-            alert("Успешно")
+            alert(t("Alert.success"))
         } else {
-            alert("Неверные данные")
+            alert(t("Alert.error"))
         }
     }
 

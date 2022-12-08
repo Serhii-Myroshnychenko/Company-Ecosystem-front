@@ -1,10 +1,11 @@
 import React , {useState ,useEffect} from 'react';
 import s from './styles/MainPages.module.css'
 import AdminBlock from "../../../compontents/AdminBlock";
-
+import {useTranslation} from "react-i18next";
 const ThingsPage = () => {
 
     const [things, setThings] = useState([{}]);
+    const {t} = useTranslation();
     const itemName = "thing"
     const headers = ['name', 'instruction','characteristic','photos','actions']
     const flexValues = {
@@ -29,7 +30,7 @@ const ThingsPage = () => {
         if(result.status === 200){
             setThings(await result.json())
         } else {
-            alert("Произошла ошибка")
+            alert(t("Alert.error"))
         }
     }
 

@@ -1,0 +1,30 @@
+{
+    "Home":{
+        "greetings":"Привіт",
+        "welcome":"Ласкаво просимо до системи",
+        "selectTable":"Оберіть необхідно таблицю для взаємодії",
+        "purpleText":"операції!",
+        "operations":"Далі Ви можете обрати наступні операції: Редагування, Видалення, Додавання та Перегляд ",
+        "exitButtonContainer":"Вийти з акаунту"
+    },
+    "Login":{
+        "signIn":"Авторизація в",
+        "companyEcosystem":"Company Ecosystem",
+        "description":"Тут ти можеш ",
+        "manage1":"керувати",
+        "manage2":"всіма важливими",
+        "manage3":"частинами системи!"
+    },
+    "NotFound":{
+        "notFound":"Сторінк не знайдена"
+    },
+    "AdminBlock":{
+        "addButtonContainer":"Додати",
+        "search":"Пошук..."
+    },
+    "LoginForm":{
+        "titleText":"Авторизація в",
+        "button":"Вхід"
+    }
+
+}

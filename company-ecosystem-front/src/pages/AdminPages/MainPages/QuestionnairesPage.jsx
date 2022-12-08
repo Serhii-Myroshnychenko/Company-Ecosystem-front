@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import s from "./styles/MainPages.module.css";
 import AdminBlock from "../../../compontents/AdminBlock";
+import {useTranslation} from "react-i18next";
 
 const QuestionnairesPage = () => {
     const [questionnaires, setQuestionnaires] = useState([{}]);
+    const {t} = useTranslation();
     const itemName = "questionnaire"
     const headers = ['firstName', 'middleName','lastName','phone','birthday','photo','aboutMyself','linkToLinkedIn','EmployeeId','id', 'actions']
     const flexValues = {
@@ -27,10 +29,9 @@ const QuestionnairesPage = () => {
         if(result.status === 200){
             setQuestionnaires(await result.json())
         } else {
-            alert("Произошла ошибка")
+            alert(t("Alert.error"))
         }
     }
-
 
     return (
         <div className={s.employeesContainer}>

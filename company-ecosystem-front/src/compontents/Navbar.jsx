@@ -9,6 +9,8 @@ import {
     POSTS_ROUTE, QUESTIONNAIRES_ROUTE,
     THINGS_ROUTE
 } from "../utils/consts";
+import {useTranslation} from "react-i18next";
+import "../utils/i18next";
 import {navbarActiveClassName, navbarShadow} from "../utils/navbarRoutes";
 
 const Navbar = ({isAuth}) => {
@@ -20,10 +22,17 @@ const Navbar = ({isAuth}) => {
     const [displayedItemName, setDisplayedItemName] = useState('')
     const location = useLocation()
 
+    const {t, i18n} = useTranslation();
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang);
+    };
+
+
     useEffect(() => {
         changeNavbarShadow();
         checkIsActiveNavbarClass()
     }, [location.pathname])
+
 
 
     const changeNavbarShadow = () => {
@@ -58,6 +67,7 @@ const Navbar = ({isAuth}) => {
         })
     }
 
+
     return (
         <header className={s.header} style={{filter: `${navbarShadowState}`}} >
             <div className={s.headerContainer}>
@@ -69,7 +79,7 @@ const Navbar = ({isAuth}) => {
                 </Link>
                 {isAuth ?
                     <nav className={s.menu}>
-                        <ul className={s.menu__ul}>
+                        <ul className={s.menu__ul} >
                             <li className={s.menu__li}>
                                 <NavLink to={EMPLOYERS_ROUTE} onClick={() => setDisplayedItemName('employees')} className={activeNavbarClass}>Employees</NavLink>
                             </li>
@@ -84,6 +94,12 @@ const Navbar = ({isAuth}) => {
                             </li>
                             <li className={s.menu__li}>
                                 <NavLink to={QUESTIONNAIRES_ROUTE} onClick={() => setDisplayedItemName('questionnaires')} className={activeNavbarClass}>Questionnaires</NavLink>
+                            </li>
+                            <li>
+                            <div >
+                              <button onClick={() => changeLanguage("ua")} >UA</button>
+                              <button onClick={() => changeLanguage("eng")}>ENG</button>
+                          </div>  
                             </li>
                         </ul>
                     </nav>
