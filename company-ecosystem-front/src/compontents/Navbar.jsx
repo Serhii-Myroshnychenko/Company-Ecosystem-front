@@ -18,6 +18,8 @@ import ButtonEn from "./UI/button/ButtonEn";
 
 const Navbar = ({isAuth}) => {
 
+    //const activeNavbarClass = (navData) => (navData?.isActive ? s.activeLink : s.menu__link );
+
     const [navbarShadowState, setNavbarShadowState] = useState('drop-shadow(0px 4px 5px #EFEFEF)');
     const [displayedItemName, setDisplayedItemName] = useState('')
     const [isActiveUABtn, setIsActiveUABtn] = useState(true);
@@ -26,21 +28,12 @@ const Navbar = ({isAuth}) => {
     const {t, i18n} = useTranslation();
 
 
+
     useEffect(() => {
         changeNavbarShadow();
         checkIsActiveNavbarClass()
     }, [location.pathname])
 
-    const changeNavbarShadow = () => {
-        for (let path of navbarShadow) {
-            if(path === location.pathname)
-            {
-                setNavbarShadowState('none')
-                break
-            }
-            setNavbarShadowState('drop-shadow(0px 4px 5px #EFEFEF)')
-        }
-    }
 
     function changeLanguageAndActiveStateForUABtn(lang) {
         setIsActiveUABtn(true);
@@ -54,6 +47,16 @@ const Navbar = ({isAuth}) => {
         i18n.changeLanguage(lang);
     }
 
+    const changeNavbarShadow = () => {
+        for (let path of navbarShadow) {
+            if(path === location.pathname)
+            {
+                setNavbarShadowState('none')
+                break
+            }
+            setNavbarShadowState('drop-shadow(0px 4px 5px #EFEFEF)')
+        }
+    }
 
     //const activeNavbarClass = (navData) => (navData?.isActive ? s.activeLink : s.menu__link );
     const activeNavbarClass = (navData) => {
